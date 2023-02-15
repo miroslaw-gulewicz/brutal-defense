@@ -1,0 +1,9 @@
+using EventBus;
+using UnityEngine;  
+
+#ROOTNAMESPACEBEGIN#
+public class #SCRIPTNAME# : EventMessage
+{
+		#NOTRIM#
+}
+#ROOTNAMESPACEEND#

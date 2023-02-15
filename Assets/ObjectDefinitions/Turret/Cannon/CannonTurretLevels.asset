@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37cd04500dace1048a9a48d36b5efc95, type: 3}
+  m_Name: CannonTurretLevels
+  m_EditorClassIdentifier: 
+  turretLevels:
+  - level: 1
+    definition: {fileID: 11400000, guid: 693a0ff2462ced64aac5ea78957fef6f, type: 2}
+  - level: 2
+    definition: {fileID: 11400000, guid: 727294e48e5bf41439d9dad4beb0983d, type: 2}
+  - level: 3
+    definition: {fileID: 11400000, guid: bbf5b65dc321a354dbf72c73e0156347, type: 2}

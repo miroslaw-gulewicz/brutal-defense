@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37cd04500dace1048a9a48d36b5efc95, type: 3}
+  m_Name: BalistaTurretLevels
+  m_EditorClassIdentifier: 
+  turretLevels:
+  - level: 1
+    definition: {fileID: 11400000, guid: 07406c16e9d0fd14a9bb7886af1c0954, type: 2}
+  - level: 2
+    definition: {fileID: 11400000, guid: 431216023122bb9498bd11c35d725b97, type: 2}
+  - level: 3
+    definition: {fileID: 11400000, guid: f0809c90a72dfc149b9769f10cac7f1d, type: 2}

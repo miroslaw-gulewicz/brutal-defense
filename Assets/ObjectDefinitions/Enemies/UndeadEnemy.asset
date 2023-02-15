@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a0bbd5c56380a4189b4539b7f8585c, type: 3}
+  m_Name: UndeadEnemy
+  m_EditorClassIdentifier: 
+  enemyName: Undead
+  exp: 7
+  sprite: {fileID: -8730811532367957942, guid: 9691fabc7b493974ab19d36cf1a14ef2, type: 3}
+  coins: 3
+  prefab: {fileID: 1291385761938051790, guid: 1bfb73b507baf7443961a28971a16899, type: 3}
+  spriteLibrary: {fileID: 11400000, guid: 713a31c46e009a44bb27f4c243cade41, type: 2}
+  weapon: {fileID: 0}
+  defaultEffects: {fileID: 0}
+  resistance:
+    resistanceStats:
+    - damageType: 3
+      damageReduction: 50
+    - damageType: 4
+      damageReduction: 100
+  basicStats:
+    stats:
+    - stat: 0
+      value: 250
+    - stat: 1
+      value: 250
+    - stat: 2
+      value: 0.4
+    - stat: 3
+      value: 0
+  effectInflicors: []

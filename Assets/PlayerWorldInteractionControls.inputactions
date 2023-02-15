@@ -1,0 +1,87 @@
+{
+    "name": "PlayerWorldInteractionControls",
+    "maps": [
+        {
+            "name": "PlayerWorldInteractions",
+            "id": "04d46a0c-95fc-4804-a5ec-7cfb277a9508",
+            "actions": [
+                {
+                    "name": "WorldClick",
+                    "type": "Button",
+                    "id": "91011da5-b733-489b-8bb5-289e1100b672",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "1de5cead-e68c-4f23-8a17-237afd41e4da",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "79e46869-7498-4196-b39a-ef237e3ef604",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WorldClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b1f0639e-0217-4485-a370-8807e9ac1e77",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WorldClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a559e49-16a0-4c07-b02d-aee871ab08e3",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WorldClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4df694a6-e46b-4813-9fd1-d6b546280a1e",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "852a4d75-7e6b-491a-968a-5cbecd1d1a64",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "Tap,Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2a9c95d9bc88c428a2428e340fed55, type: 3}
+  m_Name: FireBallSpellProximity
+  m_EditorClassIdentifier: 
+  _applyStrategy: 0
+  _proximityAffectorPrefab: {fileID: 1959515868867607557, guid: 7de69fb7658456d4b9ee9c7393fdcf04, type: 3}
+  _inflictors:
+  - {fileID: 11400000, guid: f8d033d0a1a397342a85d389050df452, type: 2}
+  cancelEffectOnExit: 1
+  proximity: 1.2

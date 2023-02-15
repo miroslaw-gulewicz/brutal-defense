@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14c99dfed714924da3bf75268ef4817, type: 3}
+  m_Name: Balista 2
+  m_EditorClassIdentifier: 
+  _range: 5
+  fireSpeed: 10
+  projectile: {fileID: 11400000, guid: fa70c87f75b1a1e4cb0258009bf4951a, type: 2}
+  inflictors:
+  - {fileID: 11400000, guid: 0b4ae9ea37af4e3458f1bcff618b722e, type: 2}
+  cost: 5
+  hp: 1000
+  buildTime: 2
+  sprite: {fileID: 21300000, guid: fdca3432f5d6e9f49ae4adb595e9a6db, type: 3}
+  towerName: Bolt Turret
+  resistance:
+    resistanceStats: []
+  basicStats:
+    stats:
+    - stat: 0
+      value: 500
+    - stat: 1
+      value: 500
+    - stat: 3
+      value: 1

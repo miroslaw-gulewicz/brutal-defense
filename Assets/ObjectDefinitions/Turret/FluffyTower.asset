@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14c99dfed714924da3bf75268ef4817, type: 3}
+  m_Name: FluffyTower
+  m_EditorClassIdentifier: 
+  cost: 10
+  range: 5
+  fireSpeed: 10
+  hp: 200
+  buildTime: 0
+  sprite: {fileID: 21300000, guid: b3a8dd33a0972ff4cb240b3da88b0a74, type: 3}
+  towerName: Icy Tower
+  projectile: {fileID: 11400000, guid: 2e42479ecdd2b3a4b813a62110879655, type: 2}
+  resistance:
+    resistanceStats: []
+  basicStats:
+    stats:
+    - stat: 0
+      value: 500
+    - stat: 1
+      value: 500
+    - stat: 3
+      value: 4
+  inflictors: []

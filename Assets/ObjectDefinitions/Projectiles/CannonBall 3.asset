@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b41b958dda2c7a4f9c7221755f7f3ae, type: 3}
+  m_Name: CannonBall 3
+  m_EditorClassIdentifier: 
+  damage: 60
+  impactEffect: {fileID: 978120810625215076, guid: 95af01b3c6738f040aff2cc62f4b3ba7, type: 3}
+  damageType: 0
+  effect: 0
+  sprite: {fileID: 21300000, guid: 27eb25b2b273079478f4601cfec27209, type: 3}
+  _stats:
+    stats:
+    - stat: 2
+      value: 15

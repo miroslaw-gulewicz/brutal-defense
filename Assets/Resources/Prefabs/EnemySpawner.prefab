@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &892605798221687504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 892605798221687505}
+  m_Layer: 0
+  m_Name: DynamicObjects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &892605798221687505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892605798221687504}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 892605798886971718}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &892605798886971717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 892605798886971718}
+  - component: {fileID: 892605798886971719}
+  - component: {fileID: 892605798886971768}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &892605798886971718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892605798886971717}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.42, y: 0.49, z: -4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 892605798221687505}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &892605798886971719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892605798886971717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88068b0aa7411ab4aa2301a9caf81fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemiesWorldParent: {fileID: 892605798221687505}
+  _enemyDef: {fileID: 0}
+  spawnInterval: 0.53
+  initExisting: 1
+--- !u!114 &892605798886971768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892605798886971717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e8303fd535ca9e479a538970946b3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damageIndicatorPrefab: {fileID: 1729393368091503373, guid: 6f9324aca1f0cec4ca9dc6b1e36a3115, type: 3}
+  _effectVisualizerPrefab: {fileID: 1729393368091503373, guid: 007a43eaac93a984ebdee542b4148f33, type: 3}
+  _colors:
+  - color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
+    damage: 0
+  - color: {r: 0.5566038, g: 0, b: 0.12723884, a: 1}
+    damage: 1
+  - color: {r: 0.9150943, g: 0.28515232, b: 0, a: 1}
+    damage: 2
+  - color: {r: 0, g: 0.6692562, b: 1, a: 1}
+    damage: 3
+  - color: {r: 0.11381415, g: 0.6226415, b: 0, a: 1}
+    damage: 4
+  - color: {r: 0.3679245, g: 0, b: 0, a: 1}
+    damage: 5
+  - color: {r: 0, g: 0, b: 0, a: 0}
+    damage: 6
+  - color: {r: 0.8311672, g: 1, b: 0, a: 1}
+    damage: 7
+  _effectColors:
+  - color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+    effect: 0
+  - color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 0.69803923}
+    effect: 1
+  - color: {r: 0.5188679, g: 0, b: 0, a: 1}
+    effect: 2
+  - color: {r: 0, g: 0.5986749, b: 0.7924528, a: 0.7137255}
+    effect: 3
+  - color: {r: 1, g: 0.30117798, b: 0, a: 0.85490197}
+    effect: 4
+  - color: {r: 0.12891364, g: 1, b: 0, a: 0}
+    effect: 5
+  - color: {r: 0, g: 0, b: 0, a: 1}
+    effect: 6

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2a9c95d9bc88c428a2428e340fed55, type: 3}
+  m_Name: TimeDelayProximity
+  m_EditorClassIdentifier: 
+  _applyStrategy: 0
+  _proximityAffectorPrefab: {fileID: 2135769434860483293, guid: bc66aa9d53fb406419a68071251c72e0, type: 3}
+  _inflictors:
+  - {fileID: 11400000, guid: 48baac8a8e89d6b499a72b75cb0c93fc, type: 2}
+  cancelEffectOnExit: 1
+  proximity: 3

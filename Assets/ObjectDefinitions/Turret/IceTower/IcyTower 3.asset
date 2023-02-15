@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14c99dfed714924da3bf75268ef4817, type: 3}
+  m_Name: IcyTower 3
+  m_EditorClassIdentifier: 
+  _range: 4
+  fireSpeed: 10
+  projectile: {fileID: 11400000, guid: 502f5f337a8d53543bc35da1d283ad22, type: 2}
+  inflictors:
+  - {fileID: 11400000, guid: 8a1152c84f7b7314c94d1bad7b4f7721, type: 2}
+  cost: 20
+  hp: 200
+  buildTime: 0
+  sprite: {fileID: 21300000, guid: b3a8dd33a0972ff4cb240b3da88b0a74, type: 3}
+  towerName: Halestorm Tower
+  resistance:
+    resistanceStats: []
+  basicStats:
+    stats:
+    - stat: 0
+      value: 1000
+    - stat: 1
+      value: 1000
+    - stat: 3
+      value: 1

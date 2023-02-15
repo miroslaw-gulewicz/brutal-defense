@@ -1,0 +1,4 @@
+public enum StatEnum : int
+{
+    HP, CURRENT_HP, MOVING_SPEED, ATTACK_SPEED, MANA, CURRENT_MANA
+}

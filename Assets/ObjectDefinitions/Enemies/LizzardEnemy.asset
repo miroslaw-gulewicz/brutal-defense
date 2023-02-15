@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a0bbd5c56380a4189b4539b7f8585c, type: 3}
+  m_Name: LizzardEnemy
+  m_EditorClassIdentifier: 
+  enemyName: Lizzard Man
+  exp: 1
+  sprite: {fileID: -6383312658857005041, guid: 2966ecdeabc4f88489670d2595b8b27a, type: 3}
+  coins: 4
+  prefab: {fileID: 8158180039746281950, guid: 5b154114b3d4ad04e818ef46dca93b13, type: 3}
+  spriteLibrary: {fileID: 11400000, guid: 45104668d00b6c043809c4f67f8a79a4, type: 2}
+  weapon: {fileID: 11400000, guid: 9a72541ae94a2f249ab454ad2fefb5e9, type: 2}
+  defaultEffects: {fileID: 11400000, guid: ae972ee737695054498348c46bdba2ba, type: 2}
+  resistance:
+    resistanceStats:
+    - damageType: 0
+      damageReduction: 1
+    - damageType: 1
+      damageReduction: 50
+    - damageType: 2
+      damageReduction: 0
+    - damageType: 4
+      damageReduction: 0
+    - damageType: 3
+      damageReduction: 0
+    - damageType: 5
+      damageReduction: 0
+  basicStats:
+    stats:
+    - stat: 0
+      value: 150
+    - stat: 1
+      value: 150
+    - stat: 2
+      value: 0.65
+    - stat: 3
+      value: 4
+  effectInflicors: []

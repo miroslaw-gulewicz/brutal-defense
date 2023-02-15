@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eedfdf906a06374aad6dd7d212ba521, type: 3}
+  m_Name: DefaultParticleEffectAgent
+  m_EditorClassIdentifier: 
+  m_ParticleSystem: {fileID: 7961870605128512428, guid: 66efd56a6144e0e4ba84c8ec722f85f1, type: 3}

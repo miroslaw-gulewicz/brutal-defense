@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25fe78569fe5994ab6cf3ac5fd9234b, type: 3}
+  m_Name: NetSpell
+  m_EditorClassIdentifier: 
+  _spellName: Net
+  _effectAgent: {fileID: 0}
+  _inflictors:
+  - {fileID: 11400000, guid: f5b02b26f5298cc4da5b13a85a01e325, type: 2}
+  - {fileID: 11400000, guid: 8a1152c84f7b7314c94d1bad7b4f7721, type: 2}
+  _sprite: {fileID: 0}
+  _cooldown: 0
+  _gizmoPrefab: {fileID: 0}
+  targetsAgentLayer:
+    serializedVersion: 2
+    m_Bits: 512

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a0bbd5c56380a4189b4539b7f8585c, type: 3}
+  m_Name: FecesEnemy
+  m_EditorClassIdentifier: 
+  enemyName: Feces Monster
+  exp: 5
+  sprite: {fileID: 1805425757490656633, guid: 7f219a72ade6d3b42a14125c3b27cb48, type: 3}
+  coins: 2
+  prefab: {fileID: 1291385761938051790, guid: 1bfb73b507baf7443961a28971a16899, type: 3}
+  spriteLibrary: {fileID: 11400000, guid: 38c2c9abedd218a47ba7dd62b14048ac, type: 2}
+  weapon: {fileID: 0}
+  defaultEffects: {fileID: 0}
+  resistance:
+    resistanceStats:
+    - damageType: 4
+      damageReduction: 50
+    - damageType: 1
+      damageReduction: 50
+  basicStats:
+    stats:
+    - stat: 0
+      value: 300
+    - stat: 1
+      value: 300
+    - stat: 2
+      value: 0.5
+    - stat: 3
+      value: 0
+  effectInflicors: []

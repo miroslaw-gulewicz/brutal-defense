@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 555d2bc4bfd4f8d468e4746be153b6b9, type: 3}
+  m_Name: SpewingPoisonEffectAgent
+  m_EditorClassIdentifier: 
+  _applyStrategy: 0
+  _agentPrefab: {fileID: 3020720218277338991, guid: 61fdbe4096b83aa40aa5ad5cfe0f4152, type: 3}
+  effectAgents:
+  - {fileID: 11400000, guid: cc000e06a17e303469d4e32f5a6081c5, type: 2}
+  - {fileID: 11400000, guid: 3e79c431286dad84db2fcbdc0a6458ee, type: 2}
