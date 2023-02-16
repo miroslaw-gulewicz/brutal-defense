@@ -21,13 +21,16 @@ public class Shooting : MonoBehaviour
     [SerializeField]
     protected Balistic _balisticPrefab;
 
-    [SerializeField]
-    private RangeHighlight _rangeHighlight;
-
     private float lastAttackedAt = float.MinValue;
 
     [SerializeField]
     private ProximityTriggerBehaviour proximityTriggerBehaviour;
+
+    [SerializeField]
+    private GameObject _targetingGameObject;
+
+    [SerializeField]
+    private WeaponController _weaponController;
 
     private float _attackSpeed;
 
@@ -45,15 +48,17 @@ public class Shooting : MonoBehaviour
         proximityTriggerBehaviour.TrigerExitCallback = TriggerExit;
         proximityTriggerBehaviour.TrigerStayCallback = TriggerEnter;
         _targetingSystem = TargetingSystemFactory.Supply(TargetingSystemType.SIMPLE);
+        if (!_targetingGameObject) _targetingGameObject = gameObject;
     }
 
     public void Initialize()
     {      
         _agent.BasicStats.AttackSpeedUpdated += OnAttackSpeedChanged;
         OnAttackSpeedChanged();
-
-        _rangeHighlight.RangeRadius = _weapon.Range;
         proximityTriggerBehaviour.Range = _weapon.Range;
+        _targetingSystem = TargetingSystemFactory.Supply(TargetingSystemType.SIMPLE);
+        if(_weaponController)
+            _weaponController.SpriteLibrary = _weapon.WeaponSpriteLibrary;
     }
 
     private void OnAttackSpeedChanged()
@@ -82,7 +87,7 @@ public class Shooting : MonoBehaviour
         balistic.Destination = _targetingSystem.Target.transform.position;
         balistic.ProjectileDef = _weapon.Projectile;
         balistic.Inflictors = _weapon.Inflictors;
-        balistic.transform.position = transform.position;
+        balistic.transform.position = _targetingGameObject.transform.position;
         balistic.Initialize();
         projectile.SetActive(true);
     }
@@ -93,6 +98,7 @@ public class Shooting : MonoBehaviour
         {
             if (Time.time > lastAttackedAt + _attackSpeed)
             {
+                _weaponController?.Fire();
                 FireAtWill();
                 lastAttackedAt = Time.time;
                 _nextAttackTimerBar.Value = 1f;

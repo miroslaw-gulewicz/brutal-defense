@@ -17,10 +17,11 @@ MonoBehaviour:
   projectile: {fileID: 11400000, guid: 3c5803d35ec40f141a00997df516a6f6, type: 2}
   inflictors:
   - {fileID: 11400000, guid: ef931073293083546b27dbf460607d85, type: 2}
+  _weaponSpriteLibrary: {fileID: 11400000, guid: f1c3033312585b94ca0895ad754a5d81, type: 2}
   cost: 10
   hp: 200
   buildTime: 0
-  sprite: {fileID: 21300000, guid: b3a8dd33a0972ff4cb240b3da88b0a74, type: 3}
+  sprite: {fileID: -7560284153744367771, guid: f8ef3050efcb9874f902ecceffdf05cf, type: 3}
   towerName: Hoarfrost Tower
   resistance:
     resistanceStats: []

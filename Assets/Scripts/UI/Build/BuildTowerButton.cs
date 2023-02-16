@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using static DescribleBehaviour;
 
 [RequireComponent(typeof(Button))]
-public class BuildTowerButton : MonoBehaviour, IDescrible
+public class BuildTowerButton : MonoBehaviour, IDescrible, ISelectable
 {
     [SerializeField]
     TurretObjectDef towerObjectDef;
@@ -24,8 +22,11 @@ public class BuildTowerButton : MonoBehaviour, IDescrible
     [SerializeField]
     private TMPro.TextMeshProUGUI _cost;
 
+    [SerializeField]
+    private SelectableBehaviour selectableBehaviour;
+
     public Action<BuildTowerButton> Action { get => action; set => action = value; }
-    public TurretObjectDef TowerObjectDef { get => towerObjectDef; set => towerObjectDef = value; }
+    public TurretObjectDef TowerObjectDef { get => towerObjectDef; set { towerObjectDef = value; Init(); } }
 
     private void Awake()
     {
@@ -35,6 +36,11 @@ public class BuildTowerButton : MonoBehaviour, IDescrible
         {
             _image = GetComponent<Image>();
         }
+        Init();
+    }
+
+    private void Init()
+    {
         _image.sprite = towerObjectDef.Sprite;
         description.text = towerObjectDef.TowerName;
         _cost.text = towerObjectDef.Cost.ToString();
@@ -53,5 +59,10 @@ public class BuildTowerButton : MonoBehaviour, IDescrible
     public string getActionDescription()
     {
         return towerObjectDef.TowerName;
+    }
+
+    public void SetSelected(bool selected)
+    {
+        selectableBehaviour.gameObject.SetActive(selected);
     }
 }

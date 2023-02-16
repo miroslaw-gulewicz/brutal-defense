@@ -21,6 +21,8 @@ public class TurretBehaviour : Agent
 
     public Action<DestroyedSource, TurretBehaviour> DestroyCallBack { get; internal set; }
 
+    [SerializeField]
+    private RangeHighlight _rangeHighlight;
 
     public void Start()
     {
@@ -49,6 +51,9 @@ public class TurretBehaviour : Agent
         Shooting shooting = GetComponent<Shooting>();
         shooting.Weapon = TurretObject;
         shooting.Initialize();
+
+        _rangeHighlight.RangeRadius = _turretObject.Range;
+        _rangeHighlight.Highlight(false);
     }
 
     private void OnUpdateHp()
@@ -59,6 +64,12 @@ public class TurretBehaviour : Agent
             DestroyCallBack?.Invoke(DestroyedSource.KILLED, this);
             gameObject.SetActive(false);
         }
+    }
+
+    public override void SetSelected(bool selected)
+    {
+        base.SetSelected(selected);
+        _rangeHighlight.Highlight(selected);
     }
 
     public void Update()

@@ -26,7 +26,7 @@ public class Agent : MonoBehaviour, IDestructable, IAffected, IHighlightable, IS
     [SerializeField]
     protected SpriteRenderer _sprite;
 
-    public void SetSelected(bool selected)
+    public virtual void SetSelected(bool selected)
     {
         selectableBehaviour.gameObject.SetActive(selected);
     }
@@ -56,7 +56,7 @@ public class Agent : MonoBehaviour, IDestructable, IAffected, IHighlightable, IS
         _effectManager.UnRegisterEventCallback(source, callback);
     }
 
-    public void HighLight(bool highlighted)
+    public virtual void HighLight(bool highlighted)
     {
         highlightTrigger.gameObject.SetActive(highlighted);
     }
@@ -69,8 +69,8 @@ public class Agent : MonoBehaviour, IDestructable, IAffected, IHighlightable, IS
 
     protected void OnEffectApplied(EffectInflictor inflictor)
     {
-        if (gameObject.activeSelf)
-            _damageVisualizer?.DisplayEffectInfo(transform.position, inflictor);
+/*        if (gameObject.activeSelf)
+            _damageVisualizer?.DisplayEffectInfo(transform.position, inflictor);*/
     }
 
     public virtual Object ObjectDefinition => null;

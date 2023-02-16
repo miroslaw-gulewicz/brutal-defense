@@ -11,7 +11,7 @@ namespace Effect
 
         IEffectContextData Attachffect(IEffectContextHolder mono);
 
-        bool UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder);
+        float UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder);
 
         void StopEffect(IEffectContextHolder mono);
 

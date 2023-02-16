@@ -16,10 +16,11 @@ MonoBehaviour:
   fireSpeed: 1
   projectile: {fileID: 11400000, guid: 8405c3f8bcbc53e40880418d6f5bbea9, type: 2}
   inflictors: []
+  _weaponSpriteLibrary: {fileID: 11400000, guid: cf10a6b61449a3c4b8d90b9694c8d375, type: 2}
   cost: 7
   hp: 1000
   buildTime: 0
-  sprite: {fileID: 21300000, guid: 0cfe522ef09f9234c8518f72a9d9ce5d, type: 3}
+  sprite: {fileID: -4347532159779508366, guid: a634a661c8658d149ba4a9743ef4b89c, type: 3}
   towerName: Poision Tower
   resistance:
     resistanceStats: []

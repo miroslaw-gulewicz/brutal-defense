@@ -8,27 +8,29 @@ public abstract class TimeEffectInflictor : BaseEffectInflictor
     [SerializeField]
     public TimeEffectContext timeContextData;
 
-
     protected abstract TimeEffectContext GetTimeContextData(IEffectContextHolder effectContextHolder);
     protected abstract void SaveTimeContextData(IEffectContextHolder mono, TimeEffectContext timeEffectContext);
 
-    public override bool UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder)
+    public override float UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder)
     {
         TimeEffectContext context = GetTimeContextData(effectContextHolder);
         if(context == null)
         {
-            Debug.LogError("No ContextData");
-            return false;
+            Debug.LogError("No ContextData " + this.name);
+            return 0;
         }
 
-        if (context.effectTime > 0 && Time.time >= context.lastInflictTime + context.interval)
+        if (context.effectTime > 0 && Time.time >= context._lastUpdateTime + context.interval)
         {
-            context.lastInflictTime = Time.time;
+            context._lastUpdateTime = Time.time;
             DoEffect(destructable, effectContextHolder);
+            context.effectTime -= context.interval;
         }
 
-        context.effectTime -= Time.deltaTime;
-        return context.effectTime > 0;
+
+        if (context.effectTime > 0)
+            return context._lastUpdateTime + context.interval;
+        else return 0;
     }
 
      
@@ -49,7 +51,8 @@ public abstract class TimeEffectInflictor : BaseEffectInflictor
         [SerializeField]
         public float interval = 0.5f;
 
-        public float lastInflictTime = 0;
+        [NonSerialized]
+        public float _lastUpdateTime = 0;
 
         [SerializeField]
         public float effectTime = 6f;
@@ -58,7 +61,7 @@ public abstract class TimeEffectInflictor : BaseEffectInflictor
         {
             this.effectTime = effectContext.effectTime;
             this.interval = effectContext.interval;
-            this.lastInflictTime = effectContext.lastInflictTime;
+            this._lastUpdateTime = -100f;
         }
     }
 }

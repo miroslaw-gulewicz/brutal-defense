@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Effect;
+using System;
 
 public abstract class BaseEffectInflictor : ScriptableObject, EffectInflictor
 {
@@ -22,7 +23,7 @@ public abstract class BaseEffectInflictor : ScriptableObject, EffectInflictor
 
     public abstract void StopEffect(IEffectContextHolder mono);
 
-    public abstract bool UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder);
+    public abstract float UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder);
 
     public abstract string Description();
 
@@ -34,6 +35,7 @@ public abstract class BaseEffectInflictor : ScriptableObject, EffectInflictor
     public class EffectInflictorKey : EffectInflictor.InflictorSourceKey
     {
         IAffected.EffectType EffectType;
+
         string inflictorName;
 
         public EffectInflictorKey(IAffected.EffectType effectType, string name)

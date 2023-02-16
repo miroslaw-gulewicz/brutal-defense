@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[CreateAssetMenu(fileName = "TimingEffectInflictor", menuName = "ScriptableObjects/TimingEffectInflictor")]
+[CreateAssetMenu(fileName = "TimingEffectInflictor", menuName = "ScriptableObjects/TimingEffectInflictor")]
 public class TimingEffectInflictor : TimeEffectInflictor
 {
     [SerializeField]
@@ -24,12 +24,9 @@ public class TimingEffectInflictor : TimeEffectInflictor
 
     protected override IEffectContextData AttachData(IEffectContextHolder mono, TimeEffectContext timeEffectContext)
     {
-        TimingEffectStats timingEffectStats = new TimingEffectStats();
-        timingEffectStats.EffectContextData = inflictor.Attachffect(mono);
-        mono.PutContextData(this, timingEffectStats);
-        base.Attachffect(mono);
+        mono.PutContextData(this, timeEffectContext);
 
-        return timingEffectStats;
+        return timeEffectContext;
     }
 
     protected override void DoEffect(IDestructable destructable, IEffectContextHolder effectContextHolder)
@@ -40,22 +37,11 @@ public class TimingEffectInflictor : TimeEffectInflictor
     protected override TimeEffectContext GetTimeContextData(IEffectContextHolder effectContextHolder)
     {
         effectContextHolder.GetContextData(this, out IEffectContextData contextData);
-        return ((TimingEffectStats)contextData).TimeEffect;
+        return ((TimeEffectContext)contextData);
     }
 
     protected override void SaveTimeContextData(IEffectContextHolder effectContextHolder, TimeEffectContext timeEffectContext)
     {
-        effectContextHolder.GetContextData(this, out IEffectContextData contextData);
-        ((TimingEffectStats)contextData).TimeEffect = timeEffectContext;
-    }
-
-    public class TimingEffectStats : IEffectContextData
-    {
-        IEffectContextData effectContextData;
-
-        TimeEffectContext timeEffect;
-
-        public TimeEffectContext TimeEffect { get => timeEffect; set => timeEffect = value; }
-        public IEffectContextData EffectContextData { get => effectContextData; set => effectContextData = value; }
+        effectContextHolder.PutContextData(this, timeEffectContext);
     }
 }

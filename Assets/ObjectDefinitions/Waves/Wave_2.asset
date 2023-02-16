@@ -16,16 +16,16 @@ MonoBehaviour:
   waveUnits:
   - enemyDef: {fileID: 11400000, guid: d2ec6c49a6a1c174caf29cd578c13d2c, type: 2}
     quantity: 2
-    _spawnInterval: 1
+    _spawnInterval: 2
   - enemyDef: {fileID: 11400000, guid: dda4e60f78ca190428139385d81e2a54, type: 2}
     quantity: 2
-    _spawnInterval: 1
+    _spawnInterval: 3
   - enemyDef: {fileID: 11400000, guid: 0bba642159fa82a4d8a3ba3c4c41b494, type: 2}
     quantity: 2
-    _spawnInterval: 1
+    _spawnInterval: 4
   - enemyDef: {fileID: 11400000, guid: 297e5bb08157fd0488416502acd7a0b5, type: 2}
     quantity: 2
-    _spawnInterval: 1
+    _spawnInterval: 4
   - enemyDef: {fileID: 11400000, guid: 56ae2534837d9f549bfaa64a0053a7ef, type: 2}
     quantity: 2
     _spawnInterval: 1

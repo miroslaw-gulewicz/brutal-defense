@@ -23,9 +23,9 @@ public class EventTriggeredEffectInflictor : BaseEffectInflictor
 
     }
 
-    public override bool UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder)
+    public override float UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder)
     {
-        return false;
+        return 0;
     }
 
     public class EventTriggerInflictorContext : IEffectContextData

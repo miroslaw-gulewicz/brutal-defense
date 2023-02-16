@@ -28,9 +28,9 @@ public class DamageInflictor : BaseEffectInflictor
 
     }
 
-    public override bool UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder)
+    public override float UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder)
     {
         destructable.TakeDamage(damageType, damage);
-        return false;
+        return 0;
     }
 }

@@ -16,10 +16,11 @@ MonoBehaviour:
   fireSpeed: 1
   projectile: {fileID: 11400000, guid: e3a98e464375a594bae9ec90fc9f0a34, type: 2}
   inflictors: []
+  _weaponSpriteLibrary: {fileID: 11400000, guid: af100ec59d5db59488547ad254fadcec, type: 2}
   cost: 10
   hp: 20
   buildTime: 0
-  sprite: {fileID: 21300000, guid: 524a7c1f4db537741a5aa0718987eb4c, type: 3}
+  sprite: {fileID: 2333874723133794383, guid: 234a8a78d92287f4cac0c0c15221840c, type: 3}
   towerName: HellStorm Tower
   resistance:
     resistanceStats: []

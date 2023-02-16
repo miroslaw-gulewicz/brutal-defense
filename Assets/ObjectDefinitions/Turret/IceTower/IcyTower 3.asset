@@ -17,10 +17,11 @@ MonoBehaviour:
   projectile: {fileID: 11400000, guid: 502f5f337a8d53543bc35da1d283ad22, type: 2}
   inflictors:
   - {fileID: 11400000, guid: 8a1152c84f7b7314c94d1bad7b4f7721, type: 2}
+  _weaponSpriteLibrary: {fileID: 11400000, guid: f1c3033312585b94ca0895ad754a5d81, type: 2}
   cost: 20
   hp: 200
   buildTime: 0
-  sprite: {fileID: 21300000, guid: b3a8dd33a0972ff4cb240b3da88b0a74, type: 3}
+  sprite: {fileID: -1303110711307934212, guid: f8ef3050efcb9874f902ecceffdf05cf, type: 3}
   towerName: Halestorm Tower
   resistance:
     resistanceStats: []

@@ -15,7 +15,7 @@ GameObject:
   m_Layer: 20
   m_Name: TurretPlacement
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _highlightTrigger: {fileID: 4563297512006207189}
   _selectableBehaviour: {fileID: 4563297511008683772}
+  _proximityTriggerBehaviour: {fileID: 7508769854291019801}
 --- !u!135 &202842898
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -57,7 +58,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4563297510548501341}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

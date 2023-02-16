@@ -42,6 +42,9 @@ public class TowerBuildingMenuUI : MonoBehaviour, ITab
 
     BuildTowerButton[] buildTowerButtons;
 
+    private SelectObjectsManager<BuildTowerButton> buttonSelection = new SelectObjectsManager<BuildTowerButton>(true);
+
+
     private void Awake()
     {
         buildTowerButtons = GetComponentsInChildren<BuildTowerButton>();
@@ -89,6 +92,7 @@ public class TowerBuildingMenuUI : MonoBehaviour, ITab
         towersCanvas.gameObject.SetActive(false);
         buttonsCanvas.gameObject.SetActive(false);
         placementControl.Reset();
+        buttonSelection.ClearSelection();
     }
 
     private void EnableButtons(bool enabled)
@@ -117,12 +121,12 @@ public class TowerBuildingMenuUI : MonoBehaviour, ITab
     {
         bool canBuy = economyManager.HasSufficientCoins(obj.TowerObjectDef.Cost);
         applyBuilding.enabled = canBuy;
-
+        buttonSelection.SelectObject(obj);
        // CancelBuildingSelection();
-/*        foreach (var item in buildTowerButtons)
-        {
-            item.SetEnabled(item.TowerObjectDef == obj.TowerObjectDef);
-        }*/
+        /*        foreach (var item in buildTowerButtons)
+                {
+                    item.SetEnabled(item.TowerObjectDef == obj.TowerObjectDef);
+                }*/
 
         if (canBuy)
         {
@@ -136,6 +140,8 @@ public class TowerBuildingMenuUI : MonoBehaviour, ITab
         buttonsCanvas.gameObject.SetActive(true);
         towersCanvas.gameObject.SetActive(true);
        // cancelBuildButton.gameObject.SetActive(true);
+
+        obj.SetSelected(true);
     }
 
     private void OnPlacementChoosen(GameObject obj)

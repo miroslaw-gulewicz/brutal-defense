@@ -24,9 +24,9 @@ public class HpRegenerationInflictor : BaseEffectInflictor
 
     }
 
-    public override bool UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder)
+    public override float UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder)
     {
         destructable.TakeDamage(IDestructable.DamageType.HEAL, (short)-heal);
-        return false;
+        return 0;
     }
 }

@@ -17,10 +17,11 @@ MonoBehaviour:
   projectile: {fileID: 11400000, guid: f3b5b7fa522bc0e49a81cd30bb9fd208, type: 2}
   inflictors:
   - {fileID: 11400000, guid: 0a9fdefa6d20a844cb69a498b25b056b, type: 2}
+  _weaponSpriteLibrary: {fileID: 11400000, guid: 1c7861db1ef434a4caa87d41e3bf45e3, type: 2}
   cost: 10
   hp: 0
   buildTime: 0
-  sprite: {fileID: 21300000, guid: 82af0fd973bc5954e9c6838b4a145971, type: 3}
+  sprite: {fileID: 1823386985158045023, guid: c72cc646d86c88e448bd937409cf38bc, type: 3}
   towerName: Heavy Cannon
   resistance:
     resistanceStats: []

@@ -12,6 +12,9 @@ public class PlayerActionsUi : MonoBehaviour
     private Button magicButton;
 
     [SerializeField]
+    private BuildTowerButton _selectedTowerButton;
+
+    [SerializeField]
     private Canvas canvasPlayerActions;
 
     [SerializeField]
@@ -47,6 +50,7 @@ public class PlayerActionsUi : MonoBehaviour
         magicButton.onClick.AddListener(HideButtons);
         magicButton.onClick.AddListener(() => tabs.ActivateTab(spellBookUI));
 
+        _selectedTowerButton.Action = (btb) => ShowTurretDetails();
 
         tabs.CloseAll();
 
@@ -72,13 +76,20 @@ public class PlayerActionsUi : MonoBehaviour
         
         if(turretSelection.IsObjectSelected())
         {
-            turret = turretSelection.GetSelectedValue();
-            towerInfoUI.DisplayTurretInfo(turret);
-            towerInfoUI.Show();
+            _selectedTowerButton.TowerObjectDef = turret.TurretObject;
+            _selectedTowerButton.SetSelected(true);
         } else
         {
             towerInfoUI.Hide();
         }
+
+        _selectedTowerButton.gameObject.SetActive(turretSelection.IsObjectSelected());
+    }
+
+    public void ShowTurretDetails()
+    {
+        towerInfoUI.DisplayTurretInfo(turretSelection.GetSelectedValue());
+        towerInfoUI.Show();
     }
 
     public void ShowButtons()

@@ -96,3 +96,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rangeSprite: {fileID: 1165001409349588953}
+  _range: 3.86

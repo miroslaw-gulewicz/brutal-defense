@@ -34,6 +34,7 @@ public class BuildPlaceBehaviour : MonoBehaviour, IHighlightable, ISelectable
             turret = null;
 
         PlacedTurret = turret;  
+        gameObject.SetActive(turret == placedTurret);
     }
 
     public void HighLight(bool highlighted)

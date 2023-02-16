@@ -11,6 +11,9 @@ public class EffectsManager : MonoBehaviour
     [SerializeField]
     GameObject _bonesDropEffect;
 
+    [SerializeField]
+    GameObject _towerDestroyEffectPrefab;
+
     internal void SpawnCoin(Vector3 position, int number = 1)
     {
         SpawnPrefab(_coinPrefab, position);
@@ -19,6 +22,11 @@ public class EffectsManager : MonoBehaviour
     internal void BonesEffect(Vector3 position, int number = 1)
     {
         SpawnPrefab(_bonesDropEffect, position);
+    }
+
+    public void TowerExplosion(Vector3 position)
+    {
+        SpawnPrefab(_towerDestroyEffectPrefab, position);
     }
 
 

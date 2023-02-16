@@ -16,10 +16,11 @@ MonoBehaviour:
   fireSpeed: 10
   projectile: {fileID: 11400000, guid: 8512dbe3ef55b7b468b27c1d889069c7, type: 2}
   inflictors: []
+  _weaponSpriteLibrary: {fileID: 11400000, guid: 1869d462c1fcd444fa66c0ede461b28a, type: 2}
   cost: 5
   hp: 1000
   buildTime: 2
-  sprite: {fileID: 21300000, guid: bac63424aec4c6648859017181e9b453, type: 3}
+  sprite: {fileID: 6201115216396246476, guid: d68399eec9f0aa24f8a9465f92207f8f, type: 3}
   towerName: Arrow Turret
   resistance:
     resistanceStats: []

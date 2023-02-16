@@ -17,10 +17,11 @@ MonoBehaviour:
   projectile: {fileID: 11400000, guid: 8512dbe3ef55b7b468b27c1d889069c7, type: 2}
   inflictors:
   - {fileID: 11400000, guid: b4e5f5d6295ab994893d25a9cd9faa38, type: 2}
+  _weaponSpriteLibrary: {fileID: 11400000, guid: 1869d462c1fcd444fa66c0ede461b28a, type: 2}
   cost: 10
   hp: 1000
   buildTime: 2
-  sprite: {fileID: 21300000, guid: 1b31913071f391142812837870a4cba3, type: 3}
+  sprite: {fileID: -8993109326523492637, guid: d68399eec9f0aa24f8a9465f92207f8f, type: 3}
   towerName: Balista
   resistance:
     resistanceStats: []

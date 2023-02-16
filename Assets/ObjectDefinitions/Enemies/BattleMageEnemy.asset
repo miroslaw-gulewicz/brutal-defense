@@ -32,5 +32,4 @@ MonoBehaviour:
       value: 0.7
     - stat: 3
       value: 1
-  effectInflicors:
-  - {fileID: 11400000, guid: ee8b8b4285eb01049b04901ebbb2851c, type: 2}
+  effectInflicors: []

@@ -4,13 +4,20 @@ public class SelectObjectsManager<T> where T : ISelectable
 {
     private T obj;
 
-    private T notSelectedReference = default(T);
+    private static T notSelectedReference = default(T);
 
     private bool selectionEnabled = true;
+    private bool _skipIfSelected;
 
-    public SelectObjectsManager()
+    public SelectObjectsManager() : this (false)
+    {
+        
+    }
+
+    public SelectObjectsManager(bool skipIfSelected)
     {
         this.obj = notSelectedReference;
+        this._skipIfSelected = skipIfSelected;
     }
 
     public void SelectObject(T newSelectedObject)

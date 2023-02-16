@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b41b958dda2c7a4f9c7221755f7f3ae, type: 3}
   m_Name: FireBolt
   m_EditorClassIdentifier: 
-  damage: 8
+  damage: 5
   impactEffect: {fileID: 7877840547903502699, guid: c8f18f9eca797714fbd6bd37daacf028, type: 3}
   damageType: 2
   effect: 0
@@ -20,4 +20,4 @@ MonoBehaviour:
   _stats:
     stats:
     - stat: 2
-      value: 15
+      value: 10

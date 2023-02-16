@@ -28,6 +28,7 @@ namespace Effect
 
         public MonoBehaviour Mono => _mono;
 
+        float _nextUpdate;
         public EffectManager(BasicStatsManager statsManager, MonoBehaviour mono)
         {
             this._statsManager = statsManager;
@@ -70,6 +71,7 @@ namespace Effect
             else
             {
                 _effects.Add(inflictor.inflictorSourceKey, inflictor);
+                _nextUpdate = -10;
             }
 
             EffectInflictorAgent agent = inflictor.EffectAgent;
@@ -98,14 +100,25 @@ namespace Effect
 
         public void OnUpdate()
         {
+            if (Time.time < _nextUpdate) return;
+            float tmpMainNextUpdate = _nextUpdate + 100;
             foreach (var effectInflictor in _effects.Values)
-            {                
-                if (effectInflictor.EffectType != IAffected.EffectType.PERMANENT && !effectInflictor.UpdateInflictor(this, this))
+            {
+                float inflictorNextUpdate = effectInflictor.UpdateInflictor(this, this);
+                if (effectInflictor.EffectType != IAffected.EffectType.PERMANENT && inflictorNextUpdate <= 0)
                 {
                     _effectsToRemoveKeys.Add(effectInflictor.inflictorSourceKey);
                     effectInflictor.StopEffect(this);
                 }
+                else
+                {
+                    if(inflictorNextUpdate < tmpMainNextUpdate)
+                        tmpMainNextUpdate = inflictorNextUpdate; 
+                }
             }
+
+            _nextUpdate = tmpMainNextUpdate;
+
 
             foreach (InflictorSourceKey effectKey in _effectsToRemoveKeys)
             {

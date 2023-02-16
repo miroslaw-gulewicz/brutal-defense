@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     EconomyManager economyManager;
 
     public event Action OnStatsChanged;
-    
+
+    [SerializeField]
+    public TurretSpawner _turretSpawner;
 
     [SerializeField]
     private BasicStatsHolder basicStats;
@@ -26,6 +28,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         waveManager.EnemyDestroyedEvent += EnemyDestroyedEvent;
+        _turretSpawner.DestroyCallBack += TowerDestroyed;
+    }
+
+    private void TowerDestroyed(IDestructable.DestroyedSource arg1, TurretBehaviour arg2)
+    {
+        effectsManager.TowerExplosion(arg2.transform.position);
     }
 
     public void SetupLevel(LevelDefinition levelDefinition)

@@ -18,7 +18,7 @@ public class EffectInflictorWrapper : EffectInflictor
         return null;
     }
 
-    public bool UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder)
+    public float UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder)
     {
         throw new System.NotImplementedException();
     }

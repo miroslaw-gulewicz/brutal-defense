@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: BalistaTurretAnimation
+  m_EditorClassIdentifier: 
+  m_Labels:
+  - m_Name: Fire
+    m_Hash: -118708495
+    m_CategoryList:
+    - m_Name: 1
+      m_Hash: -2082672713
+      m_Sprite: {fileID: 1587496686788108312, guid: 3318cfcef556d47408a62ee0c31c4494, type: 3}
+    - m_Name: 2
+      m_Hash: 450215437
+      m_Sprite: {fileID: 5473994925712647067, guid: 3318cfcef556d47408a62ee0c31c4494, type: 3}
+    - m_Name: 3
+      m_Hash: 1842515611
+      m_Sprite: {fileID: -4696965168655584149, guid: 3318cfcef556d47408a62ee0c31c4494, type: 3}
+    - m_Name: 4
+      m_Hash: -206169288
+      m_Sprite: {fileID: 3001287958271795827, guid: 3318cfcef556d47408a62ee0c31c4494, type: 3}
+    - m_Name: 5
+      m_Hash: -2068763730
+      m_Sprite: {fileID: -4336118431114807389, guid: 3318cfcef556d47408a62ee0c31c4494, type: 3}
+    - m_Name: 6
+      m_Hash: 498629140
+      m_Sprite: {fileID: -1766350930281141627, guid: 3318cfcef556d47408a62ee0c31c4494, type: 3}
+  - m_Name: Idle
+    m_Hash: 2081823275
+    m_CategoryList:
+    - m_Name: 1
+      m_Hash: -2082672713
+      m_Sprite: {fileID: 1587496686788108312, guid: 3318cfcef556d47408a62ee0c31c4494, type: 3}

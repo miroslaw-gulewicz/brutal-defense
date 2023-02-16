@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d237da036644764e83f4ae355a6db1a, type: 3}
   m_Name: SpreadingPoisonInflictor 1
   m_EditorClassIdentifier: 
-  _effectType: 0
+  _effectType: 5
   _effectAgent: {fileID: 11400000, guid: e32b139e21eb48b48a0a3fa1e577f31e, type: 2}
   timeContextData:
     interval: 1
-    lastInflictTime: 0
     effectTime: 1
   inflictorDescriptor: {fileID: 11400000, guid: 5031ba4d0ee9d2e468ce0b742f1cca03, type: 2}
   damageType: 4

@@ -16,10 +16,11 @@ MonoBehaviour:
   fireSpeed: 1
   projectile: {fileID: 11400000, guid: f902bf5ac0b9a4747856ad1358a6d2d7, type: 2}
   inflictors: []
+  _weaponSpriteLibrary: {fileID: 11400000, guid: af100ec59d5db59488547ad254fadcec, type: 2}
   cost: 15
   hp: 20
   buildTime: 0
-  sprite: {fileID: 21300000, guid: 524a7c1f4db537741a5aa0718987eb4c, type: 3}
+  sprite: {fileID: 1098286324429101383, guid: 234a8a78d92287f4cac0c0c15221840c, type: 3}
   towerName: Fire Tower
   resistance:
     resistanceStats: []

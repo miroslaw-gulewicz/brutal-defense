@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
+using static IDestructable;
 
 public class TurretSpawner : MonoBehaviour, IHighlitableObjectHolder
 {
@@ -21,6 +22,8 @@ public class TurretSpawner : MonoBehaviour, IHighlitableObjectHolder
     private  Dictionary<TurretObjectDef, TurretLevelCollection> turretDefTOCollection;
 
     private List<TurretBehaviour> _spawnedTurrets = new List<TurretBehaviour>();
+
+    public Action<DestroyedSource, TurretBehaviour> DestroyCallBack { get; internal set; }
 
     [SerializeField]
     public LayerMask layer;
@@ -62,9 +65,10 @@ public class TurretSpawner : MonoBehaviour, IHighlitableObjectHolder
         return tb;
     }
 
-    private void OnTurretDestroyed(IDestructable.DestroyedSource source, TurretBehaviour turret)
+    private void OnTurretDestroyed(DestroyedSource source, TurretBehaviour turret)
     {
         _spawnedTurrets.Remove(turret);
+        DestroyCallBack?.Invoke(source, turret);
     }
 
     internal void Upgrade(TurretBehaviour currentTower)
