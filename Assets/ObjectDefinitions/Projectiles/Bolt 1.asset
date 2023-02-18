@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b41b958dda2c7a4f9c7221755f7f3ae, type: 3}
   m_Name: Bolt 1
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 3
   impactEffect: {fileID: 7877840547903502699, guid: c8f18f9eca797714fbd6bd37daacf028, type: 3}
   damageType: 1
   effect: 0

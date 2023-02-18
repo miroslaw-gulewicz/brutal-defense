@@ -14,7 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEscapedEnemies: 0
   waveUnits:
-  - enemyDef: {fileID: 11400000, guid: a73297073f8221b4aa577bdc3e78989d, type: 2}
-    quantity: 15
-    _spawnInterval: 1
+  - enemyDef: {fileID: 11400000, guid: 297e5bb08157fd0488416502acd7a0b5, type: 2}
+    quantity: 1
+    _spawnInterval: 2
+  - enemyDef: {fileID: 11400000, guid: d2ec6c49a6a1c174caf29cd578c13d2c, type: 2}
+    quantity: 1
+    _spawnInterval: 2
+  - enemyDef: {fileID: 11400000, guid: 297e5bb08157fd0488416502acd7a0b5, type: 2}
+    quantity: 1
+    _spawnInterval: 2
+  - enemyDef: {fileID: 11400000, guid: d2ec6c49a6a1c174caf29cd578c13d2c, type: 2}
+    quantity: 1
+    _spawnInterval: 2
   _wayPoints: {fileID: 0}

@@ -60,6 +60,8 @@ public class Balistic : Agent
 
     private void OnTriggerEnter(Collider other)
     {
+        if (_inflictors != null && other.TryGetComponent(out IAffected affector))
+            affector.ApplyEffect(_inflictors);
 
         if (other.TryGetComponent(out IDestructable obsticle))
         {
@@ -71,9 +73,6 @@ public class Balistic : Agent
             }
             gameObject.SetActive(false);
         }
-
-        if (_inflictors != null && other.TryGetComponent(out IAffected affector))
-            affector.ApplyEffect(_inflictors);
     }
 
     public override UnityEngine.Object ObjectDefinition => _projectileDef;

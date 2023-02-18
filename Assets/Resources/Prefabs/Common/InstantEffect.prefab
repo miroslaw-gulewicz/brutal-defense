@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9132070380754719139, guid: 61fdbe4096b83aa40aa5ad5cfe0f4152, type: 3}
       propertyPath: time
-      value: 0.01
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3020720218277338991, guid: 61fdbe4096b83aa40aa5ad5cfe0f4152, type: 3}
       propertyPath: m_Name

@@ -17,4 +17,4 @@ MonoBehaviour:
   _inflictors:
   - {fileID: 11400000, guid: 978b998be03867f4f9aa98e08258daf1, type: 2}
   cancelEffectOnExit: 1
-  proximity: 2
+  proximity: 1

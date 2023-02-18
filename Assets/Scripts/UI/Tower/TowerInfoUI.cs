@@ -2,6 +2,7 @@ using Aim;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerInfoUI : MonoBehaviour, ITab
 {
@@ -16,6 +17,9 @@ public class TowerInfoUI : MonoBehaviour, ITab
 
     [SerializeField]
     private WorldObjectSelectionManager worldObjectSelectionManager;
+
+    [SerializeField]
+    private Image _displayImage; 
 
     [SerializeField]
     private Canvas _towerInfoCanvas;
@@ -130,6 +134,7 @@ public class TowerInfoUI : MonoBehaviour, ITab
     {
         _currentTurret = turret;
 
+        _displayImage.sprite = _currentTurret.TurretObject.Sprite;
         _turretName.text = turret.TurretObject.TowerName;
         _range.text = turret.TurretObject.Range.ToString();
         _hp.text = turret.BasicStats[StatEnum.HP].ToString();

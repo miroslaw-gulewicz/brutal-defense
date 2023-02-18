@@ -27,9 +27,9 @@ MonoBehaviour:
     - stat: 2
       value: 1
     - stat: 0
-      value: 30
+      value: 20
     - stat: 1
-      value: 30
+      value: 20
     - stat: 3
       value: 0
   effectInflicors: []

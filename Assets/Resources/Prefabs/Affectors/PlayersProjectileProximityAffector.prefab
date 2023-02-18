@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: _cancelEffectOnExit
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7228010952281191988, guid: 7de69fb7658456d4b9ee9c7393fdcf04, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7de69fb7658456d4b9ee9c7393fdcf04, type: 3}
 --- !u!135 &1220170687568011342 stripped

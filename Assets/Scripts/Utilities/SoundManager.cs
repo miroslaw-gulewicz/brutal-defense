@@ -21,7 +21,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayAudio(SoundType soundType)
     {
-        audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
+        //audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
     }
 
     public enum SoundType

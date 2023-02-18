@@ -8,5 +8,5 @@ public class IndicatorBarBehaviour : MonoBehaviour
     [SerializeField]
     Image stat;
     
-    public float Value { set => stat.fillAmount = value; }
+    public float Value { set => stat.fillAmount = value; get => stat.fillAmount; }
 }

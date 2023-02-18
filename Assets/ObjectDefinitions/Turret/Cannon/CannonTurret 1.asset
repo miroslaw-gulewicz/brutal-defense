@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CannonTurret 1
   m_EditorClassIdentifier: 
   _range: 3
-  fireSpeed: 1
+  fireSpeed: 1.5
   projectile: {fileID: 11400000, guid: f3b5b7fa522bc0e49a81cd30bb9fd208, type: 2}
   inflictors: []
   _weaponSpriteLibrary: {fileID: 11400000, guid: 1c7861db1ef434a4caa87d41e3bf45e3, type: 2}

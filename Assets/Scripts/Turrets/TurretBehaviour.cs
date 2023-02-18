@@ -53,7 +53,6 @@ public class TurretBehaviour : Agent
         shooting.Initialize();
 
         _rangeHighlight.RangeRadius = _turretObject.Range;
-        _rangeHighlight.Highlight(false);
     }
 
     private void OnUpdateHp()

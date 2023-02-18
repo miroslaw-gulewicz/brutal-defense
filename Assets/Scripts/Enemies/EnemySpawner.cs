@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
 
     public event Action SpawnCompleted;
 
-    public event Action<Enemy> OnEnemySpawned;
+    public event Action<Enemy> OnWaveEnemySpawned;
 
     Coroutine spawningCoroutine;
 
@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
     {
         while (spawnCount > 0)
         {
-            SpawnEnemy(_enemyDef.Prefab.gameObject, Vector3.zero, _enemyDef);
+            OnWaveEnemySpawned?.Invoke(SpawnEnemy(_enemyDef.Prefab.gameObject, Vector3.zero, _enemyDef));
             lastSpawned = Time.fixedTime;
 
             spawnCount--;
@@ -79,8 +79,7 @@ public class EnemySpawner : MonoBehaviour
         SpawnCompleted?.Invoke();
     }
 
-    [ContextMenu("SpawnEnemy")]
-    public void SpawnEnemy(GameObject prefab, Vector3 position, EnemyObject enemyObject)
+    public Enemy SpawnEnemy(GameObject prefab, Vector3 position, EnemyObject enemyObject)
     {
         GameObject obj = ObjectCacheManager._Instance.GetObject(prefab, false);
 
@@ -91,9 +90,17 @@ public class EnemySpawner : MonoBehaviour
         var enemy = obj.GetComponent<Enemy>();
         enemy.EnemyObject = enemyObject;
         InitExistingEnemies(enemy);
-        OnEnemySpawned?.Invoke(enemy);
+
         obj.SetActive(true);
+        return enemy;
     }
+
+    [ContextMenu("SpawnEnemy")]
+    public void Spawn()
+    {
+        SpawnEnemy(_enemyDef.Prefab.gameObject, Vector3.zero, _enemyDef);
+    }
+
 
     [ContextMenu("Pause")]
     public void Pause()

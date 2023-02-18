@@ -46,6 +46,9 @@ MonoBehaviour:
     - m_Name: 11
       m_Hash: -698739337
       m_Sprite: {fileID: -5747186131536780183, guid: b95530b4b8d15524fb4c35bcec926001, type: 3}
+    - m_Name: 12
+      m_Hash: 1330857165
+      m_Sprite: {fileID: -987828146716785226, guid: b95530b4b8d15524fb4c35bcec926001, type: 3}
   - m_Name: Fire
     m_Hash: -118708495
     m_CategoryList:

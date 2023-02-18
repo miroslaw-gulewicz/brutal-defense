@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effectType: 0
   _effectAgent: {fileID: 11400000, guid: 95b01449d1f4bf1459f4f4a6e53c8309, type: 2}
+  _key:
+    EffectUniqueId: 9
   timeContextData:
     interval: 500
-    lastInflictTime: 0
     effectTime: 500
   descriptor: {fileID: 11400000, guid: 76aa0a62c4b25d6478c36370fec67dd8, type: 2}
   statModifierContext:
-    stat: 0
-    percentDecrease: 0
+    stat: 1
+    percentDecrease: -20

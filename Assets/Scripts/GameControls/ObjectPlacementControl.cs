@@ -24,6 +24,8 @@ public class ObjectPlacementControl : MonoBehaviour
         }
     }
 
+    public WorldObjectSelectionManager WorldObjectSelectionManager { get => worldObjectSelectionManager; }
+
     public Action<GameObject> TargetAquired;
 
     [SerializeField]

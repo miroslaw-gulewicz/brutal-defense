@@ -15,5 +15,5 @@ MonoBehaviour:
   levelName: Test Stage
   waves:
   - {fileID: 11400000, guid: a6b90ffc516499b4ca8b4a3251ce5f19, type: 2}
-  - {fileID: 11400000, guid: 7b5a8aaef43788843b2f0de0806c2859, type: 2}
   levelCover: {fileID: 0}
+  _startCoins: 5

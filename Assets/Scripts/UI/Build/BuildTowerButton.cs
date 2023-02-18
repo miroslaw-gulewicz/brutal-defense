@@ -17,6 +17,9 @@ public class BuildTowerButton : MonoBehaviour, IDescrible, ISelectable
     private Image _image;
 
     [SerializeField]
+    private Image _weaponImage;
+
+    [SerializeField]
     private TMPro.TextMeshProUGUI description;
 
     [SerializeField]
@@ -44,6 +47,7 @@ public class BuildTowerButton : MonoBehaviour, IDescrible, ISelectable
         _image.sprite = towerObjectDef.Sprite;
         description.text = towerObjectDef.TowerName;
         _cost.text = towerObjectDef.Cost.ToString();
+        _weaponImage.sprite = towerObjectDef.WeaponSpriteLibrary.GetSprite("Idle", "1");
     }
 
     private void OnClick()

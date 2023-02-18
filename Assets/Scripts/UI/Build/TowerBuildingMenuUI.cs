@@ -16,9 +16,6 @@ public class TowerBuildingMenuUI : MonoBehaviour, ITab
     [SerializeField]
     public Button cancelSelectionButton;
 
-/*    [SerializeField]
-    public Button cancelBuildButton;*/
-
     [SerializeField]
     public Button applyBuilding;
 
@@ -45,7 +42,7 @@ public class TowerBuildingMenuUI : MonoBehaviour, ITab
     private SelectObjectsManager<BuildTowerButton> buttonSelection = new SelectObjectsManager<BuildTowerButton>(true);
 
 
-    private void Awake()
+    private void Start()
     {
         buildTowerButtons = GetComponentsInChildren<BuildTowerButton>();
         foreach (var item in buildTowerButtons)
@@ -114,7 +111,7 @@ public class TowerBuildingMenuUI : MonoBehaviour, ITab
         Debug.Log("Building tower");
         //placementControl.Reset();
         economyManager.Buy(turretObjectDef.Cost);
-        turretSpawner.SpawnTurret(turretObjectDef, placement.transform.position);
+        placementControl.WorldObjectSelectionManager.Select(turretSpawner.SpawnTurret(turretObjectDef, placement.transform.position));
     }
 
     private void OnTowerSelect(BuildTowerButton obj)

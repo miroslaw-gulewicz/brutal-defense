@@ -56,8 +56,8 @@ MonoBehaviour:
   _damageVisualizer: {fileID: 0}
   _hpBar: {fileID: 1015600826021953315}
   _sprite: {fileID: 8626827283259812693}
-  autoInit: 0
-  enemyObject: {fileID: 11400000, guid: d2ec6c49a6a1c174caf29cd578c13d2c, type: 2}
+  autoInit: 1
+  enemyObject: {fileID: 11400000, guid: deb30655aff0bc84a852ba9e5f1f141a, type: 2}
   spriteLibrary: {fileID: 5000950095588011177}
 --- !u!114 &3406158221000659705
 MonoBehaviour:
@@ -102,7 +102,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.7, y: 1, z: 0.7}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &7756104249341885131
 Rigidbody:
@@ -118,7 +118,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 94
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &2924352072728268842
 GameObject:

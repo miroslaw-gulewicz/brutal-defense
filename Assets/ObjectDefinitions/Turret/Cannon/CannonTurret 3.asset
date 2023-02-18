@@ -16,7 +16,7 @@ MonoBehaviour:
   fireSpeed: 1
   projectile: {fileID: 11400000, guid: 9e7f55294d9b3b94ba5aa5ff934cff6a, type: 2}
   inflictors:
-  - {fileID: 11400000, guid: 0a9fdefa6d20a844cb69a498b25b056b, type: 2}
+  - {fileID: 11400000, guid: 9566a43b0ecf977439b8cc9b6ae9b45d, type: 2}
   _weaponSpriteLibrary: {fileID: 11400000, guid: 1c7861db1ef434a4caa87d41e3bf45e3, type: 2}
   cost: 10
   hp: 0

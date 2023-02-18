@@ -27,13 +27,13 @@ MonoBehaviour:
     - damageType: 1
       damageReduction: 50
     - damageType: 2
-      damageReduction: 100
+      damageReduction: 80
     - damageType: 4
       damageReduction: 0
     - damageType: 3
       damageReduction: 0
     - damageType: 5
-      damageReduction: 100
+      damageReduction: 50
   basicStats:
     stats:
     - stat: 0

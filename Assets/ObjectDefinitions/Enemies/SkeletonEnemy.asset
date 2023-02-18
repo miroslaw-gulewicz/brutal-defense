@@ -41,7 +41,7 @@ MonoBehaviour:
     - stat: 1
       value: 10
     - stat: 2
-      value: 0.6
+      value: 0.7
     - stat: 3
       value: 0
   effectInflicors: []

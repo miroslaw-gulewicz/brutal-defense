@@ -16,7 +16,7 @@ public class DamageInfo : MonoBehaviour
     {
         damageValue.color = color;
         if (IsHealing(amount))
-            damageValue.text = PLUS + amount.ToString();
+            damageValue.text = PLUS + (-amount).ToString();
         else
             damageValue.text = MINUS + amount.ToString();
     }

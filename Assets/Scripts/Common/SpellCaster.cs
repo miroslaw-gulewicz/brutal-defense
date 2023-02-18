@@ -26,9 +26,9 @@ public class SpellCaster : MonoBehaviour
 
     public event Action<Spell> SpellCasted;
 
-    
+
     /// <summary>
-    /// 
+    /// Subscribe to events SpellCaster.SpellCasted and SpellCaster.TargetAquired
     /// </summary>
     /// <param name="spell"></param>
     public void SetupSpell(Spell spell)

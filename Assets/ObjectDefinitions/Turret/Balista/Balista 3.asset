@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _range: 5
   fireSpeed: 11
-  projectile: {fileID: 11400000, guid: 8512dbe3ef55b7b468b27c1d889069c7, type: 2}
+  projectile: {fileID: 11400000, guid: a6edf422466c97446bf337b34d4ec7cb, type: 2}
   inflictors:
   - {fileID: 11400000, guid: b4e5f5d6295ab994893d25a9cd9faa38, type: 2}
   _weaponSpriteLibrary: {fileID: 11400000, guid: 1869d462c1fcd444fa66c0ede461b28a, type: 2}

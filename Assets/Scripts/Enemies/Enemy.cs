@@ -43,9 +43,11 @@ public class Enemy : Agent
         _effectManager.DefaultEffects = EnemyObject.DefaultEffects;
 
         _statsManager.BasicStatsHolder.CurrentHpUpdated += OnUpdateHp;
+        OnUpdateHp();
 
         if (enemyObject.SelfInflictors != null)
             _effectManager.ApplyEffect(enemyObject.SelfInflictors);
+
     }
 
 

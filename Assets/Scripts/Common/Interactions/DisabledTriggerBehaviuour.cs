@@ -20,7 +20,7 @@ public class DisabledTriggerBehaviuour : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         Collider = GetComponent<Collider>();
     }

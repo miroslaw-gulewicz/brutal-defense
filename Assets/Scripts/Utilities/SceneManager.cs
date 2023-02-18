@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class SceneManager : MonoBehaviour
 {
@@ -24,6 +26,13 @@ public class SceneManager : MonoBehaviour
     {
         if(FindObjectsOfType<SceneManager>().Length == 1)
             _Instance = this;
+
+        UnityEngine.SceneManagement.SceneManager.sceneUnloaded += SceneUnloaded;
+    }
+
+    private void SceneUnloaded(UnityEngine.SceneManagement.Scene arg0)
+    {
+        PlayerProgressMonitor.Instance.SaveProgress();
     }
 
     public void LoadLevelScene(LevelDefinition levelDefinition)

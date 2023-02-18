@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class EnemyShowcaseMenu : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class EnemyShowcaseMenu : MonoBehaviour
 
     void Start()
     {
-        _enemySpawner.OnEnemySpawned += OnEnemySpawned;
+        _enemySpawner.OnWaveEnemySpawned += OnEnemySpawned;
         _enemyDestination.OnEnemyReached += OnEnemyDestroyed;
         _objectSelectionManager.OnObjectSelected += OnEnemySelected;
         StartShowcase();
@@ -56,10 +57,13 @@ public class EnemyShowcaseMenu : MonoBehaviour
         movable.Initialize();
     }
 
-    private void OnEnemyDestroyed(IDestructable.DestroyedSource arg1, Enemy arg2)
+    private void OnEnemyDestroyed(IDestructable.DestroyedSource source, Enemy enemy)
     {
-        arg2.DoDestroy(arg1);
+        enemy.DoDestroy(source);
         StartShowcase();
+
+        if(source == IDestructable.DestroyedSource.KILLED)
+            PlayerProgressMonitor.Instance.RegisterKill();
     }
 
     private void SetupRandomEnemy()

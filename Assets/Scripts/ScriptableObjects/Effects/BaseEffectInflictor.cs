@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Effect;
 using System;
 
 public abstract class BaseEffectInflictor : ScriptableObject, EffectInflictor
 {
+    protected static int UniqueIndexingVar = 0;
+
     [SerializeField]
     protected IAffected.EffectType _effectType;
 
@@ -18,6 +18,7 @@ public abstract class BaseEffectInflictor : ScriptableObject, EffectInflictor
 
     public EffectInflictor.InflictorSourceKey inflictorSourceKey => _key;
 
+    [SerializeField]
     private EffectInflictorKey _key;
     public abstract IEffectContextData Attachffect(IEffectContextHolder mono);
 
@@ -32,15 +33,17 @@ public abstract class BaseEffectInflictor : ScriptableObject, EffectInflictor
         _key = new EffectInflictorKey(_effectType, name);
     }
 
+    [Serializable]
     public class EffectInflictorKey : EffectInflictor.InflictorSourceKey
     {
-        IAffected.EffectType EffectType;
+        [SerializeField]
+        int EffectUniqueId;
 
         string inflictorName;
 
         public EffectInflictorKey(IAffected.EffectType effectType, string name)
         {
-            EffectType = effectType;
+            EffectUniqueId = UniqueIndexingVar++;
             inflictorName = name;
         }
 

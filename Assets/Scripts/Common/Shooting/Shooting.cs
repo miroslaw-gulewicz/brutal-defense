@@ -57,7 +57,7 @@ public class Shooting : MonoBehaviour
         OnAttackSpeedChanged();
         proximityTriggerBehaviour.Range = _weapon.Range;
         _targetingSystem = TargetingSystemFactory.Supply(TargetingSystemType.SIMPLE);
-        if(_weaponController)
+        if(_weaponController && _weapon.WeaponSpriteLibrary)
             _weaponController.SpriteLibrary = _weapon.WeaponSpriteLibrary;
     }
 

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effectType: 3
   _effectAgent: {fileID: 11400000, guid: 2dd33c3e86e813841906c3a0a75f8b79, type: 2}
+  _key:
+    EffectUniqueId: 16
   timeContextData:
-    interval: 2
-    lastInflictTime: 0
+    interval: 1
     effectTime: 2
   descriptor: {fileID: 11400000, guid: 76aa0a62c4b25d6478c36370fec67dd8, type: 2}
   statModifierContext:

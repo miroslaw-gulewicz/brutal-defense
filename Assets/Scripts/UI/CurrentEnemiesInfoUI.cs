@@ -25,15 +25,23 @@ public class CurrentEnemiesInfoUI : MonoBehaviour
 
     private SelectObjectsManager<Enemy> enemySelection;
 
+    [SerializeField]
+    private WaveDefinitionPanel _waveDefinitionPanel;
 
-
-    public void Start()
+    public void Awake()
     {
         enemySelection = new SelectObjectsManager<Enemy>();
         waveManager.OnWaveBegin += RefreshStats;
-        waveManager.OnEnemyCountChanged += RefreshStats; 
-        WorldObjectSelectionManager.OnObjectSelected += OnObjectSelected;
+        waveManager.OnEnemyCountChanged += RefreshStats;
+        waveManager.OnWaveChanged += WaveChanged;
+        
+        //WorldObjectSelectionManager.OnObjectSelected += OnObjectSelected;
 
+    }
+
+    private void WaveChanged(WaveDefinition wave)
+    {
+        _waveDefinitionPanel.DisplayWave(wave);
     }
 
     private void OnObjectSelected(GameObject obj)

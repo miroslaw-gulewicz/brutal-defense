@@ -19,16 +19,23 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public TurretSpawner _turretSpawner;
 
+    public LevelDefinition _levelDefinition;
+
     [SerializeField]
     private BasicStatsHolder basicStats;
 
     public BasicStatsHolder BasicStats { get => basicStats; }
 
 
-    private void Start()
+    private void Awake()
     {
         waveManager.EnemyDestroyedEvent += EnemyDestroyedEvent;
         _turretSpawner.DestroyCallBack += TowerDestroyed;
+    }
+
+    private void Start()
+    {
+        SetupLevel(_levelDefinition);
     }
 
     private void TowerDestroyed(IDestructable.DestroyedSource arg1, TurretBehaviour arg2)

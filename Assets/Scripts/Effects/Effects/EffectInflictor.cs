@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 namespace Effect
 {
@@ -18,6 +19,20 @@ namespace Effect
         public interface InflictorSourceKey
         {
             string Name { get; }
+        }
+
+
+        //TODO: replacement for IEffectContextData
+        [Serializable]
+        public struct EffectContext
+        {
+            [SerializeField]
+            public float[] data;
+
+            public EffectContext(float[] data)
+            {
+                this.data = data;
+            }
         }
     }
 }

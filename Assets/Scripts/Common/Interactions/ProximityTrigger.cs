@@ -7,14 +7,26 @@ public abstract class ProximityTrigger : MonoBehaviour
     ProximityTriggerBehaviour _proximityTriggerBehaviour;
 
     [SerializeField]
+    private RangeHighlight _rangeHighlight;
+
+    [SerializeField]
     protected bool _cancelEffectOnExit;
 
     public bool CancelEffectOnExit { set => _cancelEffectOnExit = value; }
 
-    public float EffectRadius { set => _sphereCollider.radius = value; }
-
     [SerializeField]
     protected SphereCollider _sphereCollider;
+
+    public float EffectRadius
+    {
+        set
+        {
+            _sphereCollider.radius = value;
+            _rangeHighlight.RangeRadius = value;
+        }
+    }
+
+
 
 
     protected virtual void Awake()

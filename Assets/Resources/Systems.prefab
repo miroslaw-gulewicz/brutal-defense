@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5850713644038627430}
   - component: {fileID: -7862033250299829740}
+  - component: {fileID: 1732520237780435657}
   - component: {fileID: 7566860231127574238}
   - component: {fileID: -5794238090770245476}
   m_Layer: 0
@@ -47,6 +48,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _menuScene: MainMenu
   _levelSceneName: GameScene
+--- !u!114 &1732520237780435657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4636841898040722470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db63b345d06a1844db7c73badb7f1ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playersProgressData: {fileID: 11400000, guid: 5744b3b7492da874c820f609b9750e52, type: 2}
+  _sessionTime: 0
 --- !u!114 &7566860231127574238
 MonoBehaviour:
   m_ObjectHideFlags: 0

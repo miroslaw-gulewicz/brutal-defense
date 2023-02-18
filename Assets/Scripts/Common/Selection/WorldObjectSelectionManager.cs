@@ -37,6 +37,9 @@ public class WorldObjectSelectionManager : MonoBehaviour
     private Dictionary<int, IHighlitableObjectHolder> agents;
 
     private float lastClick = 0;
+
+    [Range(0, 0.5f)]
+    [SerializeField]
     private float doubleClickTreshold = 0.3f;
 
     public Vector2 CursorPosition { get => _position ; }
@@ -79,7 +82,12 @@ public class WorldObjectSelectionManager : MonoBehaviour
         } 
     }
 
-    internal void Deselect(TurretBehaviour currentTurret)
+    public void Select(TurretBehaviour currentTurret)
+    {
+        OnObjectSelected.Invoke(currentTurret.gameObject);
+    }
+
+    public void Deselect(TurretBehaviour currentTurret)
     {
         OnObjectSelected.Invoke(currentTurret.gameObject);
     }

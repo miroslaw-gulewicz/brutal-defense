@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireBallSpellEffect
   m_EditorClassIdentifier: 
   _applyStrategy: 1
-  _agentPrefab: {fileID: 3020720218277338991, guid: 61fdbe4096b83aa40aa5ad5cfe0f4152, type: 3}
+  _agentPrefab: {fileID: 3108746772328009136, guid: a41d3018bd0dad542a6884ee6966f171, type: 3}
   effectAgents:
   - {fileID: 11400000, guid: a9852860eeca5f04baa377e4e9234f5d, type: 2}
   - {fileID: 11400000, guid: 31a9fabd1f6fd6847b92abd3a07e8b3f, type: 2}

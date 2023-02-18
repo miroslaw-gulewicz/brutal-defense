@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eedfdf906a06374aad6dd7d212ba521, type: 3}
   m_Name: FireBallSpellParticleEffect
   m_EditorClassIdentifier: 
+  _applyStrategy: 1
   m_ParticleSystem: {fileID: 5449096996664074257, guid: aa084e92e5bc6aa418acc425130f7591, type: 3}

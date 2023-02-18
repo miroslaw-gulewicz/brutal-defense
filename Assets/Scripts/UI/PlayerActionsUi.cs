@@ -36,13 +36,14 @@ public class PlayerActionsUi : MonoBehaviour
 
     private LayerMask _default;
 
-    public void Awake()
+    public void Start()
     {
         turretSelection = new SelectObjectsManager<TurretBehaviour>();
         tabs = new TabPanelUI();
 
         tabs.AddTab(towerBuildingMenuUI);
         tabs.AddTab(spellBookUI);
+        tabs.AddTab(towerInfoUI);
 
         buildButton.onClick.AddListener(HideButtons);
         buildButton.onClick.AddListener(() => tabs.ActivateTab(towerBuildingMenuUI));
@@ -52,8 +53,6 @@ public class PlayerActionsUi : MonoBehaviour
 
         _selectedTowerButton.Action = (btb) => ShowTurretDetails();
 
-        tabs.CloseAll();
-
         towerBuildingMenuUI.cancelSelectionButton.onClick.AddListener(ShowButtons);
         towerBuildingMenuUI.cancelSelectionButton.onClick.AddListener(tabs.CloseAll);
 
@@ -62,8 +61,8 @@ public class PlayerActionsUi : MonoBehaviour
 
         WorldObjectSelectionManager.OnObjectSelected += OnObjectSelected;
         _default = WorldObjectSelectionManager.LayerMask;
-        towerInfoUI.Hide();
-        spellBookUI.Hide();
+
+        tabs.CloseAll();
     }
 
     private void OnObjectSelected(GameObject obj)
@@ -77,7 +76,6 @@ public class PlayerActionsUi : MonoBehaviour
         if(turretSelection.IsObjectSelected())
         {
             _selectedTowerButton.TowerObjectDef = turret.TurretObject;
-            _selectedTowerButton.SetSelected(true);
         } else
         {
             towerInfoUI.Hide();
@@ -88,6 +86,7 @@ public class PlayerActionsUi : MonoBehaviour
 
     public void ShowTurretDetails()
     {
+        tabs.ActivateTab(towerInfoUI);
         towerInfoUI.DisplayTurretInfo(turretSelection.GetSelectedValue());
         towerInfoUI.Show();
     }

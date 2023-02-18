@@ -19,6 +19,9 @@ public class TurretSpawner : MonoBehaviour, IHighlitableObjectHolder
     [SerializeField]
     private TurretLevelCollection[] turretLevelCollection;
 
+    [SerializeField]
+    private TurretObjectDef _turretDef;
+
     private  Dictionary<TurretObjectDef, TurretLevelCollection> turretDefTOCollection;
 
     private List<TurretBehaviour> _spawnedTurrets = new List<TurretBehaviour>();
@@ -35,11 +38,11 @@ public class TurretSpawner : MonoBehaviour, IHighlitableObjectHolder
         _visualizer = FindObjectOfType<DamageVisualizer>();
         turretDefTOCollection = new Dictionary<TurretObjectDef, TurretLevelCollection>();
 
-        foreach (var item in turretLevelCollection)
+        foreach (var turretLevel in turretLevelCollection)
         {
-            foreach (var inner in item.TurretLevels)
+            foreach (var inner in turretLevel.TurretLevels)
             {
-                turretDefTOCollection.Add(inner.Definition, item);
+                turretDefTOCollection.Add(inner.Definition, turretLevel);
             }
         }
     }
@@ -47,6 +50,12 @@ public class TurretSpawner : MonoBehaviour, IHighlitableObjectHolder
     private void Start()
     {
         _spawnedTurrets.AddRange(FindObjectsOfType<TurretBehaviour>());
+    }
+
+    [ContextMenu("Spawn")]
+    public void Spawn()
+    {
+        SpawnTurret(_turretDef, Vector3.zero);
     }
 
     internal TurretBehaviour SpawnTurret(TurretObjectDef turretObjectDef, Vector3 gizmoPlacement)

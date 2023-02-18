@@ -20,6 +20,8 @@ namespace Effect
         private readonly Dictionary<InflictorSourceKey, GameObject> _effectObjects = new Dictionary<InflictorSourceKey, GameObject>();
         private readonly Dictionary<InflictorSourceKey, IEffectContextData> _effectContexts = new Dictionary<InflictorSourceKey, IEffectContextData>();
         private readonly List<InflictorSourceKey> _effectsToRemoveKeys = new List<InflictorSourceKey>(7);  
+        
+        private EffectInflictor[] _effectInflictors = new EffectInflictor[10];
 
         private UnityAction<IEffectContextHolder> _hpBelow0Callback;
         private bool _isDead = false;
@@ -79,8 +81,9 @@ namespace Effect
                 agent = DefaultEffects[inflictor.EffectType];*/
             if (!agent) return;
 
+
             GameObject effectGo = agent.ApplyEffect(_mono.gameObject);
-            if(effectGo != null)
+            if(effectGo != null && inflictor.EffectType != IAffected.EffectType.NONE)
                 _effectObjects[inflictor.inflictorSourceKey] = effectGo;          
         }
 
@@ -90,6 +93,7 @@ namespace Effect
             {
                 _effectsToRemoveKeys.Add(inflictors[i].inflictorSourceKey);
             }
+            _nextUpdate = -10;
         }
 
         public void ApplyEffect(EffectInflictor[] inflictors)
@@ -102,8 +106,12 @@ namespace Effect
         {
             if (Time.time < _nextUpdate) return;
             float tmpMainNextUpdate = _nextUpdate + 100;
-            foreach (var effectInflictor in _effects.Values)
+            _effects.Values.CopyTo(_effectInflictors, 0);
+             for (int i = 0; i < _effectInflictors.Length; i++)
             {
+                EffectInflictor effectInflictor = _effectInflictors[i];
+                if (effectInflictor == null ) continue;
+
                 float inflictorNextUpdate = effectInflictor.UpdateInflictor(this, this);
                 if (effectInflictor.EffectType != IAffected.EffectType.PERMANENT && inflictorNextUpdate <= 0)
                 {
@@ -113,7 +121,9 @@ namespace Effect
                 else
                 {
                     if(inflictorNextUpdate < tmpMainNextUpdate)
-                        tmpMainNextUpdate = inflictorNextUpdate; 
+                        tmpMainNextUpdate = inflictorNextUpdate;
+
+                    _effectInflictors[i] = null;
                 }
             }
 
@@ -133,6 +143,11 @@ namespace Effect
                 _effects.Remove(effectKey);
             }
             _effectsToRemoveKeys.Clear();
+
+            for (int i = 0; i < _effectInflictors.Length; i++)
+            {
+                _effectInflictors[i] = null;
+            }
         }
 
         public void TakeDamage(DamageType damageType, short amount)
@@ -149,15 +164,15 @@ namespace Effect
             short totalDamage = (short)(amount - ((short)Math.Ceiling(amount * (resistance / 100f))));
 
             if (totalDamage > 0)
-            {
-                if (_statsManager.BasicStatsHolder.CurrentHp - amount <= 0)
+            {  
+                _statsManager.BasicStatsHolder.CurrentHp -= totalDamage;
+                DamageTakenCallback?.Invoke(damageType, totalDamage);
+
+                if (_statsManager.BasicStatsHolder.CurrentHp <= 0)
                 {
                     _isDead = true;
                     _hpBelow0Callback?.Invoke(this);
                 }
-
-                DamageTakenCallback?.Invoke(damageType, totalDamage);
-                _statsManager.BasicStatsHolder.CurrentHp -= totalDamage;
             }     
         }
         public void GetContextData(EffectInflictor inflictor, out IEffectContextData data)

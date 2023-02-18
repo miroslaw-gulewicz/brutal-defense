@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField]
-    private Button _playBtn;
+    private Button _playBtn;    
+    
+    [SerializeField]
+    private Button _leaderBoardBtn;
 
     [SerializeField]
     private Button _settingsBtn;
@@ -31,6 +34,9 @@ public class MainMenuController : MonoBehaviour
     private SettingsMenuController _settingsMenuController;
 
     [SerializeField]
+    private LeaderBoardMenuController _leaderBoardMenuController;
+
+    [SerializeField]
     private Canvas _menuCanvas;
 
     private IMenu _activeMenu;
@@ -52,6 +58,11 @@ public class MainMenuController : MonoBehaviour
             CloseActiveAndDisplay(_creditsMenuController);
         });
 
+        _leaderBoardBtn.onClick.AddListener(() =>
+        {
+            CloseActiveAndDisplay(_leaderBoardMenuController);
+        });
+
         _returnBtn.onClick.AddListener(() => CloseActive());
 
         _exitBtn.onClick.AddListener(() =>  Application.Quit());
@@ -61,6 +72,7 @@ public class MainMenuController : MonoBehaviour
         _settingsMenuController.Close();
         _creditsMenuController.Close();
         _levelMenuController.Close();
+        _leaderBoardMenuController.Close();
     }
 
     private void CloseActiveAndDisplay(IMenu menu)
@@ -79,4 +91,6 @@ public class MainMenuController : MonoBehaviour
         _returnBtn.gameObject.SetActive(false);
         _menuCanvas.gameObject.SetActive(true);
     }
+
+
 }
