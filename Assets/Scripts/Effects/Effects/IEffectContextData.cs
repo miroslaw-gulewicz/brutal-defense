@@ -1,6 +1,6 @@
 namespace Effect
 {
-    public interface IEffectContextData
-    {
-    }
+	public interface IEffectContextData
+	{
+	}
 }

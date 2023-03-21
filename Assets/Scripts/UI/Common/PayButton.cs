@@ -5,13 +5,18 @@ using UnityEngine.UI;
 
 public class PayButton : Button
 {
-    [Header("Pay Button")]
+	[Header("Pay Button")] [SerializeField]
+	int value;
 
-    [SerializeField]
-    int value;
+	[SerializeField] TMPro.TextMeshProUGUI valueText;
 
-    [SerializeField]
-    TMPro.TextMeshProUGUI valueText;
-
-    public int Value { get => value; set { this.value = value; valueText.text = value.ToString(); } }
+	public int Value
+	{
+		get => value;
+		set
+		{
+			this.value = value;
+			valueText.text = value.ToString();
+		}
+	}
 }

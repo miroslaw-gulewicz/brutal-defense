@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a25fe78569fe5994ab6cf3ac5fd9234b, type: 3}
+  m_Name: InstantEliminationSpell
+  m_EditorClassIdentifier: 
+  _spellName: 
+  _effectAgent: {fileID: 11400000, guid: 6f7a25569c9bc8a4b9d8e6974ed0d3a3, type: 2}
+  _inflictors:
+  - {fileID: 11400000, guid: 99643f16cd4c48c40aab2dd585a6f779, type: 2}
+  _sprite: {fileID: 0}
+  _cooldown: 0
+  _gizmoPrefab: {fileID: 0}
+  targetsAgentLayer:
+    serializedVersion: 2
+    m_Bits: 0

@@ -6,21 +6,28 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TurretLevelCollection", menuName = "ScriptableObjects/TurretLevelCollection")]
 public class TurretLevelCollection : ScriptableObject
 {
-    [SerializeField]
-    TowerLevelDefinition[] turretLevels;
+	[SerializeField] TowerLevelDefinition[] turretLevels;
 
-    public TowerLevelDefinition[] TurretLevels { get => turretLevels;}
+	public TowerLevelDefinition[] TurretLevels
+	{
+		get => turretLevels;
+	}
 
-    [Serializable]
-    public class TowerLevelDefinition
-    {
-        [SerializeField]
-        int level;
+	[Serializable]
+	public class TowerLevelDefinition
+	{
+		[SerializeField] int level;
 
-        [SerializeField]
-        TurretObjectDef definition;
+		[SerializeField] TurretObjectDef definition;
 
-        public TurretObjectDef Definition { get => definition; }
-        public int Level { get => level;}
-    }
+		public TurretObjectDef Definition
+		{
+			get => definition;
+		}
+
+		public int Level
+		{
+			get => level;
+		}
+	}
 }

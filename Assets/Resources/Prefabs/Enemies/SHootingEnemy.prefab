@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 1.73
       objectReference: {fileID: 0}
+    - target: {fileID: 197000694429971826, guid: f498e4c9701a6e345afea8d37b064282, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 792812037524947746, guid: f498e4c9701a6e345afea8d37b064282, type: 3}
       propertyPath: m_Name
       value: Weapon
@@ -81,17 +85,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f498e4c9701a6e345afea8d37b064282, type: 3}
---- !u!114 &5984858704696971540 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8473156940921839324, guid: f498e4c9701a6e345afea8d37b064282, type: 3}
-  m_PrefabInstance: {fileID: 2781199338847997896}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f53e842ddcfcd154e8b9339c82ba6f9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &285125589091467879 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2696589815331016111, guid: f498e4c9701a6e345afea8d37b064282, type: 3}
@@ -323,7 +316,7 @@ MonoBehaviour:
   _balisticPrefab: {fileID: 3614506768821073891, guid: 37ec86590ec88994ca85e77bce016fba, type: 3}
   proximityTriggerBehaviour: {fileID: 285125589091467879}
   _targetingGameObject: {fileID: 0}
-  _weaponController: {fileID: 5984858704696971540}
+  _weaponController: {fileID: 0}
 --- !u!114 &8038754217757175138
 MonoBehaviour:
   m_ObjectHideFlags: 0

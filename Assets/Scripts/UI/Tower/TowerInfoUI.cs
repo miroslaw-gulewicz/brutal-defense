@@ -6,161 +6,104 @@ using UnityEngine.UI;
 
 public class TowerInfoUI : MonoBehaviour, ITab
 {
-    [SerializeField]
-    private EconomyManager economyManager;
+	[SerializeField] private EconomyManager economyManager;
 
-    [SerializeField]
-    private WaveManager _waveManager;
+	[SerializeField] private TurretBehaviour _currentTurret;
 
-    [SerializeField]
-    private TurretBehaviour _currentTurret;
+	[SerializeField] private ObjectPlacementControl _objectPlacementControl;
 
-    [SerializeField]
-    private WorldObjectSelectionManager worldObjectSelectionManager;
+	[SerializeField] private Canvas _towerInfoCanvas;
 
-    [SerializeField]
-    private Image _displayImage; 
+	[SerializeField] private StatsInfoPanel _towerStatsPanel;
 
-    [SerializeField]
-    private Canvas _towerInfoCanvas;
+	[SerializeField] private PayButton sellTowerButton;
 
-    [SerializeField]
-    private TMPro.TextMeshProUGUI _turretName;
+	[SerializeField] private PayButton upgradeTowerButton;
 
-    [SerializeField]
-    private TMPro.TextMeshProUGUI _damage;
+	[SerializeField] private Button _targetIngButton;
 
-    [SerializeField]
-    private TMPro.TextMeshProUGUI _range;
+	[SerializeField] private Button _closeTowerInfo;
 
-    [SerializeField]
-    private TMPro.TextMeshProUGUI _fireSpeed;
+	[SerializeField] private UpgradeTowerButton upgradeTowerControl;
 
-    [SerializeField]
-    private TMPro.TextMeshProUGUI _hp;
+	[SerializeField] private ShootingStrategyPanel _shootingStrategyPanel;
 
-    [SerializeField]
-    private PayButton sellTowerButton;
+	public event Action OnCloseTab;
 
-    [SerializeField]
-    private PayButton upgradeTowerButton;    
-    
-    [SerializeField]
-    private UpgradeTowerButton upgradeTowerControl;
+	private TabPanelUI tabPanelUI;
 
-    [SerializeField]
-    private TMPro.TMP_Dropdown shootingStrategyChoose;
+	public void Awake()
+	{
+		tabPanelUI = new TabPanelUI();
+		tabPanelUI.AddTab(_shootingStrategyPanel);
 
-    [SerializeField]
-    private EnemySelectPanel _enemySelectPanel;
+		sellTowerButton.onClick.AddListener(SellTower);
+		upgradeTowerButton.onClick.AddListener(DoUpgrade);
+		_closeTowerInfo.onClick.AddListener(() => OnCloseTab?.Invoke());
+		_targetIngButton.onClick.AddListener(ShowTargetingPanel);
+		_shootingStrategyPanel.OnCloseTab += OnTargetPanelClose;
+	}
 
-    [SerializeField]
-    private ShootingStrategySwitcher _turretShootingStrategySwitcher;
+	private void OnTargetPanelClose()
+	{
+		_towerStatsPanel.gameObject.SetActive(true);
+		tabPanelUI.CloseAll();
+		_towerInfoCanvas.gameObject.SetActive(true);
+	}
 
-    [SerializeField]
-    private List<TowerShootingStrategyDropdownData> strategies;
+	private void ShowTargetingPanel()
+	{
+		tabPanelUI.ActivateTab(_shootingStrategyPanel);
+		_towerStatsPanel.gameObject.SetActive(false);
+		_towerInfoCanvas.gameObject.SetActive(false);
+	}
 
-    public void Awake()
-    {
-        sellTowerButton.onClick.AddListener(SellTower);
-        upgradeTowerButton.onClick.AddListener(DoUpgrade);
+	private void Start()
+	{
+		tabPanelUI.CloseAll();
+	}
 
-        shootingStrategyChoose.ClearOptions();
-        List<TMPro.TMP_Dropdown.OptionData> options = new List<TMPro.TMP_Dropdown.OptionData>();
+	private void DoUpgrade()
+	{
+		economyManager.UpgradeTower(_currentTurret);
+		DisplayTurretInfo(_currentTurret);
+	}
 
-        foreach(var item in strategies)
-        {
-            options.Add(item);
-        }
-        
-        shootingStrategyChoose.AddOptions(options);
-        shootingStrategyChoose.onValueChanged.AddListener(OnStrategyChanged);
+	private void SellTower()
+	{
+		economyManager.SellTower(_currentTurret);
+		OnCloseTab?.Invoke();
+		_objectPlacementControl.WorldObjectSelectionManager.Deselect(_currentTurret);
+	}
 
-        _enemySelectPanel.TargetSelected += _enemySelectPanel_TargetSelected;
-    }
+	public void Hide()
+	{
+		_towerInfoCanvas.gameObject.SetActive(false);
+		_shootingStrategyPanel.gameObject.SetActive(false);
+	}
 
-    private void _enemySelectPanel_TargetSelected(EnemyObject obj)
-    {
-        _turretShootingStrategySwitcher.EnemyObject = obj;
-        _turretShootingStrategySwitcher.SetupTargetingSystem();
-    }
+	public void Show()
+	{
+		_towerInfoCanvas.gameObject.SetActive(true);
+		_towerStatsPanel.gameObject.SetActive(true);
+	}
 
-    private void OnStrategyChanged(int strategyIndex)
-    {
-        _enemySelectPanel.gameObject.SetActive(false);
-        var targetingStrategyType = strategies[strategyIndex].targeting;
+	public void DisplayTurretInfo(TurretBehaviour turret)
+	{
+		_currentTurret = turret;
+		var turretDef = _currentTurret.TurretObject;
 
-        _turretShootingStrategySwitcher.Shooting = _currentTurret.GetComponent<Shooting>();
-            
-        _turretShootingStrategySwitcher.SystemType = targetingStrategyType;
+		_towerStatsPanel.Display(turretDef.Sprite, turretDef.BasicStats, turretDef.Resistance, turretDef as Weapon);
+		sellTowerButton.Value = economyManager.TurretValue(_currentTurret);
 
-        if (targetingStrategyType == TargetingSystemType.PRIORITY)
-        {
-            _enemySelectPanel.gameObject.SetActive(true);
-            _enemySelectPanel.DisplayEnemies(_waveManager.WaveEnemiesDefinition());
-            _enemySelectPanel.SelectTile(_turretShootingStrategySwitcher.Shooting.TargetingSystem.TargetDefinition);
-        } 
-        else
-        {
-            _turretShootingStrategySwitcher.SetupTargetingSystem();
-        }
-    }
+		upgradeTowerControl.CurrentTower = turret;
+		var nextUpgrade = economyManager.NextLevelTowerValue(_currentTurret);
+		upgradeTowerButton.gameObject.SetActive(nextUpgrade != -1 && nextUpgrade <= economyManager.Coins);
+		if (nextUpgrade != -1)
+		{
+			upgradeTowerButton.Value = nextUpgrade;
+		}
 
-    private void DoUpgrade()
-    {
-        economyManager.UpgradeTower(_currentTurret);
-        DisplayTurretInfo(_currentTurret);
-    }
-
-    private void SellTower()
-    {
-        worldObjectSelectionManager.Deselect(_currentTurret);
-        economyManager.SellTower(_currentTurret);
-        DisplayTurretInfo(_currentTurret);
-    }
-
-    public void Hide()
-    {
-        _towerInfoCanvas.gameObject.SetActive(false);
-        _enemySelectPanel.gameObject.SetActive(false);
-    }
-
-    public void Show()
-    {
-        _towerInfoCanvas.gameObject.SetActive(true);
-    }
-
-    internal void DisplayTurretInfo(TurretBehaviour turret)
-    {
-        _currentTurret = turret;
-
-        _displayImage.sprite = _currentTurret.TurretObject.Sprite;
-        _turretName.text = turret.TurretObject.TowerName;
-        _range.text = turret.TurretObject.Range.ToString();
-        _hp.text = turret.BasicStats[StatEnum.HP].ToString();
-        _fireSpeed.text = turret.BasicStats[StatEnum.ATTACK_SPEED].ToString();
-        _damage.text = turret.TurretObject.Projectile.Damage.ToString();
-
-        sellTowerButton.Value = economyManager.TurretValue(_currentTurret);
-
-        upgradeTowerControl.CurrentTower = turret;
-        var nextUpgrade = economyManager.NextLevelTowerValue(_currentTurret);
-        upgradeTowerButton.gameObject.SetActive(nextUpgrade != -1);
-        if (nextUpgrade != -1)
-        {
-            upgradeTowerButton.Value = nextUpgrade;
-        }
-
-        Shooting shooting = turret.GetComponent<Shooting>();
-        TargetingSystemType targetingSystemType = TargetingSystemFactory.AsTargetingSystemType(shooting.TargetingSystem);
-        shootingStrategyChoose.value = strategies.FindIndex(data => data.targeting == targetingSystemType);
-        OnStrategyChanged(shootingStrategyChoose.value);
-    }
-
-    [Serializable]
-    public class TowerShootingStrategyDropdownData : TMPro.TMP_Dropdown.OptionData
-    {
-        [SerializeField]
-        internal TargetingSystemType targeting;
-    }
+		_shootingStrategyPanel.SetShootinObject(turret.GetComponent<Shooting>());
+	}
 }

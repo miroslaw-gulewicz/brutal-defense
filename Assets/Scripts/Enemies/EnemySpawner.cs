@@ -6,117 +6,71 @@ using static IDestructable;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField]
-    public Transform _enemiesWorldParent;
-    
-    [SerializeField]
-    public EnemyObject _enemyDef;
+	[SerializeField] public Transform _enemiesWorldParent;
 
-    [SerializeField]
-    private float spawnInterval;
+	[SerializeField] public EnemyObject _enemyDef;
 
-    DamageVisualizer _visualizer;
+	DamageVisualizer _visualizer;
 
-    private float lastSpawned;
+	[SerializeField] private bool initExisting;
 
-    private int spawnCount;
+	public void Awake()
+	{
+		_visualizer = FindObjectOfType<DamageVisualizer>();
 
-    public event Action SpawnCompleted;
+		if (initExisting)
+		{
+			foreach (var enemy in FindObjectsOfType<Enemy>())
+			{
+				InitExistingEnemies(enemy);
+			}
+		}
+	}
 
-    public event Action<Enemy> OnWaveEnemySpawned;
+	private void InitExistingEnemies(Enemy enemy)
+	{
+		enemy.DamageVisualizer = _visualizer;
+		enemy.Initialize();
 
-    Coroutine spawningCoroutine;
+		if (enemy.TryGetComponent(out Shooting shooting))
+		{
+			shooting.Weapon = enemy.EnemyObject.Weapon;
+			shooting.Initialize();
+		}
+	}
 
-    [SerializeField]
-    private bool initExisting;
+	public Enemy SpawnEnemy(GameObject prefab, Vector3 position, EnemyObject enemyObject)
+	{
+		GameObject obj = ObjectCacheManager._Instance.GetObject(prefab, false);
 
-    public int SpawnCount { get => spawnCount; set => spawnCount = value; }
-    public float SpawnInterval { set => spawnInterval = value; }
+		if (obj == null)
+			obj = Instantiate(_enemyDef.Prefab.gameObject);
+		obj.transform.SetParent(_enemiesWorldParent, false);
+		obj.transform.localPosition = position;
+		var enemy = obj.GetComponent<Enemy>();
+		enemy.EnemyObject = enemyObject;
+		InitExistingEnemies(enemy);
 
-    public void Awake()
-    {
-        _visualizer = FindObjectOfType<DamageVisualizer>();
+		obj.SetActive(true);
+		return enemy;
+	}
 
-        if (initExisting)
-        {
-           foreach (var enemy in FindObjectsOfType<Enemy>())
-            {
-                InitExistingEnemies(enemy);
-            }
-        }
-    }
-
-    private void InitExistingEnemies(Enemy enemy)
-    {
-        enemy.DamageVisualizer = _visualizer;
-        enemy.Initialize();
-
-        if (enemy.TryGetComponent(out Shooting shooting))
-        {
-            shooting.Weapon = enemy.EnemyObject.Weapon;
-            shooting.Initialize();
-        }
-
-    }
-
-    public void StartSpawn()
-    {
-       spawningCoroutine  = StartCoroutine(SpawnEnemyCoorutine());
-    }
-    
-    public IEnumerator SpawnEnemyCoorutine()
-    {
-        while (spawnCount > 0)
-        {
-            OnWaveEnemySpawned?.Invoke(SpawnEnemy(_enemyDef.Prefab.gameObject, Vector3.zero, _enemyDef));
-            lastSpawned = Time.fixedTime;
-
-            spawnCount--;
-            yield return new WaitForSeconds(spawnInterval);
-            
-        }
-
-        SpawnCompleted?.Invoke();
-    }
-
-    public Enemy SpawnEnemy(GameObject prefab, Vector3 position, EnemyObject enemyObject)
-    {
-        GameObject obj = ObjectCacheManager._Instance.GetObject(prefab, false);
-
-        if(obj == null)
-            obj = Instantiate(_enemyDef.Prefab.gameObject);        
-        obj.transform.SetParent(_enemiesWorldParent, false);
-        obj.transform.localPosition = position;
-        var enemy = obj.GetComponent<Enemy>();
-        enemy.EnemyObject = enemyObject;
-        InitExistingEnemies(enemy);
-
-        obj.SetActive(true);
-        return enemy;
-    }
-
-    [ContextMenu("SpawnEnemy")]
-    public void Spawn()
-    {
-        SpawnEnemy(_enemyDef.Prefab.gameObject, Vector3.zero, _enemyDef);
-    }
+	[ContextMenu("SpawnEnemy")]
+	public void Spawn()
+	{
+		SpawnEnemy(_enemyDef.Prefab.gameObject, Vector3.zero, _enemyDef);
+	}
 
 
-    [ContextMenu("Pause")]
-    public void Pause()
-    {
-        Time.timeScale = 0f;
-    }
+	[ContextMenu("Pause")]
+	public void Pause()
+	{
+		Time.timeScale = 0f;
+	}
 
-    [ContextMenu("Resume")]
-    public void Resume()
-    {
-        Time.timeScale = 1f;
-    }
-
-    [ContextMenu("play 2x")]
-    public void Speed2x()
-    {
-        Time.timeScale = 2f;
-    }
+	[ContextMenu("Resume")]
+	public void Resume()
+	{
+		Time.timeScale = 1f;
+	}
 }

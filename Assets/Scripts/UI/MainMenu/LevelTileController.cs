@@ -7,20 +7,17 @@ using UnityEngine.UI;
 
 public class LevelTileController : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI _levelName;
+	[SerializeField] private TextMeshProUGUI _levelName;
 
-    [SerializeField]
-    private Button _playButton;
+	[SerializeField] private Button _playButton;
 
-    [SerializeField]
-    private Image _score;
+	[SerializeField] private Image _score;
 
 
-    public static void Init(LevelTileController tile, LevelDefinition level, Action<LevelDefinition> onLevelSelected)
-    {
-        tile._levelName.text = level.LevelName;
-        tile._playButton.onClick.AddListener(() => onLevelSelected(level));
-        tile._score.fillAmount = 0.6f;
-    }
+	public static void Init(LevelTileController tile, LevelDefinition level, Action<LevelDefinition> onLevelSelected)
+	{
+		tile._levelName.text = level.LevelName;
+		tile._playButton.onClick.AddListener(() => onLevelSelected(level));
+		tile._score.fillAmount = 0.6f;
+	}
 }

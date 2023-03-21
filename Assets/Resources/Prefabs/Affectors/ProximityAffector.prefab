@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1620369485509897878}
   - component: {fileID: 1959515868867607557}
   - component: {fileID: -2195197849911114629}
+  - component: {fileID: 5958740247591864166}
   m_Layer: 12
   m_Name: ProximityAffector
   m_TagString: Untagged
@@ -59,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e4946fa9d46d84f891214cd6fa7063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _proximityTriggerBehaviour: {fileID: 0}
   _rangeHighlight: {fileID: 7153740176832749230}
   _cancelEffectOnExit: 0
   _sphereCollider: {fileID: 1620369485509897878}
@@ -76,6 +78,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 1620369485509897878}
+--- !u!114 &5958740247591864166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620369485509897877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6fe934f92dabb4aa5e5d635bac19c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1502307391858087495
 PrefabInstance:
   m_ObjectHideFlags: 0

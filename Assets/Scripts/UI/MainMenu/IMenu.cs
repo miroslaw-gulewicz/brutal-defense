@@ -1,5 +1,5 @@
 public interface IMenu
 {
-    void Display();
-    void Close();
+	void Display();
+	void Close();
 }

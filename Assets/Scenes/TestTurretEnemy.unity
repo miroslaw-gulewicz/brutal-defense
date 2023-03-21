@@ -597,6 +597,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bfb73b507baf7443961a28971a16899, type: 3}
+--- !u!1 &511784389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8158180039746281953, guid: 5b154114b3d4ad04e818ef46dca93b13, type: 3}
+  m_PrefabInstance: {fileID: 1247292141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &538034892
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,11 +719,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!1 &567181874 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1291385761938051825, guid: 1bfb73b507baf7443961a28971a16899, type: 3}
-  m_PrefabInstance: {fileID: 1902602385}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &583333351
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,6 +1182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8158180039746281950, guid: 5b154114b3d4ad04e818ef46dca93b13, type: 3}
+      propertyPath: autoInit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8158180039746281953, guid: 5b154114b3d4ad04e818ef46dca93b13, type: 3}
       propertyPath: m_Name
       value: SHootingEnemy (7)
@@ -1202,7 +1206,7 @@ PrefabInstance:
     - target: {fileID: 523543545183930105, guid: bfbe897397b189a4fae8bf4cd9206af6, type: 3}
       propertyPath: _target
       value: 
-      objectReference: {fileID: 567181874}
+      objectReference: {fileID: 511784389}
     - target: {fileID: 523543545183930105, guid: bfbe897397b189a4fae8bf4cd9206af6, type: 3}
       propertyPath: spellsRoot
       value: 
@@ -1210,7 +1214,7 @@ PrefabInstance:
     - target: {fileID: 523543545183930105, guid: bfbe897397b189a4fae8bf4cd9206af6, type: 3}
       propertyPath: _activeSpell
       value: 
-      objectReference: {fileID: 11400000, guid: 8a48892172a81c14d8606be1aaa2d153, type: 2}
+      objectReference: {fileID: 11400000, guid: f713a5e9af5c13d46a4fd85c57505e1a, type: 2}
     - target: {fileID: 523543545183930105, guid: bfbe897397b189a4fae8bf4cd9206af6, type: 3}
       propertyPath: placementControl
       value: 
@@ -1814,7 +1818,7 @@ PrefabInstance:
     - target: {fileID: 1291385761938051790, guid: 1bfb73b507baf7443961a28971a16899, type: 3}
       propertyPath: enemyObject
       value: 
-      objectReference: {fileID: 11400000, guid: 297e5bb08157fd0488416502acd7a0b5, type: 2}
+      objectReference: {fileID: 11400000, guid: e5dfaca0196e6fb4c869de05a4c25820, type: 2}
     - target: {fileID: 1291385761938051825, guid: 1bfb73b507baf7443961a28971a16899, type: 3}
       propertyPath: m_Name
       value: Enemy

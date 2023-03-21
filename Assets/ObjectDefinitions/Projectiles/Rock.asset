@@ -20,4 +20,4 @@ MonoBehaviour:
   _stats:
     stats:
     - stat: 2
-      value: 5
+      value: 15

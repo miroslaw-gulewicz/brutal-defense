@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: LevelDefinitionsDatabase
   m_EditorClassIdentifier: 
   items:
+  - {fileID: 11400000, guid: 7d7baef335c7ac84aa59a623ef7e6363, type: 2}
   - {fileID: 11400000, guid: 798bc4a0a3ddb784caffb2d6a88f8bd6, type: 2}

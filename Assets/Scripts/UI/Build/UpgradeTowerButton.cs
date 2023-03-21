@@ -7,15 +7,17 @@ using static DescribleBehaviour;
 
 public class UpgradeTowerButton : MonoBehaviour, IDescrible
 {
-    TurretBehaviour _currentTower;
+	TurretBehaviour _currentTower;
 
-    [SerializeField]
-    TurretSpawner _turretSpawner;
+	[SerializeField] TurretSpawner _turretSpawner;
 
-    public TurretBehaviour CurrentTower { set => _currentTower = value; }
+	public TurretBehaviour CurrentTower
+	{
+		set => _currentTower = value;
+	}
 
-    public string getActionDescription()
-    {
-        return _turretSpawner.GetNextLevelDescription(_currentTower);
-    }
+	public string getActionDescription()
+	{
+		return _turretSpawner.GetNextLevelDescription(_currentTower);
+	}
 }

@@ -6,91 +6,70 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField]
-    private Button _playBtn;    
-    
-    [SerializeField]
-    private Button _leaderBoardBtn;
+	[SerializeField] private Button _playBtn;
 
-    [SerializeField]
-    private Button _settingsBtn;
+	[SerializeField] private Button _leaderBoardBtn;
 
-    [SerializeField]
-    private Button _creditsBtn;
+	[SerializeField] private Button _settingsBtn;
 
-    [SerializeField]
-    private Button _returnBtn;
+	[SerializeField] private Button _creditsBtn;
 
-    [SerializeField]
-    private Button _exitBtn;
+	[SerializeField] private Button _returnBtn;
 
-    [SerializeField]
-    private LevelMenuController _levelMenuController;
+	[SerializeField] private Button _exitBtn;
 
-    [SerializeField]
-    private CreditsMenuController _creditsMenuController;
+	[SerializeField] private LevelMenuController _levelMenuController;
 
-    [SerializeField]
-    private SettingsMenuController _settingsMenuController;
+	[SerializeField] private CreditsMenuController _creditsMenuController;
 
-    [SerializeField]
-    private LeaderBoardMenuController _leaderBoardMenuController;
+	[SerializeField] private SettingsMenuController _settingsMenuController;
 
-    [SerializeField]
-    private Canvas _menuCanvas;
+	[SerializeField] private LeaderBoardMenuController _leaderBoardMenuController;
 
-    private IMenu _activeMenu;
+	[SerializeField] private Canvas _menuCanvas;
 
-    private void Awake()
-    {
-        _playBtn.onClick.AddListener(() =>
-        {
-            CloseActiveAndDisplay(_levelMenuController);
-        });
+	private IMenu _activeMenu;
 
-        _settingsBtn.onClick.AddListener(() =>
-        {
-            CloseActiveAndDisplay(_settingsMenuController);
-        });
+	private void Awake()
+	{
+		_playBtn.onClick.AddListener(() => { CloseActiveAndDisplay(_levelMenuController); });
 
-        _creditsBtn.onClick.AddListener(() =>
-        {
-            CloseActiveAndDisplay(_creditsMenuController);
-        });
+		_settingsBtn.onClick.AddListener(() => { CloseActiveAndDisplay(_settingsMenuController); });
 
-        _leaderBoardBtn.onClick.AddListener(() =>
-        {
-            CloseActiveAndDisplay(_leaderBoardMenuController);
-        });
+		_creditsBtn.onClick.AddListener(() => { CloseActiveAndDisplay(_creditsMenuController); });
 
-        _returnBtn.onClick.AddListener(() => CloseActive());
+		_leaderBoardBtn.onClick.AddListener(() => { CloseActiveAndDisplay(_leaderBoardMenuController); });
 
-        _exitBtn.onClick.AddListener(() =>  Application.Quit());
+		_returnBtn.onClick.AddListener(CloseActive);
 
-        CloseActive();
+		_exitBtn.onClick.AddListener(Application.Quit);
 
-        _settingsMenuController.Close();
-        _creditsMenuController.Close();
-        _levelMenuController.Close();
-        _leaderBoardMenuController.Close();
+		CloseActive();
+
+		_settingsMenuController.Close();
+		_creditsMenuController.Close();
+		_levelMenuController.Close();
+		_leaderBoardMenuController.Close();
+
+#if UNITY_WEBGL || UNITY_EDITOR
+        _exitBtn.gameObject.SetActive(false);
+#endif
     }
 
     private void CloseActiveAndDisplay(IMenu menu)
-    {
-        _activeMenu?.Close();
-        _activeMenu = menu;
-        _activeMenu?.Display();
-        _menuCanvas.gameObject.SetActive(false);
-        _returnBtn.gameObject.SetActive(true);
-    }
+	{
+		_activeMenu?.Close();
+		_activeMenu = menu;
+		_activeMenu?.Display();
+		_menuCanvas.gameObject.SetActive(false);
+		_returnBtn.gameObject.SetActive(true);
+	}
 
-    private void CloseActive()
-    {
-        _activeMenu?.Close();
-        _activeMenu = null;
-        _returnBtn.gameObject.SetActive(false);
-        _menuCanvas.gameObject.SetActive(true);
-    }
-
-
+	private void CloseActive()
+	{
+		_activeMenu?.Close();
+		_activeMenu = null;
+		_returnBtn.gameObject.SetActive(false);
+		_menuCanvas.gameObject.SetActive(true);
+	}
 }

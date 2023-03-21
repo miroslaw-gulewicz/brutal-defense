@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 1191089370876513416}
   - component: {fileID: 1191089370876513418}
   - component: {fileID: 1191089370876513419}
-  - component: {fileID: 4404123599869991940}
+  - component: {fileID: 763322005643720947}
   - component: {fileID: 3671442141969183520}
   m_Layer: 0
   m_Name: EnemyStatsItem
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4404123599869991940
+--- !u!114 &763322005643720947
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1191089370876513417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbe2c987be0640143bdaa624e2c3ba6d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d091dbb715435b4491380562808a910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _img: {fileID: 1191089369993395890}

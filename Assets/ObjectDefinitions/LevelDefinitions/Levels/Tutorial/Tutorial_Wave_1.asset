@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb75c2f5deec6bf4ab041ce4555fe3e6, type: 3}
+  m_Name: Tutorial_Wave_1
+  m_EditorClassIdentifier: 
+  maxEscapedEnemies: 0
+  waveUnits:
+  - enemyDef: {fileID: 11400000, guid: a73297073f8221b4aa577bdc3e78989d, type: 2}
+    quantity: 10
+    _spawnInterval: 3
+    continueSpawning: 0
+  - enemyDef: {fileID: 11400000, guid: a73297073f8221b4aa577bdc3e78989d, type: 2}
+    quantity: 20
+    _spawnInterval: 2
+    continueSpawning: 0
+  - enemyDef: {fileID: 11400000, guid: a73297073f8221b4aa577bdc3e78989d, type: 2}
+    quantity: 60
+    _spawnInterval: 1
+    continueSpawning: 0
+  - enemyDef: {fileID: 11400000, guid: 7aa0c9ea9b438fa4d91fbacb03997d3a, type: 2}
+    quantity: 10
+    _spawnInterval: 9
+    continueSpawning: 0
+  - enemyDef: {fileID: 11400000, guid: bd18171e727df50479285c2dac5da7af, type: 2}
+    quantity: 20
+    _spawnInterval: 3
+    continueSpawning: 0
+  - enemyDef: {fileID: 11400000, guid: 0bba642159fa82a4d8a3ba3c4c41b494, type: 2}
+    quantity: 10
+    _spawnInterval: 4
+    continueSpawning: 0
+  - enemyDef: {fileID: 11400000, guid: e5dfaca0196e6fb4c869de05a4c25820, type: 2}
+    quantity: 1
+    _spawnInterval: 1
+    continueSpawning: 1
+  - enemyDef: {fileID: 11400000, guid: eb93ac774c2a65b4bae00f499e0a9ea6, type: 2}
+    quantity: 3
+    _spawnInterval: 1
+    continueSpawning: 1
+  - enemyDef: {fileID: 11400000, guid: e5dfaca0196e6fb4c869de05a4c25820, type: 2}
+    quantity: 1
+    _spawnInterval: 1
+    continueSpawning: 1
+  - enemyDef: {fileID: 11400000, guid: e5dfaca0196e6fb4c869de05a4c25820, type: 2}
+    quantity: 1
+    _spawnInterval: 1
+    continueSpawning: 1
+  _wayPoints: {fileID: 0}

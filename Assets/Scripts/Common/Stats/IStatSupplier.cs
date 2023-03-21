@@ -1,5 +1,4 @@
 public interface IStatMutable
 {
-    public BasicStatsHolder BasicStatsHolder { get; set;  }
-
+	public BasicStatsHolder BasicStatsHolder { get; set; }
 }

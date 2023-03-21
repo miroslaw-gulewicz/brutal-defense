@@ -808,6 +808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerObjectDef: {fileID: 0}
   _image: {fileID: 6186032349116961572}
+  _weaponImage: {fileID: 0}
   description: {fileID: 6186032351030901198}
   _cost: {fileID: 6186032350138048444}
   selectableBehaviour: {fileID: 8757827204207782643}
@@ -1297,7 +1298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8829911231900158312
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1337,7 +1338,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 13
   m_TargetDisplay: 0
 --- !u!114 &8829911231900158317
 MonoBehaviour:
@@ -1491,7 +1492,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8829911232018527789}
   - component: {fileID: 8829911232018527788}
-  - component: {fileID: 8829911232018527791}
   m_Layer: 0
   m_Name: TowerImfoMenu
   m_TagString: Untagged
@@ -1543,7 +1543,7 @@ MonoBehaviour:
   upgradeTowerControl: {fileID: 8829911233444315571}
   shootingStrategyChoose: {fileID: 8829911233009865518}
   _enemySelectPanel: {fileID: 8829911231900158315}
-  _turretShootingStrategySwitcher: {fileID: 8829911232018527791}
+  _turretShootingStrategySwitcher: {fileID: 0}
   strategies:
   - m_Text: Simple
     m_Image: {fileID: 21300000, guid: 3b2dac6b47756924c84c7ba88264ecf3, type: 3}
@@ -1557,22 +1557,6 @@ MonoBehaviour:
   - m_Text: Priority
     m_Image: {fileID: 0}
     targeting: 3
---- !u!114 &8829911232018527791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8829911232018527786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81f9154651a0432468e460165ce2b6ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _systemType: 0
-  _enemyObject: {fileID: 0}
-  _shooting: {fileID: 0}
-  autoInit: 0
 --- !u!1 &8829911232045299635
 GameObject:
   m_ObjectHideFlags: 0
@@ -5127,7 +5111,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6051,7 +6035,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 12
   m_TargetDisplay: 0
 --- !u!114 &8829911233500864382
 MonoBehaviour:
@@ -6548,7 +6532,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

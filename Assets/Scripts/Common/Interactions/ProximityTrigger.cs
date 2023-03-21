@@ -4,41 +4,38 @@ using UnityEngine;
 
 public abstract class ProximityTrigger : MonoBehaviour
 {
-    ProximityTriggerBehaviour _proximityTriggerBehaviour;
+	[SerializeField] ProximityTriggerBehaviour _proximityTriggerBehaviour;
 
-    [SerializeField]
-    private RangeHighlight _rangeHighlight;
+	[SerializeField] private RangeHighlight _rangeHighlight;
 
-    [SerializeField]
-    protected bool _cancelEffectOnExit;
+	[SerializeField] protected bool _cancelEffectOnExit;
 
-    public bool CancelEffectOnExit { set => _cancelEffectOnExit = value; }
+	public bool CancelEffectOnExit
+	{
+		set => _cancelEffectOnExit = value;
+	}
 
-    [SerializeField]
-    protected SphereCollider _sphereCollider;
+	[SerializeField] protected SphereCollider _sphereCollider;
 
-    public float EffectRadius
-    {
-        set
-        {
-            _sphereCollider.radius = value;
-            _rangeHighlight.RangeRadius = value;
-        }
-    }
-
-
+	public float EffectRadius
+	{
+		set
+		{
+			_sphereCollider.radius = value;
+			_rangeHighlight.RangeRadius = value;
+		}
+	}
 
 
-    protected virtual void Awake()
-    {
+	protected virtual void Awake()
+	{
+		_proximityTriggerBehaviour = GetComponentInChildren<ProximityTriggerBehaviour>();
 
-        _proximityTriggerBehaviour = GetComponentInChildren<ProximityTriggerBehaviour>();
+		_proximityTriggerBehaviour.TrigerEnterCallback = TriggerEnter;
+		_proximityTriggerBehaviour.TrigerExitCallback = TriggerExit;
+	}
 
-        _proximityTriggerBehaviour.TrigerEnterCallback = TriggerEnter;
-        _proximityTriggerBehaviour.TrigerExitCallback = TriggerExit;
-    }
+	protected abstract void TriggerEnter(Collider other);
 
-    protected abstract void TriggerEnter(Collider other);
-
-    protected abstract void TriggerExit(Collider other);
+	protected abstract void TriggerExit(Collider other);
 }

@@ -5,27 +5,24 @@ using UnityEngine.Events;
 
 public class DisableAfterBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    public float time;
+	[SerializeField] public float time;
 
-    [SerializeField]
-    public UnityEvent OnObjectDisabled;
-    
-    private void OnEnable()
-    {
-        StartCoroutine(InactivateAfter(time));
-    }
+	[SerializeField] public UnityEvent OnObjectDisabled;
 
-    private void OnDisable()
-    {
-        StopAllCoroutines();
-    }
+	private void OnEnable()
+	{
+		StartCoroutine(InactivateAfter(time));
+	}
 
-    private IEnumerator InactivateAfter(float time)
-    {
-        yield return new WaitForSeconds(time);
-        OnObjectDisabled?.Invoke();
-        gameObject.SetActive(false);
-    }
+	private void OnDisable()
+	{
+		StopAllCoroutines();
+	}
 
+	private IEnumerator InactivateAfter(float time)
+	{
+		yield return new WaitForSeconds(time);
+		OnObjectDisabled?.Invoke();
+		gameObject.SetActive(false);
+	}
 }

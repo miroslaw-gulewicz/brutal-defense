@@ -8,38 +8,31 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Effects", menuName = "ScriptableObjects/Effects")]
 public class Effects : ScriptableObject, ISerializationCallbackReceiver
 {
-    [SerializeField]
-    EffectModifier[] effects;
+	[SerializeField] EffectModifier[] effects;
 
-    Dictionary<IAffected.EffectType, EffectInflictorAgent> effectAgents;
+	Dictionary<IAffected.EffectType, EffectInflictorAgent> effectAgents;
 
 
-    public EffectInflictorAgent this[IAffected.EffectType idx]
-    {
+	public EffectInflictorAgent this[IAffected.EffectType idx]
+	{
+		// using get accessor
+		get { return effectAgents[idx]; }
+	}
 
-        // using get accessor
-        get
-        {
-            return effectAgents[idx];
-        }
-    }
+	public void OnAfterDeserialize()
+	{
+		effectAgents = effects.ToDictionary(keySelector: ef => ef.effectType, elementSelector: ef => ef.agent);
+	}
 
-    public void OnAfterDeserialize()
-    {
-        effectAgents = effects.ToDictionary(keySelector: ef => ef.effectType, elementSelector: ef => ef.agent);
-    }
+	public void OnBeforeSerialize()
+	{
+	}
 
-    public void OnBeforeSerialize()
-    {
-    }
+	[Serializable]
+	public class EffectModifier
+	{
+		[SerializeField] internal IAffected.EffectType effectType;
 
-    [Serializable]
-    public class EffectModifier
-    {
-        [SerializeField]
-        internal IAffected.EffectType effectType;
-
-        [SerializeField]
-        internal EffectInflictorAgent agent;
-    }
+		[SerializeField] internal EffectInflictorAgent agent;
+	}
 }

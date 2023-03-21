@@ -1,35 +1,37 @@
 using Effect;
+
 public class EffectInflictorWrapper : EffectInflictor
 {
-    public IAffected.EffectType EffectType => IAffected.EffectType.NONE;
+	public IAffected.EffectType EffectType => IAffected.EffectType.NONE;
 
-    public EffectInflictorAgent EffectAgent => _effectAgent;
+	public EffectInflictorAgent EffectAgent => _effectAgent;
 
-    public EffectInflictor.InflictorSourceKey inflictorSourceKey => throw new System.NotImplementedException();
+	public EffectInflictor.InflictorSourceKey inflictorSourceKey => throw new System.NotImplementedException();
 
-    public EffectInflictorAgent _effectAgent;
-    EffectInflictorWrapper(EffectInflictorAgent agent)
-    {
-        _effectAgent = agent;
-    }
+	public EffectInflictorAgent _effectAgent;
 
-     public IEffectContextData Attachffect(IEffectContextHolder mono)
-    {
-        return null;
-    }
+	EffectInflictorWrapper(EffectInflictorAgent agent)
+	{
+		_effectAgent = agent;
+	}
 
-    public float UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder)
-    {
-        throw new System.NotImplementedException();
-    }
+	public IEffectContextData Attachffect(IEffectContextHolder mono)
+	{
+		return null;
+	}
 
-    public void StopEffect(IEffectContextHolder mono)
-    {
-        throw new System.NotImplementedException();
-    }
+	public float UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder)
+	{
+		throw new System.NotImplementedException();
+	}
 
-    public string Description()
-    {
-        throw new System.NotImplementedException();
-    }
+	public void StopEffect(IEffectContextHolder mono)
+	{
+		throw new System.NotImplementedException();
+	}
+
+	public string Description()
+	{
+		throw new System.NotImplementedException();
+	}
 }

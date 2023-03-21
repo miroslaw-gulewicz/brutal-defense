@@ -5,44 +5,66 @@ using UnityEngine;
 
 public class ShootingStrategySwitcher : MonoBehaviour
 {
-    [SerializeField]
-    private TargetingSystemType _systemType;
+	[SerializeField] private TargetingSystemType _systemType;
 
-    [SerializeField]
-    private EnemyObject _enemyObject;
+	[SerializeField] private EnemyObject _enemyObject;
 
-    [SerializeField]
-    private Shooting _shooting;
+	private GameObject _commonTarget;
 
-    [SerializeField]
-    private bool autoInit;
+	[SerializeField] private Shooting _shooting;
 
-    public Shooting Shooting { get => _shooting; set
-        {
-            _shooting = value;
-        } 
-    }
+	[SerializeField] private bool autoInit;
 
-    public void Start()
-    {
-        if(autoInit) SetupTargetingSystem();
-    }
+	public Shooting Shooting
+	{
+		get => _shooting;
+		set { _shooting = value; }
+	}
 
-    public EnemyObject EnemyObject { get => _enemyObject; set => _enemyObject = value; }
-    public TargetingSystemType SystemType { get => _systemType; set => _systemType = value; }
+	public void Start()
+	{
+		if (autoInit) SetupTargetingSystem();
+	}
 
-    [ContextMenu("SetupTargetingSystem")]
-    public void SetupTargetingSystem()
-    {
-        var targetingSystem = Shooting.TargetingSystem;
-        Shooting.TargetingSystem = TargetingSystemFactory.Supply(SystemType);
-        if (TargetingSystemFactory.AsTargetingSystemType(Shooting.TargetingSystem) == TargetingSystemType.PRIORITY)
-        {
-            PriorityTargetingSystem priorityTargetingSystem = Shooting.TargetingSystem as PriorityTargetingSystem;
-            priorityTargetingSystem.TargetDefinition = EnemyObject;
+	public EnemyObject EnemyObject
+	{
+		get => _enemyObject;
+		set => _enemyObject = value;
+	}
 
-            priorityTargetingSystem.Setup(targetingSystem);
+	public TargetingSystemType SystemType
+	{
+		get => _systemType;
+		set => _systemType = value;
+	}
 
-        }
-    }
+	public GameObject CommonTarget
+	{
+		get => _commonTarget;
+		set => _commonTarget = value;
+	}
+
+	[ContextMenu("SetupTargetingSystem")]
+	public void SetupTargetingSystem()
+	{
+		var targetingSystem = Shooting.TargetingSystem;
+		Shooting.TargetingSystem = TargetingSystemFactory.Supply(SystemType);
+		TargetingSystemType targetingSystemType =
+			TargetingSystemFactory.AsTargetingSystemType(Shooting.TargetingSystem);
+		switch (targetingSystemType)
+		{
+			case TargetingSystemType.PRIORITY:
+				PriorityTargetingSystem priorityTargetingSystem = Shooting.TargetingSystem as PriorityTargetingSystem;
+				priorityTargetingSystem.TargetDefinition = EnemyObject;
+				priorityTargetingSystem.Setup(targetingSystem);
+				break;
+			case TargetingSystemType.MANUAL:
+				ManualTargetingSystem manualTargetingSystem = Shooting.TargetingSystem as ManualTargetingSystem;
+				manualTargetingSystem.ManualTarget = _commonTarget;
+				break;
+
+
+			default: break;
+		}
+	}
 }

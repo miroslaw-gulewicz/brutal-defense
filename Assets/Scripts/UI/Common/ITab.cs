@@ -1,5 +1,8 @@
+using System;
+
 public interface ITab
 {
-    public void Show();
-    public void Hide();
+	public event Action OnCloseTab;
+	public void Show();
+	public void Hide();
 }

@@ -8,153 +8,163 @@ using static IDestructable;
 
 public class TurretSpawner : MonoBehaviour, IHighlitableObjectHolder
 {
-    [SerializeField]
-    private Transform turretsParent;
+	[SerializeField] private Transform turretsParent;
 
-    [SerializeField]
-    private GameObject turretPrefab;
+	[SerializeField] private GameObject turretPrefab;
 
-    private DamageVisualizer _visualizer;
+	private DamageVisualizer _visualizer;
 
-    [SerializeField]
-    private TurretLevelCollection[] turretLevelCollection;
+	[SerializeField] private TurretLevelCollection[] turretLevelCollection;
 
-    [SerializeField]
-    private TurretObjectDef _turretDef;
+	[SerializeField] private TurretObjectDef _turretDef;
 
-    private  Dictionary<TurretObjectDef, TurretLevelCollection> turretDefTOCollection;
+	private Dictionary<TurretObjectDef, TurretLevelCollection> turretDefTOCollection;
 
-    private List<TurretBehaviour> _spawnedTurrets = new List<TurretBehaviour>();
+	private List<TurretBehaviour> _spawnedTurrets = new List<TurretBehaviour>();
 
-    public Action<DestroyedSource, TurretBehaviour> DestroyCallBack { get; internal set; }
+	public Action<DestroyedSource, TurretBehaviour> DestroyCallBack { get; internal set; }
 
-    [SerializeField]
-    public LayerMask layer;
+	[SerializeField] public LayerMask layer;
 
-    public int Layer => layer.value;
+	public int Layer => layer.value;
 
-    private void Awake()
-    {
-        _visualizer = FindObjectOfType<DamageVisualizer>();
-        turretDefTOCollection = new Dictionary<TurretObjectDef, TurretLevelCollection>();
+	private void Awake()
+	{
+		_visualizer = FindObjectOfType<DamageVisualizer>();
+		turretDefTOCollection = new Dictionary<TurretObjectDef, TurretLevelCollection>();
 
-        foreach (var turretLevel in turretLevelCollection)
-        {
-            foreach (var inner in turretLevel.TurretLevels)
-            {
-                turretDefTOCollection.Add(inner.Definition, turretLevel);
-            }
-        }
-    }
+		foreach (var turretLevel in turretLevelCollection)
+		{
+			foreach (var inner in turretLevel.TurretLevels)
+			{
+				turretDefTOCollection.Add(inner.Definition, turretLevel);
+			}
+		}
+	}
 
-    private void Start()
-    {
-        _spawnedTurrets.AddRange(FindObjectsOfType<TurretBehaviour>());
-    }
+	private void Start()
+	{
+		_spawnedTurrets.AddRange(FindObjectsOfType<TurretBehaviour>());
+	}
 
-    [ContextMenu("Spawn")]
-    public void Spawn()
-    {
-        SpawnTurret(_turretDef, Vector3.zero);
-    }
+	[ContextMenu("Spawn")]
+	public void Spawn()
+	{
+		SpawnTurret(_turretDef, Vector3.zero);
+	}
 
-    internal TurretBehaviour SpawnTurret(TurretObjectDef turretObjectDef, Vector3 gizmoPlacement)
-    {
-        GameObject turret = ObjectCacheManager._Instance.GetObject(turretPrefab);
-        turret.transform.SetParent(turretsParent, false);
-        turret.transform.position = gizmoPlacement;
-        var tb = turret.GetComponent<TurretBehaviour>();
-        tb.DamageVisualizer = _visualizer;
-        tb.TurretObject = turretObjectDef;
-        tb.DestroyCallBack = OnTurretDestroyed;
-        tb.TowerLevel = turretDefTOCollection[turretObjectDef].TurretLevels.First(t => t.Definition.Equals(turretObjectDef)).Level;
-        _spawnedTurrets.Add(tb);
-        tb.Initialize();
-        
-        return tb;
-    }
+	internal TurretObjectDef GetNextLevelTurret(TurretBehaviour turret)
+	{
+		TurretLevelCollection collection = turretDefTOCollection[turret.TurretObject];
+		foreach (var item in collection.TurretLevels)
+		{
+			if (item.Level == turret.TowerLevel + 1)
+			{
+				return item.Definition;
+			}
+		}
 
-    private void OnTurretDestroyed(DestroyedSource source, TurretBehaviour turret)
-    {
-        _spawnedTurrets.Remove(turret);
-        DestroyCallBack?.Invoke(source, turret);
-    }
+		return null;
+	}
 
-    internal void Upgrade(TurretBehaviour currentTower)
-    {
-        TurretLevelCollection collection = turretDefTOCollection[currentTower.TurretObject];
+	internal TurretBehaviour SpawnTurret(TurretObjectDef turretObjectDef, Vector3 gizmoPlacement)
+	{
+		GameObject turret = ObjectCacheManager._Instance.GetObject(turretPrefab);
+		turret.transform.SetParent(turretsParent, false);
+		turret.transform.position = gizmoPlacement;
+		var tb = turret.GetComponent<TurretBehaviour>();
+		tb.DamageVisualizer = _visualizer;
+		tb.TurretObject = turretObjectDef;
+		tb.DestroyCallBack = OnTurretDestroyed;
+		tb.TowerLevel = turretDefTOCollection[turretObjectDef].TurretLevels
+			.First(t => t.Definition.Equals(turretObjectDef)).Level;
+		_spawnedTurrets.Add(tb);
+		tb.Initialize();
 
-        foreach (var item in collection.TurretLevels)
-        {           
-            if (item.Level == currentTower.TowerLevel + 1)
-            {
-                currentTower.TurretObject = item.Definition;
-                currentTower.TowerLevel = item.Level;
-                currentTower.Initialize();
-                break;
-            }
-        }
-    }
+		return tb;
+	}
 
-    internal int GetNextLevelTurretCoinValue(TurretBehaviour currentTurret)
-    {
-        var value = -1;
+	private void OnTurretDestroyed(DestroyedSource source, TurretBehaviour turret)
+	{
+		_spawnedTurrets.Remove(turret);
+		DestroyCallBack?.Invoke(source, turret);
+	}
 
-        TurretLevelCollection collection = turretDefTOCollection[currentTurret.TurretObject];
+	internal void Upgrade(TurretBehaviour currentTower)
+	{
+		TurretLevelCollection collection = turretDefTOCollection[currentTower.TurretObject];
 
-        foreach (var item in collection.TurretLevels)
-        {
-            if (item.Level == currentTurret.TowerLevel + 1)
-            {
-                value = item.Definition.Cost;
-            }
-        }
+		foreach (var item in collection.TurretLevels)
+		{
+			if (item.Level == currentTower.TowerLevel + 1)
+			{
+				currentTower.TurretObject = item.Definition;
+				currentTower.TowerLevel = item.Level;
+				currentTower.Initialize();
+				break;
+			}
+		}
+	}
 
-        return value;
-    }
+	internal int GetNextLevelTurretCoinValue(TurretBehaviour currentTurret)
+	{
+		var value = -1;
 
-    internal string GetNextLevelDescription(TurretBehaviour currentTower)
-    {
-        TurretLevelCollection collection = turretDefTOCollection[currentTower.TurretObject];
-        StringBuilder sb = new StringBuilder();
-        foreach (var item in collection.TurretLevels)
-        {
-            if(item.Level == currentTower.TowerLevel + 1)
-            {
-                sb.AppendLine(item.Definition.TowerName);
-                foreach (var inflictor in item.Definition.Inflictors)
-                {
-                    sb.AppendLine(inflictor.Description());
-                }
-                
-                return sb.ToString();
-            }
-        }
+		TurretLevelCollection collection = turretDefTOCollection[currentTurret.TurretObject];
 
-        return "Max level";
-    }
+		foreach (var item in collection.TurretLevels)
+		{
+			if (item.Level == currentTurret.TowerLevel + 1)
+			{
+				value = item.Definition.Cost;
+			}
+		}
 
-    internal int CalculateValue(TurretBehaviour currentTurret)
-    {
-        int value = 0;
+		return value;
+	}
 
-        if (!turretDefTOCollection.ContainsKey(currentTurret.TurretObject)) return value;
-        
-        TurretLevelCollection collection = turretDefTOCollection[currentTurret.TurretObject];
+	internal string GetNextLevelDescription(TurretBehaviour currentTower)
+	{
+		TurretLevelCollection collection = turretDefTOCollection[currentTower.TurretObject];
+		StringBuilder sb = new StringBuilder();
+		foreach (var item in collection.TurretLevels)
+		{
+			if (item.Level == currentTower.TowerLevel + 1)
+			{
+				sb.AppendLine(item.Definition.TowerName);
+				foreach (var inflictor in item.Definition.Inflictors)
+				{
+					sb.AppendLine(inflictor.Description());
+				}
 
-        foreach (var item in collection.TurretLevels)
-        {
-            if (item.Level < currentTurret.TowerLevel)
-            {
-                value += item.Definition.Cost;    
-            }
-        }
+				return sb.ToString();
+			}
+		}
 
-        return value;
-    }
+		return "Max level";
+	}
 
-    public void ForEachObject(Action<IHighlightable> cmd)
-    {
-        _spawnedTurrets.ForEach(cmd);
-    }
+	internal int CalculateValue(TurretBehaviour currentTurret)
+	{
+		int value = 0;
+
+		if (!turretDefTOCollection.ContainsKey(currentTurret.TurretObject)) return value;
+
+		TurretLevelCollection collection = turretDefTOCollection[currentTurret.TurretObject];
+
+		foreach (var item in collection.TurretLevels)
+		{
+			if (item.Level <= currentTurret.TowerLevel)
+			{
+				value += item.Definition.Cost;
+			}
+		}
+
+		return value;
+	}
+
+	public void ForEachObject(Action<IHighlightable> cmd)
+	{
+		_spawnedTurrets.ForEach(cmd);
+	}
 }

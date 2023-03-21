@@ -6,44 +6,63 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WaveDefinition", menuName = "ScriptableObjects/WaveDefinition")]
 public class WaveDefinition : ScriptableObject, ISerializationCallbackReceiver
 {
-    [SerializeField]
-    public int maxEscapedEnemies;
+	[SerializeField] public int maxEscapedEnemies;
 
-    [SerializeField]
-    private WaveUnit[] waveUnits;
+	[SerializeField] private WaveUnit[] waveUnits;
 
-    [SerializeField]
-    private WayPointCollection _wayPoints;
+	[SerializeField] private WayPointCollection _wayPoints;
 
-    private int enemiesCount;
+	private int enemiesCount;
 
-    public WaveUnit[] WaveUnits { get => waveUnits;}
-    public int EnemiesCount { get => enemiesCount; set => enemiesCount = value; }
+	public WaveUnit[] WaveUnits
+	{
+		get => waveUnits;
+	}
 
-    public void OnAfterDeserialize()
-    {
-       enemiesCount = waveUnits.Sum(e => e.Quantity);
-    }
+	public int EnemiesCount
+	{
+		get => enemiesCount;
+		set => enemiesCount = value;
+	}
 
-    public void OnBeforeSerialize()
-    {
+	public void OnAfterDeserialize()
+	{
+		enemiesCount = waveUnits.Sum(e => e.Quantity);
+	}
 
-    }
+	public void OnBeforeSerialize()
+	{
+	}
 
-    [Serializable]
-    public class WaveUnit
-    {
-        [SerializeField]
-        EnemyObject enemyDef;
+	[Serializable]
+	public class WaveUnit
+	{
+		[SerializeField] EnemyObject enemyDef;
 
-        [SerializeField]
-        int quantity;
+		[SerializeField] int quantity;
 
-        [SerializeField]
-        private float _spawnInterval;
+		[SerializeField] private float _spawnInterval;
 
-        public int Quantity { get => quantity;}
-        public EnemyObject EnemyDef { get => enemyDef; }
-        public float SpawnIntervalSeconds { get => _spawnInterval; }
-    }
+		[SerializeField] bool continueSpawning;
+
+		public int Quantity
+		{
+			get => quantity;
+		}
+
+		public EnemyObject EnemyDef
+		{
+			get => enemyDef;
+		}
+
+		public float SpawnIntervalSeconds
+		{
+			get => _spawnInterval;
+		}
+
+		public bool ContinueSpawning
+		{
+			get => continueSpawning;
+		}
+	}
 }

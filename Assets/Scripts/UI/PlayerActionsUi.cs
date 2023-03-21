@@ -5,111 +5,96 @@ using UnityEngine.UI;
 
 public class PlayerActionsUi : MonoBehaviour
 {
-    [SerializeField]
-    private Button buildButton;
+	[SerializeField] private Button buildButton;
 
-    [SerializeField]
-    private Button magicButton;
+	[SerializeField] private Button magicButton;
 
-    [SerializeField]
-    private BuildTowerButton _selectedTowerButton;
+	[SerializeField] private BuildTowerButton _selectedTowerButton;
 
-    [SerializeField]
-    private Canvas canvasPlayerActions;
+	[SerializeField] private Canvas canvasPlayerActions;
 
-    [SerializeField]
-    private TowerBuildingMenuUI towerBuildingMenuUI;
+	[SerializeField] private TowerBuildingMenuUI towerBuildingMenuUI;
 
-    [SerializeField]
-    private SpellBookUI spellBookUI;
+	[SerializeField] private SpellBookUI spellBookUI;
 
-    [SerializeField]
-    private TowerInfoUI towerInfoUI;
+	[SerializeField] private TowerInfoUI towerInfoUI;
 
-    [SerializeField]
-    private TabPanelUI tabs;
+	[SerializeField] private TabPanelUI tabs;
 
-    [SerializeField]
-    private WorldObjectSelectionManager WorldObjectSelectionManager;
+	[SerializeField] private WorldObjectSelectionManager WorldObjectSelectionManager;
 
-    private SelectObjectsManager<TurretBehaviour> turretSelection;
+	private SelectObjectsManager<TurretBehaviour> turretSelection;
 
-    private LayerMask _default;
+	private LayerMask _default;
 
-    public void Start()
-    {
-        turretSelection = new SelectObjectsManager<TurretBehaviour>();
-        tabs = new TabPanelUI();
+	public void Start()
+	{
+		turretSelection = new SelectObjectsManager<TurretBehaviour>();
+		tabs = new TabPanelUI();
 
-        tabs.AddTab(towerBuildingMenuUI);
-        tabs.AddTab(spellBookUI);
-        tabs.AddTab(towerInfoUI);
+		tabs.AddTab(towerBuildingMenuUI);
+		tabs.AddTab(spellBookUI);
+		tabs.AddTab(towerInfoUI);
 
-        buildButton.onClick.AddListener(HideButtons);
-        buildButton.onClick.AddListener(() => tabs.ActivateTab(towerBuildingMenuUI));
+		tabs.OnActivateTab += (tab) => HideButtons();
 
-        magicButton.onClick.AddListener(HideButtons);
-        magicButton.onClick.AddListener(() => tabs.ActivateTab(spellBookUI));
+		buildButton.onClick.AddListener(() => tabs.ActivateTab(towerBuildingMenuUI));
 
-        _selectedTowerButton.Action = (btb) => ShowTurretDetails();
+		magicButton.onClick.AddListener(() => tabs.ActivateTab(spellBookUI));
 
-        towerBuildingMenuUI.cancelSelectionButton.onClick.AddListener(ShowButtons);
-        towerBuildingMenuUI.cancelSelectionButton.onClick.AddListener(tabs.CloseAll);
+		_selectedTowerButton.Action = (btb) =>
+		{
+			towerInfoUI.DisplayTurretInfo(turretSelection.GetSelectedValue());
+			tabs.ActivateTab(towerInfoUI);
+		};
 
-        spellBookUI.CancelSpellBookButton.onClick.AddListener(ShowButtons);
-        spellBookUI.CancelSpellBookButton.onClick.AddListener(tabs.CloseAll);
+		towerInfoUI.OnCloseTab += ShowButtons;
+		towerBuildingMenuUI.OnCloseTab += ShowButtons;
+		spellBookUI.OnCloseTab += ShowButtons;
 
-        WorldObjectSelectionManager.OnObjectSelected += OnObjectSelected;
-        _default = WorldObjectSelectionManager.LayerMask;
+		WorldObjectSelectionManager.OnObjectSelected += OnObjectSelected;
+		_default = WorldObjectSelectionManager.LayerMask;
 
-        tabs.CloseAll();
-    }
+		tabs.CloseAll();
+	}
 
-    private void OnObjectSelected(GameObject obj)
-    {
-        if(obj == null) turretSelection.ClearSelection();
-        
-        if (!obj.TryGetComponent(out TurretBehaviour turret)) return;
-        
-        turretSelection.SelectObject(turret);
-        
-        if(turretSelection.IsObjectSelected())
-        {
-            _selectedTowerButton.TowerObjectDef = turret.TurretObject;
-        } else
-        {
-            towerInfoUI.Hide();
-        }
+	private void OnObjectSelected(GameObject obj)
+	{
+		if (obj == null) turretSelection.ClearSelection();
 
-        _selectedTowerButton.gameObject.SetActive(turretSelection.IsObjectSelected());
-    }
+		if (!obj.TryGetComponent(out TurretBehaviour turret)) return;
 
-    public void ShowTurretDetails()
-    {
-        tabs.ActivateTab(towerInfoUI);
-        towerInfoUI.DisplayTurretInfo(turretSelection.GetSelectedValue());
-        towerInfoUI.Show();
-    }
+		turretSelection.SelectObject(turret);
 
-    public void ShowButtons()
-    {
-        RestoreSelection();
-        ActivateButtons(true);
-    }
+		bool isTurretSelected = turretSelection.IsObjectSelected();
+		if (isTurretSelected)
+		{
+			_selectedTowerButton.TowerObjectDef = turret.TurretObject;
+		}
 
-    public void RestoreSelection()
-    {
-        WorldObjectSelectionManager.LayerMask = _default;
-    }
+		_selectedTowerButton.gameObject.SetActive(isTurretSelected);
+	}
 
-    public void HideButtons()
-    {
-        RestoreSelection();
-        ActivateButtons(false);
-    }
+	public void ShowButtons()
+	{
+		RestoreSelection();
+		ActivateButtons(true);
+		tabs.CloseAll();
+	}
 
-    private void ActivateButtons(bool active)
-    {
-        canvasPlayerActions.gameObject.SetActive(active);
-    }
+	public void RestoreSelection()
+	{
+		WorldObjectSelectionManager.LayerMask = _default;
+	}
+
+	public void HideButtons()
+	{
+		RestoreSelection();
+		ActivateButtons(false);
+	}
+
+	private void ActivateButtons(bool active)
+	{
+		canvasPlayerActions.gameObject.SetActive(active);
+	}
 }

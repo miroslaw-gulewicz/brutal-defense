@@ -6,41 +6,42 @@ using UnityEngine.UI;
 
 public class SpellButton : MonoBehaviour
 {
-    [SerializeField]
-    private Spell _spell;
+	[SerializeField] private Spell _spell;
 
-    [SerializeField]
-    TMPro.TextMeshProUGUI textMeshProUGUI;
+	[SerializeField] TMPro.TextMeshProUGUI textMeshProUGUI;
 
-    [SerializeField]
-    private bool _cooldown;
+	[SerializeField] private bool _cooldown;
 
-    private Button _button;
+	private Button _button;
 
-    private CooldownTimer _cooldownTimer;
+	private CooldownTimer _cooldownTimer;
 
-    public Action<Spell> OnSpellSelected { set; private get; }
-    public Spell Spell { get => _spell;}
+	public Action<Spell> OnSpellSelected { set; private get; }
 
-    [ContextMenu("Init")]
-    private void Awake()
-    {
-        _button = GetComponent<Button>();
-        _button.onClick.AddListener(() => OnSpellSelected(_spell));
-        textMeshProUGUI.text = _spell.SpellName;
-        _cooldownTimer = GetComponent<CooldownTimer>();
-    }
+	public Spell Spell
+	{
+		get => _spell;
+	}
 
-    public void StartCooldown()
-    {
-        if (!_cooldown) return;
+	[ContextMenu("Init")]
+	private void Awake()
+	{
+		_button = GetComponent<Button>();
+		_button.onClick.AddListener(() => OnSpellSelected(_spell));
+		textMeshProUGUI.text = _spell.SpellName;
+		_cooldownTimer = GetComponent<CooldownTimer>();
+	}
 
-        _button.enabled = false;
-        _cooldownTimer.StartTimout(_spell.Cooldown, SetEnabled);
-    }
+	public void StartCooldown()
+	{
+		if (!_cooldown) return;
 
-    public void SetEnabled()
-    {
-        _button.enabled = true;
-    }
+		_button.enabled = false;
+		_cooldownTimer.StartTimout(_spell.Cooldown, SetEnabled);
+	}
+
+	public void SetEnabled()
+	{
+		_button.enabled = true;
+	}
 }

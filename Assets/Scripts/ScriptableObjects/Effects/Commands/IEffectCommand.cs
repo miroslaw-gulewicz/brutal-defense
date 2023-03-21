@@ -2,5 +2,5 @@ using Effect;
 
 public interface IEffectCommand
 {
-    void DoCommand(IEffectContextHolder context);
+	void DoCommand(IEffectContextHolder context);
 }

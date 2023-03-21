@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2040bdab93d9af84d848e445328d32e6, type: 3}
+  m_Name: DemoLevel
+  m_EditorClassIdentifier: 
+  levelName: Demo Level
+  waves:
+  - {fileID: 11400000, guid: 543346e6c5f600e4884d0d2b439355b7, type: 2}
+  levelCover: {fileID: 3471344404005203423, guid: 2f411f84716214c4395ed7f11df44563, type: 3}
+  _startCoins: 100
+  disabledTowers: {fileID: 0}

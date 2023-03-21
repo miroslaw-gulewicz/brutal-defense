@@ -4,50 +4,45 @@ using System;
 
 public abstract class BaseEffectInflictor : ScriptableObject, EffectInflictor
 {
-    protected static int UniqueIndexingVar = 0;
+	protected static int UniqueIndexingVar = 0;
 
-    [SerializeField]
-    protected IAffected.EffectType _effectType;
+	[SerializeField] protected IAffected.EffectType _effectType;
 
-    [SerializeField]
-    protected EffectInflictorAgent _effectAgent;
+	[SerializeField] protected EffectInflictorAgent _effectAgent;
 
-    public  IAffected.EffectType EffectType => _effectType;
-    
-    public EffectInflictorAgent EffectAgent => _effectAgent;
+	public IAffected.EffectType EffectType => _effectType;
 
-    public EffectInflictor.InflictorSourceKey inflictorSourceKey => _key;
+	public EffectInflictorAgent EffectAgent => _effectAgent;
 
-    [SerializeField]
-    private EffectInflictorKey _key;
-    public abstract IEffectContextData Attachffect(IEffectContextHolder mono);
+	public EffectInflictor.InflictorSourceKey inflictorSourceKey => _key;
 
-    public abstract void StopEffect(IEffectContextHolder mono);
+	[SerializeField] private EffectInflictorKey _key;
+	public abstract IEffectContextData Attachffect(IEffectContextHolder mono);
 
-    public abstract float UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder);
+	public abstract void StopEffect(IEffectContextHolder mono);
 
-    public abstract string Description();
+	public abstract float UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder);
 
-    private void OnEnable()
-    {
-        _key = new EffectInflictorKey(_effectType, name);
-    }
+	public abstract string Description();
 
-    [Serializable]
-    public class EffectInflictorKey : EffectInflictor.InflictorSourceKey
-    {
-        [SerializeField]
-        int EffectUniqueId;
+	private void OnEnable()
+	{
+		_key = new EffectInflictorKey(_effectType, name);
+	}
 
-        string inflictorName;
+	[Serializable]
+	public class EffectInflictorKey : EffectInflictor.InflictorSourceKey
+	{
+		[SerializeField] int EffectUniqueId;
 
-        public EffectInflictorKey(IAffected.EffectType effectType, string name)
-        {
-            EffectUniqueId = UniqueIndexingVar++;
-            inflictorName = name;
-        }
+		string inflictorName;
 
-        string EffectInflictor.InflictorSourceKey.Name  => inflictorName; 
+		public EffectInflictorKey(IAffected.EffectType effectType, string name)
+		{
+			EffectUniqueId = UniqueIndexingVar++;
+			inflictorName = name;
+		}
 
-    }
+		string EffectInflictor.InflictorSourceKey.Name => inflictorName;
+	}
 }

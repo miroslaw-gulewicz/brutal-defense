@@ -4,29 +4,26 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    private static SoundManager _instance;
+	private static SoundManager _instance;
 
-    public static SoundManager Instance => _instance;
+	public static SoundManager Instance => _instance;
 
-    [SerializeField]
-    public AudioSource audioSource;
+	[SerializeField] public AudioSource audioSource;
 
-    [SerializeField]
-    public AudioClip[] clips;
+	[SerializeField] public AudioClip[] clips;
 
-    private void Awake()
-    {
-        _instance = this;
-    }
+	private void Awake()
+	{
+		_instance = this;
+	}
 
-    public void PlayAudio(SoundType soundType)
-    {
-        //audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
-    }
+	public void PlayAudio(SoundType soundType)
+	{
+		audioSource.PlayOneShot(clips[Random.Range(0, clips.Length)]);
+	}
 
-    public enum SoundType
-    {
-        MONSTER_KILLED
-    }
-
+	public enum SoundType
+	{
+		MONSTER_KILLED
+	}
 }

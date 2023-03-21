@@ -1,21 +1,22 @@
 public interface IDestructable
 {
-    void TakeDamage(DamageType damageType, short amount);
+	void TakeDamage(DamageType damageType, short amount);
 
-    public enum DamageType
-    {
-        BLUNT,
-        PIERCING,
-        FIRE,
-        ICE,
-        POISION,
-        INTERNAL,
-        NONE,
-        HEAL
-    }
+	public enum DamageType
+	{
+		BLUNT,
+		PIERCING,
+		FIRE,
+		ICE,
+		POISION,
+		INTERNAL,
+		NONE,
+		HEAL
+	}
 
-    public enum DestroyedSource
-    {
-        KILLED, SAVED
-    }
+	public enum DestroyedSource
+	{
+		KILLED,
+		SAVED
+	}
 }

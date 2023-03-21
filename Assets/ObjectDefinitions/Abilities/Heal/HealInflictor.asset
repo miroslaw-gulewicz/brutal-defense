@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d237da036644764e83f4ae355a6db1a, type: 3}
   m_Name: HealInflictor
   m_EditorClassIdentifier: 
-  _effectType: 6
+  _effectType: 1
   _effectAgent: {fileID: 11400000, guid: 95b01449d1f4bf1459f4f4a6e53c8309, type: 2}
   _key:
-    EffectUniqueId: 9
+    EffectUniqueId: 11
   timeContextData:
     interval: 999
     effectTime: 1000

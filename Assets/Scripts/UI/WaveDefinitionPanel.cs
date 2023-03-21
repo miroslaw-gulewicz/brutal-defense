@@ -4,42 +4,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using static WaveDefinition;
 
-public class WaveDefinitionPanel : MonoBehaviour
+public class WaveDefinitionPanel : CollectionDisplayPanel<WaveUnit, WaveEnemyInfo>
 {
-    [SerializeField]
-    private WaveEnemyInfo waveEnemyInfoPrefab;
+	public void Awake()
+	{
+		uiElements.AddRange(_panelRoot.GetComponentsInChildren<WaveEnemyInfo>());
+	}
 
-    [SerializeField]
-    private GameObject _panelRoot;
+	internal void DisplayWave(WaveDefinition waveDef)
+	{
+		_selectedObjectManager.ClearSelection();
+		foreach (var item in uiElements)
+		{
+			Destroy(item.gameObject);
+		}
 
-    private List<WaveEnemyInfo> _waveEnemiesInfoPanels = new List<WaveEnemyInfo>();
-    private Dictionary<WaveUnit, WaveEnemyInfo> _waveEnemies = new Dictionary<WaveUnit, WaveEnemyInfo>();
+		uiElements.Clear();
+		_elementToUi.Clear();
+		foreach (var wave in waveDef.WaveUnits)
+		{
+			WaveEnemyInfo waveEnemyInfo = Instantiate(prefab, _panelRoot.transform);
+			waveEnemyInfo.DisplayInfo(wave.EnemyDef.Sprite, wave.Quantity);
+			uiElements.Add(waveEnemyInfo);
+			_elementToUi.Add(wave, waveEnemyInfo);
+		}
+	}
 
-    public void Awake()
-    {
-        _waveEnemiesInfoPanels.AddRange(_panelRoot.GetComponentsInChildren<WaveEnemyInfo>());
-    }
+	public void SelectPanel(WaveUnit waveunit)
+	{
+		_selectedObjectManager.SelectObject(_elementToUi[waveunit]);
+	}
 
-    internal void DisplayWave(WaveDefinition waveDef)
-    {
-        foreach (var item in _waveEnemiesInfoPanels)
-        {
-            Destroy(item.gameObject);
-        }
-        _waveEnemiesInfoPanels.Clear();
-        _waveEnemies.Clear();
-        foreach(var wave in waveDef.WaveUnits)
-        {
-            WaveEnemyInfo waveEnemyInfo = Instantiate(waveEnemyInfoPrefab, _panelRoot.transform);
-            waveEnemyInfo.DisplayInfo(wave.EnemyDef.Sprite, wave.Quantity);
-            _waveEnemiesInfoPanels.Add(waveEnemyInfo);
-            _waveEnemies.Add(wave, waveEnemyInfo);
-        }
-    }
-
-    public void UpdateWaveEnemyProgress(WaveUnit info, int enemiesLeft)
-    {
-        WaveEnemyInfo waveEnemyInfo = _waveEnemies[info];
-        waveEnemyInfo.UpdateEnemiesCount(enemiesLeft);
-    }
+	public void UpdateWaveEnemyProgress(WaveUnit info, int enemiesLeft)
+	{
+		WaveEnemyInfo waveEnemyInfo = _elementToUi[info];
+		waveEnemyInfo.UpdateEnemiesCount(enemiesLeft);
+	}
 }

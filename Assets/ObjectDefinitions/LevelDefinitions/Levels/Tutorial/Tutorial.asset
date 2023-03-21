@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2040bdab93d9af84d848e445328d32e6, type: 3}
+  m_Name: Tutorial
+  m_EditorClassIdentifier: 
+  levelName: Tutorial
+  waves:
+  - {fileID: 11400000, guid: a6b90ffc516499b4ca8b4a3251ce5f19, type: 2}
+  levelCover: {fileID: 0}
+  _startCoins: 10
+  _wayPoints:
+  - {x: -12.51, y: 0.13, z: 5.08}
+  - {x: -2.24, y: 0.13, z: 4.64}
+  - {x: -3.26, y: 0.13, z: 1.15}
+  - {x: -1.36, y: 0.13, z: 0.73}
+  - {x: -0.43, y: 0.13, z: -1.92}
+  - {x: 4.287, y: 0.13, z: -2.86}
+  - {x: 5.274, y: 0.13, z: -0.788}
+  - {x: 7.6, y: 0.13, z: -1.04}
+  - {x: 12.66, y: 0.13, z: -0.01}
+  disabledTowers: {fileID: 0}

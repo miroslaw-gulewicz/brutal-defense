@@ -5,5 +5,4 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SpellTarget", menuName = "ScriptableObjects/SpellTarget")]
 public class SpellTarget : ScriptableObject
 {
-    
 }

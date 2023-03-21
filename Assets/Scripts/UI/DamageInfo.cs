@@ -6,29 +6,28 @@ using UnityEngine;
 
 public class DamageInfo : MonoBehaviour
 {
-    [SerializeField]
-    TMPro.TextMeshPro damageValue;
+	[SerializeField] TMPro.TextMeshPro damageValue;
 
-    public static readonly string PLUS = "+";
-    public static readonly string MINUS = "-";
+	public static readonly string PLUS = "+";
+	public static readonly string MINUS = "-";
 
-    internal void UpdateDamage(Color color, short amount)
-    {
-        damageValue.color = color;
-        if (IsHealing(amount))
-            damageValue.text = PLUS + (-amount).ToString();
-        else
-            damageValue.text = MINUS + amount.ToString();
-    }
+	internal void UpdateDamage(Color color, short amount)
+	{
+		damageValue.color = color;
+		if (IsHealing(amount))
+			damageValue.text = PLUS + (-amount).ToString();
+		else
+			damageValue.text = MINUS + amount.ToString();
+	}
 
-    public void UpdateText(Color color, string text)
-    {
-        damageValue.color = color;
-        damageValue.text = text;
-    }
+	public void UpdateText(Color color, string text)
+	{
+		damageValue.color = color;
+		damageValue.text = text;
+	}
 
-    private static bool IsHealing(short amount)
-    {
-        return amount < 0;
-    }
+	private static bool IsHealing(short amount)
+	{
+		return amount < 0;
+	}
 }

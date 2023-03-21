@@ -6,53 +6,67 @@ using Utilities;
 
 public class SceneManager : MonoBehaviour
 {
-    public static SceneManager _Instance { get; private set; }
-    public SceneManager __Instance { get; private set; }
-    public LevelDefinition LevelDefinition { get => _levelDefinition; }
+	public static SceneManager _Instance { get; private set; }
+	public SceneManager __Instance { get; private set; }
 
-    [SerializeField]
-    private string _menuScene;
+	public LevelDefinition LevelDefinition
+	{
+		get => _levelDefinition;
+	}
 
-    [SerializeField]
-    private string _levelSceneName;
+	[SerializeField] private string _menuScene;
 
-    private LevelDefinition _levelDefinition;
+	[SerializeField] private string _levelSceneName;
 
-    private float _gameSpeed = 1f;
+	private LevelDefinition _levelDefinition;
 
-    public float GameSpeed { get { return _gameSpeed; } set { _gameSpeed = value; } }
+	private float _gameSpeed = 1f;
 
-    private void Awake()
-    {
-        if(FindObjectsOfType<SceneManager>().Length == 1)
-            _Instance = this;
+	public float GameSpeed
+	{
+		get { return _gameSpeed; }
+		set { _gameSpeed = value; }
+	}
 
-        UnityEngine.SceneManagement.SceneManager.sceneUnloaded += SceneUnloaded;
-    }
+	private void Awake()
+	{
+		if (FindObjectsOfType<SceneManager>().Length == 1)
+			_Instance = this;
 
-    private void SceneUnloaded(UnityEngine.SceneManagement.Scene arg0)
-    {
-        PlayerProgressMonitor.Instance.SaveProgress();
-    }
+		UnityEngine.SceneManagement.SceneManager.sceneUnloaded += SceneUnloaded;
+	}
 
-    public void LoadLevelScene(LevelDefinition levelDefinition)
-    {
-        _levelDefinition = levelDefinition;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(_levelSceneName);
-    }
+	private void SceneUnloaded(UnityEngine.SceneManagement.Scene arg0)
+	{
+		PlayerProgressMonitor.Instance.SaveProgress();
+	}
 
-    public void LoadMainMenuScene()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(_menuScene);
-    }
+	public void LoadLevelScene(LevelDefinition levelDefinition)
+	{
+		_levelDefinition = levelDefinition;
+		UnityEngine.SceneManagement.SceneManager.LoadScene(_levelSceneName);
+	}
 
-    public void PauseGame()
-    {
-        Time.timeScale = 0f;
-    }
+	public void LoadMainMenuScene()
+	{
+		UnityEngine.SceneManagement.SceneManager.LoadScene(_menuScene);
+	}
 
-    public void ResumeGame()
-    {
-        Time.timeScale = _gameSpeed;
-    }
+	[ContextMenu("Pause")]
+	public void Pause()
+	{
+		Time.timeScale = 0f;
+	}
+
+	[ContextMenu("Resume")]
+	public void Resume()
+	{
+		Time.timeScale = 1f;
+	}
+
+	[ContextMenu("play 2x")]
+	public void Speed2x()
+	{
+		Time.timeScale = 2f;
+	}
 }

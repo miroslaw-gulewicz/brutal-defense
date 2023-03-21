@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class IndicatorBarBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    Image stat;
-    
-    public float Value { set => stat.fillAmount = value; get => stat.fillAmount; }
+	[SerializeField] Image stat;
+
+	public float Value
+	{
+		set => stat.fillAmount = value;
+		get => stat.fillAmount;
+	}
 }

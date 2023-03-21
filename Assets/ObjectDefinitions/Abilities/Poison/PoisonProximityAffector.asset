@@ -15,6 +15,6 @@ MonoBehaviour:
   _applyStrategy: 0
   _proximityAffectorPrefab: {fileID: 1959515868867607557, guid: 7de69fb7658456d4b9ee9c7393fdcf04, type: 3}
   _inflictors:
-  - {fileID: 11400000, guid: 0174f55c32fc5ef43b389ca92bb7a309, type: 2}
+  - {fileID: 11400000, guid: 35dcdfc679d4f1147a4b591871308c30, type: 2}
   cancelEffectOnExit: 0
   proximity: 2

@@ -48,7 +48,5 @@ MonoBehaviour:
     m_Bits: 2147483648
   spellsRoot: {fileID: 0}
   placementControl: {fileID: 0}
-  worldObjectSelectionManager: {fileID: 0}
   _activeSpell: {fileID: 0}
   _target: {fileID: 0}
-  _autoCast: 1

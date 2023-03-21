@@ -2,32 +2,34 @@ using UnityEngine;
 
 namespace Aim
 {
-    public class TargetingSystem
-    {
-        protected Agent target;
+	public class TargetingSystem
+	{
+		protected GameObject target;
 
-        internal int TargetingSystemID { get; set; }
+		internal int TargetingSystemID { get; set; }
 
-        public Object TargetDefinition;
+		public Object TargetDefinition;
 
-        public virtual Agent Target { get => target; }
+		public virtual GameObject Target
+		{
+			get => target;
+		}
 
-        public virtual void Setup(TargetingSystem targetingSystem)
-        {
-            target = targetingSystem.Target;
-        }
+		public virtual void Setup(TargetingSystem targetingSystem)
+		{
+			target = targetingSystem.Target;
+		}
 
-        public virtual void TargetEnters(Agent gameObject)
-        {
-            if (!target)
-                target = gameObject;
-        }
+		public virtual void TargetEnters(GameObject gameObject)
+		{
+			if (!target)
+				target = gameObject;
+		}
 
-        internal virtual void TargetExits(Agent gameObject)
-        {
-            if (GameObject.ReferenceEquals(target, gameObject))
-                target = null;
-        }
-    }
-
+		internal virtual void TargetExits(GameObject gameObject)
+		{
+			if (GameObject.ReferenceEquals(target, gameObject))
+				target = null;
+		}
+	}
 }

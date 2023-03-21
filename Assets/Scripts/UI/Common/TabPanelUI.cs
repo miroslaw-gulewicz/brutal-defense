@@ -1,31 +1,35 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TabPanelUI
 {
-    private List<ITab> tabs = new List<ITab>();
+	private List<ITab> tabs = new List<ITab>();
 
-    private ITab active;
+	private ITab active;
 
-    public void AddTab(ITab tab)
-    {
-        if (tabs.Contains(tab)) return;
+	public event Action<ITab> OnActivateTab;
 
-        tabs.Add(tab);
-    }
+	public void AddTab(ITab tab)
+	{
+		if (tabs.Contains(tab)) return;
 
-    public void ActivateTab(ITab tab)
-    {
-        if(Object.ReferenceEquals(tab, active)) return;
+		tabs.Add(tab);
+	}
 
-        tabs.ForEach(tab => tab.Hide());
-        active = tab;
-        active.Show();
-    }
+	public void ActivateTab(ITab tab)
+	{
+		if (UnityEngine.Object.ReferenceEquals(tab, active)) return;
 
-    internal void CloseAll()
-    {
-        tabs.ForEach(tab => tab.Hide());
-        active = null;
-    }
+		CloseAll();
+		active = tab;
+		active.Show();
+		OnActivateTab?.Invoke(active);
+	}
+
+	internal void CloseAll()
+	{
+		tabs.ForEach(tab => tab.Hide());
+		active = null;
+	}
 }

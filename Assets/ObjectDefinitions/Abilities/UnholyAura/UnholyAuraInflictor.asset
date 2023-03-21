@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effectType: 0
   _effectAgent: {fileID: 11400000, guid: 54d39df8a9f7f0640adb2ae650698657, type: 2}
+  _key:
+    EffectUniqueId: 1
   timeContextData:
-    interval: 350
-    lastInflictTime: 0
-    effectTime: 360
+    interval: 1000
+    effectTime: 500
   inflictorDescriptor: {fileID: 11400000, guid: 5031ba4d0ee9d2e468ce0b742f1cca03, type: 2}
   damageType: 6
   damage: 0

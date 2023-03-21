@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d237da036644764e83f4ae355a6db1a, type: 3}
+  m_Script: {fileID: 11500000, guid: 4827f5fe6b5d3d443b953662aede4ef7, type: 3}
   m_Name: PoisonDamageOverTime 1
   m_EditorClassIdentifier: 
   _effectType: 5
   _effectAgent: {fileID: 11400000, guid: 3e79c431286dad84db2fcbdc0a6458ee, type: 2}
+  _key:
+    EffectUniqueId: 21
   timeContextData:
     interval: 1
-    _lastInflictTime: -100
     effectTime: 5
-  inflictorDescriptor: {fileID: 11400000, guid: 5031ba4d0ee9d2e468ce0b742f1cca03, type: 2}
-  damageType: 4
-  damage: 1
+  inflictor: {fileID: 11400000, guid: 71cf50557d1c9cc44b83772559a53095, type: 2}
