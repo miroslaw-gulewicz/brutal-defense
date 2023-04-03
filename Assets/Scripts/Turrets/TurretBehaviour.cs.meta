@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: ab969fdc8b17454409d72e9cd877b379
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - objectCacheManager: {instanceID: 0}
+  - turretObject: {instanceID: 0}
+  - _balisticPrefab: {instanceID: 0}
+  - hpBar: {instanceID: 0}
+  - turretHead: {instanceID: 0}
+  - currentTarget: {instanceID: 0}
+  - selectableBehaviour: {instanceID: 0}
+  - sprite: {instanceID: 0}
+  - towerShootStrategy: {fileID: 11400000, guid: 77d843b4fb8980b47af09c132d7ab1bb, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
