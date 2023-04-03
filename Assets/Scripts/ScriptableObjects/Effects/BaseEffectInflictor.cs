@@ -6,9 +6,13 @@ public abstract class BaseEffectInflictor : ScriptableObject, EffectInflictor
 {
 	protected static int UniqueIndexingVar = 0;
 
+	[SerializeField] protected bool customDescription;
+
 	[SerializeField] protected IAffected.EffectType _effectType;
 
 	[SerializeField] protected EffectInflictorAgent _effectAgent;
+
+	[SerializeField] protected string _customDescription;
 
 	public IAffected.EffectType EffectType => _effectType;
 
@@ -23,7 +27,10 @@ public abstract class BaseEffectInflictor : ScriptableObject, EffectInflictor
 
 	public abstract float UpdateInflictor(IDestructable destructable, IEffectContextHolder effectContextHolder);
 
-	public abstract string Description();
+	public virtual string Description()
+	{
+		return _customDescription;	
+	}
 
 	private void OnEnable()
 	{

@@ -54,6 +54,7 @@ public class BasicStatsHolder : ISerializationCallbackReceiver, IEnumerable<Stat
 	public float StartHP
 	{
 		get => this[(int)StatEnum.HP].value;
+		set { this[(int)StatEnum.HP].Value = value; }
 	}
 
 	public float CurrentHp

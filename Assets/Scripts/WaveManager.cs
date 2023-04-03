@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static IDestructable;
-using Utilities;
 using static WaveDefinition;
 using PathCreation;
 
@@ -46,10 +45,7 @@ public class WaveManager : MonoBehaviour, IHighlitableObjectHolder
 
 	[SerializeField] private WayPoint[] waypoints;
 
-
-	WayPointManager wayPointManager;
-
-	public event Action<DestroyedSource, Enemy> EnemyDestroyedEvent;
+	public event Action<StatusSource, Enemy> EnemyDestroyedEvent;
 
 	private List<Enemy> _spawnedEnemies = new List<Enemy>();
 
@@ -103,26 +99,25 @@ public class WaveManager : MonoBehaviour, IHighlitableObjectHolder
 	}
 
 	public VertexPath Path { get; internal set; }
+	public WaveDefinition[] Waves { get; internal set; }
 
 	[SerializeField] private int unitIndex;
 
 
 	private int unitsReleased;
 
-	Dictionary<DestroyedSource, int> EnemiesDeathsStat = new Dictionary<DestroyedSource, int>();
+	Dictionary<StatusSource, int> EnemiesDeathsStat = new Dictionary<StatusSource, int>();
 
 	private WaveDefinition.WaveUnit _currentWaveUnit;
 
 	private void Awake()
 	{
-		enemyDestination.OnEnemyReached += EnemyDestroyed;
+		enemyDestination.OnEnemyReached += EnemyStatusChanged;
 
-		EnemiesDeathsStat.Add(DestroyedSource.KILLED, 0);
-		EnemiesDeathsStat.Add(DestroyedSource.SAVED, 0);
+		EnemiesDeathsStat.Add(StatusSource.KILLED, 0);
+		EnemiesDeathsStat.Add(StatusSource.SAVED, 0);
 
 		_spawnedEnemies.AddRange(FindObjectsOfType<Enemy>());
-
-		wayPointManager = new WayPointManager();
 	}
 
 
@@ -134,6 +129,12 @@ public class WaveManager : MonoBehaviour, IHighlitableObjectHolder
 			spawnCount--;
 			yield return new WaitForSeconds(spawnInterval);
 		}
+
+		if(_currentWaveUnit.ContinueSpawning)
+		{
+			NextWave();
+		}
+
 	}
 
 	[ContextMenu("Spawn")]
@@ -153,7 +154,7 @@ public class WaveManager : MonoBehaviour, IHighlitableObjectHolder
 		movable.Destination = enemyDestination.transform.position;
 		movable.Initialize();
 
-		enemy.DestroyCallBack = EnemyDestroyed;
+		enemy.DestroyCallBack = EnemyStatusChanged;
 		enemy.name = "Wave Enemy " + unitsReleased.ToString();
 
 		_spawnedEnemies.Add(enemy);
@@ -164,7 +165,7 @@ public class WaveManager : MonoBehaviour, IHighlitableObjectHolder
 
 	private void OnDestroy()
 	{
-		enemyDestination.OnEnemyReached -= EnemyDestroyed;
+		enemyDestination.OnEnemyReached -= EnemyStatusChanged;
 	}
 
 	[ContextMenu("Begin Wave")]
@@ -196,14 +197,14 @@ public class WaveManager : MonoBehaviour, IHighlitableObjectHolder
 
 	public void SetNextWaveDef()
 	{
-		_currentWaveUnit = WaveDefinition.WaveUnits[NextWaveUnit()];
+		_currentWaveUnit = WaveDefinition.WaveUnits[WaveUnit()];
 		spawnCount = _currentWaveUnit.Quantity;
 		spawnInterval = _currentWaveUnit.SpawnIntervalSeconds;
 		EnemySpawner._enemyDef = _currentWaveUnit.EnemyDef;
 		WaveUnitChanged?.Invoke(_currentWaveUnit);
 	}
 
-	private int NextWaveUnit()
+	private int WaveUnit()
 	{
 		if (_randomUnits)
 			return UnityEngine.Random.Range(0, WaveDefinition.WaveUnits.Length);
@@ -222,12 +223,15 @@ public class WaveManager : MonoBehaviour, IHighlitableObjectHolder
 		OnEnemyCountChanged?.Invoke();
 	}
 
-	private void EnemyDestroyed(DestroyedSource source, Enemy enemy)
+	private void EnemyStatusChanged(StatusSource source, Enemy enemy)
 	{
-		StartCoroutine(InactivateAfter(source, enemy));
+		if (StatusSource.SPAWNED == source)
+			_spawnedEnemies.Add(enemy);
+		else
+			StartCoroutine(InactivateAfter(source, enemy));
 	}
 
-	private IEnumerator InactivateAfter(DestroyedSource source, Enemy enemy)
+	private IEnumerator InactivateAfter(StatusSource source, Enemy enemy)
 	{
 		IPreDestroyListener[] preDestroyListeners = enemy.GetComponentsInChildren<IPreDestroyListener>();
 		for (int i = 0; i < preDestroyListeners.Length; i++)

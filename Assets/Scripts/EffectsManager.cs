@@ -18,7 +18,10 @@ public class EffectsManager : MonoBehaviour
 
 	internal void BonesEffect(Vector3 position, int number = 1)
 	{
-		SpawnPrefab(_bonesDropEffect, position);
+		for (int i = 0; i < number; i++)
+		{
+			SpawnPrefab(_bonesDropEffect, position);
+		}
 	}
 
 	public void TowerExplosion(Vector3 position)

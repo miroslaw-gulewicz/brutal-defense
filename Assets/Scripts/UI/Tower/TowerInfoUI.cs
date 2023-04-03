@@ -73,18 +73,20 @@ public class TowerInfoUI : MonoBehaviour, ITab
 	{
 		economyManager.SellTower(_currentTurret);
 		OnCloseTab?.Invoke();
-		_objectPlacementControl.WorldObjectSelectionManager.Deselect(_currentTurret);
+		_objectPlacementControl.WorldObjectSelectionManager.Deselect(_currentTurret.gameObject);
 	}
 
 	public void Hide()
 	{
 		_towerInfoCanvas.gameObject.SetActive(false);
 		_shootingStrategyPanel.gameObject.SetActive(false);
+		_towerStatsPanel.gameObject.SetActive(false);
 	}
 
 	public void Show()
 	{
 		_towerInfoCanvas.gameObject.SetActive(true);
+		_towerStatsPanel.gameObject.SetActive(true);
 		_towerStatsPanel.gameObject.SetActive(true);
 	}
 
@@ -93,7 +95,7 @@ public class TowerInfoUI : MonoBehaviour, ITab
 		_currentTurret = turret;
 		var turretDef = _currentTurret.TurretObject;
 
-		_towerStatsPanel.Display(turretDef.Sprite, turretDef.BasicStats, turretDef.Resistance, turretDef as Weapon);
+		_towerStatsPanel.Display(turretDef.TowerName, turretDef.Sprite, turretDef.BasicStats, turretDef.Resistance, turretDef.Inflictors, turretDef as Weapon);
 		sellTowerButton.Value = economyManager.TurretValue(_currentTurret);
 
 		upgradeTowerControl.CurrentTower = turret;

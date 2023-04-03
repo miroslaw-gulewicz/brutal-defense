@@ -37,6 +37,11 @@ public class EnemySpawner : MonoBehaviour
 			shooting.Weapon = enemy.EnemyObject.Weapon;
 			shooting.Initialize();
 		}
+
+		if (enemy.TryGetComponent(out Movement movement))
+		{
+			movement.Initialize();
+		}
 	}
 
 	public Enemy SpawnEnemy(GameObject prefab, Vector3 position, EnemyObject enemyObject)

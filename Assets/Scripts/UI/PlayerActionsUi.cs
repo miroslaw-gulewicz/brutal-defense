@@ -97,4 +97,10 @@ public class PlayerActionsUi : MonoBehaviour
 	{
 		canvasPlayerActions.gameObject.SetActive(active);
 	}
+
+	public void ClearSelection()
+	{
+		OnObjectSelected(turretSelection.GetSelectedValue().gameObject);
+		tabs.CloseAll();
+	}
 }

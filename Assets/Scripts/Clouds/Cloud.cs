@@ -6,19 +6,19 @@ using static WayPointManager;
 
 public class Cloud : Agent
 {
-	[SerializeField] SpriteResolver spriteResolver;
+	[SerializeField] SpriteResolver _spriteResolver;
 
-	[SerializeField] int spritesInAsset;
+	[SerializeField] int _spritesInAsset;
 
 	int current;
 
-	private void Start()
+	private void Awake()
 	{
 		GetComponent<Movement>().Initialize();
 	}
 
 	public void Next()
 	{
-		spriteResolver.SetCategoryAndLabel("Fire", Mathf.PingPong(current++, spritesInAsset).ToString());
+		_spriteResolver.SetCategoryAndLabel("Fire", Mathf.PingPong(current++, _spritesInAsset).ToString());
 	}
 }

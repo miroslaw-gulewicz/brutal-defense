@@ -23,6 +23,14 @@ public class Movement : MonoBehaviour, IMovable
 		_agent = GetComponent<Agent>();
 	}
 
+	public void Initialize(Movement template)
+	{
+		Path = template.Path;
+		Distance = template.Distance;
+		movementStrategy = template.movementStrategy;
+		Initialize();
+	}
+
 	public void Initialize()
 	{
 		if (_agent.BasicStats != null)

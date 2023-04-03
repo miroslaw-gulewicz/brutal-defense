@@ -28,6 +28,7 @@ public abstract class EffectInflictorAgent : ScriptableObject
 
 	protected void ApplySEffectHierarhy(GameObject target, GameObject gameObject)
 	{
+		if (gameObject == null) return;
 		if (_applyStrategy == ApplyStrategy.TARGET)
 		{
 			gameObject.transform.SetParent(target.transform, false);

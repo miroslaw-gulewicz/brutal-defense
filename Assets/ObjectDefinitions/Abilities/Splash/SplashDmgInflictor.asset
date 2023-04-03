@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e88f15a72dc76b94ea124c3b0428232c, type: 3}
   m_Name: SplashDmgInflictor
   m_EditorClassIdentifier: 
+  customDescription: 0
   _effectType: 0
   _effectAgent: {fileID: 11400000, guid: afcad9199d9544f4e841532724bf152c, type: 2}
+  _customDescription: 
+  _key:
+    EffectUniqueId: 2
   damageType: 0
   damage: 10

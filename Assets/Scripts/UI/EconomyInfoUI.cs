@@ -10,10 +10,6 @@ public class EconomyInfoUI : MonoBehaviour
 
 	[SerializeField] TMPro.TextMeshProUGUI gold;
 
-	[SerializeField] TMPro.TextMeshProUGUI maxMana;
-
-	[SerializeField] TMPro.TextMeshProUGUI currentMana;
-
 	[SerializeField] TMPro.TextMeshProUGUI maxHp;
 
 	[SerializeField] TMPro.TextMeshProUGUI currentHp;
@@ -31,7 +27,5 @@ public class EconomyInfoUI : MonoBehaviour
 		gold.text = economyManager.Coins.ToString();
 		maxHp.text = gameManager.BasicStats[StatEnum.HP].ToString();
 		currentHp.text = gameManager.BasicStats[StatEnum.CURRENT_HP].ToString();
-		maxMana.text = gameManager.BasicStats[StatEnum.MANA].ToString();
-		currentMana.text = gameManager.BasicStats[StatEnum.CURRENT_MANA].ToString();
 	}
 }

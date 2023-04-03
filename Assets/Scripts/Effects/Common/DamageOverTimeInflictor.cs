@@ -14,7 +14,10 @@ public class DamageOverTimeInflictor : TimeEffectInflictor
 
 	public override string Description()
 	{
-		return inflictorDescriptor.EffectDescription(this);
+		if (!customDescription)
+			return inflictorDescriptor.EffectDescription(this);
+		else
+			return base.Description();
 	}
 
 	public override void StopEffect(IEffectContextHolder mono)

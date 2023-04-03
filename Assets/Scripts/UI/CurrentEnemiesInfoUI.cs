@@ -18,18 +18,15 @@ public class CurrentEnemiesInfoUI : MonoBehaviour
 
 	[SerializeField] private WorldObjectSelectionManager WorldObjectSelectionManager;
 
-	private SelectObjectsManager<Enemy> enemySelection;
-
 	[SerializeField] private WaveDefinitionPanel _waveDefinitionPanel;
 
 	public void Awake()
 	{
-		enemySelection = new SelectObjectsManager<Enemy>();
+		_waveDefinitionPanel.OnWaveEnemyHovered = OnObjectHovered;
 		waveManager.OnWaveBegin += RefreshStats;
 		waveManager.OnEnemyCountChanged += RefreshStats;
 		waveManager.OnWaveChanged += WaveChanged;
 		waveManager.WaveUnitChanged += OnWaveUnitChanged;
-		//WorldObjectSelectionManager.OnObjectSelected += OnObjectSelected;
 	}
 
 	private void OnWaveUnitChanged(WaveUnit waveUnit)
@@ -42,23 +39,15 @@ public class CurrentEnemiesInfoUI : MonoBehaviour
 		_waveDefinitionPanel.DisplayWave(wave);
 	}
 
-	private void OnObjectSelected(GameObject obj)
+	private void OnObjectHovered(EnemyObject enemyObject)
 	{
-		if (obj == null) enemySelection.ClearSelection();
-
-		if (!obj.TryGetComponent(out Enemy enemy)) return;
-
-		enemySelection.SelectObject(enemy);
-
-		if (enemySelection.IsObjectSelected())
+		if(enemyObject == null)
 		{
-			EnemyObject enemyObject = enemySelection.GetSelectedValue().EnemyObject;
-			_enemyStatsInfoPanel.Display(enemyObject.Sprite, enemyObject.BasicStats, enemyObject.Resistance);
+			_enemyStatsInfoPanel.gameObject.SetActive(false);
+			return;
 		}
-		else
-		{
-			_enemyStatsInfoPanel.Close();
-		}
+
+		_enemyStatsInfoPanel.Display(enemyObject.EnemyName, enemyObject.Sprite, enemyObject.BasicStats, enemyObject.Resistance, enemyObject.SelfInflictors, enemyObject.Weapon);
 	}
 
 	private void RefreshStats()

@@ -47,7 +47,7 @@ public class ResistanceHolder : IResistanceHolder, ISerializationCallbackReceive
 	{
 		[SerializeField] internal IDestructable.DamageType damageType;
 
-		[SerializeField] [Range(0, 100)] internal float damageReduction;
+		[SerializeField] [Range(-100, 100)] internal float damageReduction;
 	}
 
 	public void OnAfterDeserialize()

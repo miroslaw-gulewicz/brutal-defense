@@ -68,7 +68,7 @@ public class BuildTowerButton : MonoBehaviour, IDescrible, ISelectable
 		button.interactable = enabled;
 	}
 
-	public string getActionDescription()
+	public string GetActionDescription()
 	{
 		return towerObjectDef.TowerName;
 	}

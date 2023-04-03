@@ -26,7 +26,7 @@ public class DamageVisualizer : MonoBehaviour
 		_effectType2Color = _effectColors.ToDictionary(k => k.effect, k => k.color);
 	}
 
-	public void DisplayDamageInfo(Vector3 position, IDestructable.DamageType damageType, short amount)
+	public void DisplayDamageInfo(Vector3 position, IDestructable.DamageType damageType, int amount)
 	{
 		GameObject go = ObjectCacheManager._Instance.GetObject(_damageIndicatorPrefab);
 		go.transform.position = position;

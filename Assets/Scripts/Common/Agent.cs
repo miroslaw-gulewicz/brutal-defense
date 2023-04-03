@@ -55,7 +55,7 @@ public class Agent : MonoBehaviour, IDestructable, IAffected, IHighlightable, IS
 	protected void OnDamageTaken(IDestructable.DamageType damageType, short amount)
 	{
 		if (gameObject.activeSelf)
-			_damageVisualizer?.DisplayDamageInfo(transform.position, damageType, amount);
+			_damageVisualizer?.DisplayDamageInfo(transform.position, damageType, -amount);
 	}
 
 	protected void OnEffectApplied(EffectInflictor inflictor)

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,7 +10,7 @@ public class DescribleBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerE
 	{
 		var desc = GetComponent<IDescrible>();
 		if (desc != null)
-			_getDescription = desc.getActionDescription;
+			_getDescription = desc.GetActionDescription;
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)
@@ -26,8 +24,13 @@ public class DescribleBehaviour : MonoBehaviour, IPointerEnterHandler, IPointerE
 		ToolTip.instance.Hide();
 	}
 
+	private void OnDisable()
+	{
+		ToolTip.instance.Hide();
+	}
+
 	public interface IDescrible
 	{
-		string getActionDescription();
+		string GetActionDescription();
 	}
 }

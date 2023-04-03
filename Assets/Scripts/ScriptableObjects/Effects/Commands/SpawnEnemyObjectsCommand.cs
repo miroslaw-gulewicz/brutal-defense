@@ -16,7 +16,16 @@ public class SpawnEnemyObjectsCommand : SpawnObjectCommand
 		gameObject.transform.position = context.Mono.transform.position;
 		var enemy = gameObject.GetComponent<Enemy>();
 		enemy.EnemyObject = enemyObject;
-		enemy.Initialize();
+
+		if (context.Mono.TryGetComponent(out Enemy parentEnemy))
+			enemy.Initialize(parentEnemy);
+		
+
+
+		if(context.Mono.TryGetComponent(out Movement movement))
+			enemy.GetComponent<Movement>().Initialize(movement);
+		
 		gameObject.SetActive(true);
+		parentEnemy.DestroyCallBack(IDestructable.StatusSource.SPAWNED, enemy);
 	}
 }

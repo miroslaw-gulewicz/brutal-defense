@@ -15,7 +15,9 @@ public class LevelDefinition : ScriptableObject
 
 	[SerializeField] private Vector3[] _wayPoints;
 
-	[SerializeField] private TurretObjectDef disabledTowers;
+	[SerializeField] private Vector3[] _turretPlacements;
+
+	[SerializeField] private short _playerMaxLives;
 
 	public string LevelName
 	{
@@ -37,14 +39,16 @@ public class LevelDefinition : ScriptableObject
 		get => _startCoins;
 	}
 
-	public TurretObjectDef DisabledTowers
-	{
-		get => disabledTowers;
-	}
-
 	public Vector3[] WayPoints
 	{
 		get => _wayPoints;
 		set => _wayPoints = value;
 	}
+	
+	public Vector3[] TurretPlacements
+	{
+		get => _turretPlacements;
+		set => _turretPlacements = value;
+	}
+	public short PlayerMaxLives => _playerMaxLives;
 }

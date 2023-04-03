@@ -44,14 +44,22 @@ MonoBehaviour:
     continueSpawning: 1
   - enemyDef: {fileID: 11400000, guid: eb93ac774c2a65b4bae00f499e0a9ea6, type: 2}
     quantity: 3
+    _spawnInterval: 2
+    continueSpawning: 1
+  - enemyDef: {fileID: 11400000, guid: e5dfaca0196e6fb4c869de05a4c25820, type: 2}
+    quantity: 1
+    _spawnInterval: 1
+    continueSpawning: 1
+  - enemyDef: {fileID: 11400000, guid: d2ec6c49a6a1c174caf29cd578c13d2c, type: 2}
+    quantity: 4
     _spawnInterval: 1
     continueSpawning: 1
   - enemyDef: {fileID: 11400000, guid: e5dfaca0196e6fb4c869de05a4c25820, type: 2}
     quantity: 1
     _spawnInterval: 1
     continueSpawning: 1
-  - enemyDef: {fileID: 11400000, guid: e5dfaca0196e6fb4c869de05a4c25820, type: 2}
-    quantity: 1
+  - enemyDef: {fileID: 11400000, guid: 4d5d4bd2ec9bad148a7066c48709c189, type: 2}
+    quantity: 20
     _spawnInterval: 1
-    continueSpawning: 1
+    continueSpawning: 0
   _wayPoints: {fileID: 0}

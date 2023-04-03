@@ -14,9 +14,10 @@ public interface IDestructable
 		HEAL
 	}
 
-	public enum DestroyedSource
+	public enum StatusSource
 	{
 		KILLED,
-		SAVED
+		SAVED,
+		SPAWNED
 	}
 }

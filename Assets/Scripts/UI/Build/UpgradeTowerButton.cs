@@ -16,7 +16,7 @@ public class UpgradeTowerButton : MonoBehaviour, IDescrible
 		set => _currentTower = value;
 	}
 
-	public string getActionDescription()
+	public string GetActionDescription()
 	{
 		return _turretSpawner.GetNextLevelDescription(_currentTower);
 	}

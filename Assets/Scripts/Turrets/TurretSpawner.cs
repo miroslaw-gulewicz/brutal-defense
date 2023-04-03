@@ -12,6 +12,8 @@ public class TurretSpawner : MonoBehaviour, IHighlitableObjectHolder
 
 	[SerializeField] private GameObject turretPrefab;
 
+	[SerializeField] private GameObject turretPlacementPrefab;
+
 	private DamageVisualizer _visualizer;
 
 	[SerializeField] private TurretLevelCollection[] turretLevelCollection;
@@ -22,7 +24,7 @@ public class TurretSpawner : MonoBehaviour, IHighlitableObjectHolder
 
 	private List<TurretBehaviour> _spawnedTurrets = new List<TurretBehaviour>();
 
-	public Action<DestroyedSource, TurretBehaviour> DestroyCallBack { get; internal set; }
+	public Action<StatusSource, TurretBehaviour> DestroyCallBack { get; internal set; }
 
 	[SerializeField] public LayerMask layer;
 
@@ -84,7 +86,22 @@ public class TurretSpawner : MonoBehaviour, IHighlitableObjectHolder
 		return tb;
 	}
 
-	private void OnTurretDestroyed(DestroyedSource source, TurretBehaviour turret)
+	internal void ClearTurrets()
+	{
+		_spawnedTurrets.ForEach(t => t.gameObject.SetActive(false));
+		_spawnedTurrets.Clear();
+	}
+
+	public void SpawnBuildingPlaces(Vector3[] positions)
+	{
+		for (int i = 0; i < positions.Length; i++)
+		{
+			GameObject turretPlacement = ObjectCacheManager._Instance.GetObject(turretPlacementPrefab);
+			turretPlacement.transform.position = positions[i];
+		}
+	}
+
+	private void OnTurretDestroyed(StatusSource source, TurretBehaviour turret)
 	{
 		_spawnedTurrets.Remove(turret);
 		DestroyCallBack?.Invoke(source, turret);

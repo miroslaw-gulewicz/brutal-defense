@@ -1,6 +1,4 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.UI;
 
@@ -20,20 +18,13 @@ public class WorldObjectSelectionManager : MonoBehaviour
 
 	[SerializeField] private LayerMask layerMask;
 
-	[SerializeField] private LayerMask _uiLayerMask;
-
 	private Vector2 _position;
 
-	private RaycastHit _hit;
+	private RaycastHit[] _hit = new RaycastHit[1];
 
 	private Ray _ray;
 
-	[SerializeField] private GameObject[] agentHolders;
-
 	[SerializeField] private InputSystemUIInputModule uiInputSystem;
-
-	// Layer , element on layer container
-	private Dictionary<int, IHighlitableObjectHolder> agents;
 
 	private float lastClick = 0;
 
@@ -41,7 +32,7 @@ public class WorldObjectSelectionManager : MonoBehaviour
 
 	[Range(0, 0.5f)] [SerializeField] private float doubleClickTreshold = 0.3f;
 
-	public Vector2 CursorPosition
+	public Vector2 ClickPosition
 	{
 		get => _position;
 	}
@@ -50,8 +41,6 @@ public class WorldObjectSelectionManager : MonoBehaviour
 	{
 		_playerWorldInteractionControls = new PlayerWorldInteractionControls();
 		_playerWorldInteractionControls.PlayerWorldInteractions.WorldClick.performed += OnWorldClick;
-		agents = agentHolders.ToDictionary(x => x.GetComponent<IHighlitableObjectHolder>().Layer,
-			x => x.GetComponent<IHighlitableObjectHolder>());
 	}
 
 	private void OnWorldClick(UnityEngine.InputSystem.InputAction.CallbackContext clickCallback)
@@ -59,7 +48,6 @@ public class WorldObjectSelectionManager : MonoBehaviour
 		if (uiInputSystem.IsPointerOverGameObject(0)) return;
 		if (!clickCallback.performed || clickCallback.ReadValue<float>() != 1) return;
 
-		//Debug.Log("Clicked " + clickCallback.ToString());
 		_position = _playerWorldInteractionControls.PlayerWorldInteractions.MousePosition.ReadValue<Vector2>();
 		if (IsSelectClick())
 		{
@@ -67,13 +55,13 @@ public class WorldObjectSelectionManager : MonoBehaviour
 			lastClick = 0;
 		}
 
-		lastClick = Time.time;
+		lastClick = Time.unscaledTime;
 	}
 
 	private bool IsSelectClick()
 	{
 		if (doubleClickToSelect)
-			return Time.time - lastClick <= doubleClickTreshold;
+			return Time.unscaledTime - lastClick <= doubleClickTreshold;
 		else
 			return true;
 	}
@@ -81,21 +69,20 @@ public class WorldObjectSelectionManager : MonoBehaviour
 	protected void TrySelectObject(ref Vector2 position)
 	{
 		_ray = mainCamera.ScreenPointToRay(position);
-		if (Physics.Raycast(_ray, out _hit, 100, LayerMask, QueryTriggerInteraction.Collide))
+		if (Physics.RaycastNonAlloc(_ray,  _hit, 100, LayerMask, QueryTriggerInteraction.Collide) > 0)
 		{
-			Debug.Log("Selected: " + _hit.transform.gameObject.name);
-			OnObjectSelected?.Invoke(_hit.transform.gameObject);
+			OnObjectSelected?.Invoke(_hit[0].transform.gameObject);
 		}
 	}
 
-	public void Select(TurretBehaviour currentTurret)
+	public void Select(GameObject obj)
 	{
-		OnObjectSelected?.Invoke(currentTurret.gameObject);
+		OnObjectSelected?.Invoke(obj);
 	}
 
-	public void Deselect(TurretBehaviour currentTurret)
+	public void Deselect(GameObject obj)
 	{
-		OnObjectSelected?.Invoke(currentTurret.gameObject);
+		OnObjectSelected?.Invoke(obj);
 	}
 
 	private void OnEnable()
@@ -106,29 +93,5 @@ public class WorldObjectSelectionManager : MonoBehaviour
 	private void OnDisable()
 	{
 		_playerWorldInteractionControls?.Disable();
-	}
-
-	public void HighlightAgents(int layer, bool highlighted)
-	{
-		if (agents.TryGetValue(layer, out var agentHolder))
-		{
-			agentHolder.ForEachObject(agent => agent.HighLight(highlighted));
-		}
-		else
-		{
-			Debug.LogWarning("No object for highlight on layer " + layer);
-		}
-	}
-
-	[ContextMenu("Highlight")]
-	public void Highlight()
-	{
-		HighlightAgents(LayerMask.value, true);
-	}
-
-	[ContextMenu("UnHighlight")]
-	public void UnHighlight()
-	{
-		HighlightAgents(LayerMask.value, false);
 	}
 }

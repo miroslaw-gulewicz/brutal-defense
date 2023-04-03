@@ -23,7 +23,7 @@ public class TurretBehaviour : Agent
 		set => towerLevel = value;
 	}
 
-	public Action<DestroyedSource, TurretBehaviour> DestroyCallBack { get; internal set; }
+	public Action<StatusSource, TurretBehaviour> DestroyCallBack { get; internal set; }
 
 	[SerializeField] private RangeHighlight _rangeHighlight;
 
@@ -63,7 +63,7 @@ public class TurretBehaviour : Agent
 		_hpBar.Value = (float)BasicStats.CurrentHp / BasicStats.StartHP;
 		if (BasicStats.CurrentHp <= 0)
 		{
-			DestroyCallBack?.Invoke(DestroyedSource.KILLED, this);
+			DestroyCallBack?.Invoke(StatusSource.KILLED, this);
 			gameObject.SetActive(false);
 		}
 	}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ObjectPlacementControl : MonoBehaviour
@@ -12,6 +13,10 @@ public class ObjectPlacementControl : MonoBehaviour
 	[SerializeField] private RaycastHit hit;
 
 	[SerializeField] private GameObject gizmo;
+
+	[SerializeField] private GameObject[] agentHolders;
+
+	private Dictionary<int, IHighlitableObjectHolder> agents;
 
 	public GameObject Gizmo
 	{
@@ -33,6 +38,12 @@ public class ObjectPlacementControl : MonoBehaviour
 	[SerializeField] private LayerMask _interactionLayerMask;
 
 	private bool passGizmoWhenNoObject;
+
+	private void Awake()
+	{
+		agents = agentHolders.ToDictionary(x => x.GetComponent<IHighlitableObjectHolder>().Layer,
+		x => x.GetComponent<IHighlitableObjectHolder>());
+	}
 
 	public void Setup(Action<GameObject> onObjectPlaced, int interactionLayerMask, bool higlightObjectsOnGrid = true)
 	{
@@ -60,15 +71,14 @@ public class ObjectPlacementControl : MonoBehaviour
 		worldObjectSelectionManager.OnObjectSelected += OnTargetAquired;
 		worldObjectSelectionManager.LayerMask = interactionLayerMask;
 		if (higlightObjectsOnGrid)
-			worldObjectSelectionManager.HighlightAgents(interactionLayerMask, true);
+			HighlightAgents(interactionLayerMask, true);
 	}
 
 	public void Reset()
 	{
-		worldObjectSelectionManager.HighlightAgents(_interactionLayerMask, false);
+		HighlightAgents(_interactionLayerMask, false);
 		worldObjectSelectionManager.OnObjectSelected -= OnTargetAquired;
 		Gizmo = null;
-		//gameObject.SetActive(false);
 	}
 
 	private void OnTargetAquired(GameObject gameObject)
@@ -93,11 +103,35 @@ public class ObjectPlacementControl : MonoBehaviour
 	{
 		if (gizmo == null) return;
 
-		Ray ray = mainCamera.ScreenPointToRay(worldObjectSelectionManager.CursorPosition);
+		Ray ray = mainCamera.ScreenPointToRay(worldObjectSelectionManager.ClickPosition);
 
 		if (Physics.Raycast(ray, out hit, 100.0f, _interactionLayerMask))
 		{
 			gizmo.transform.position = hit.point;
 		}
+	}
+
+	public void HighlightAgents(int layer, bool highlighted)
+	{
+		if (agents.TryGetValue(layer, out var agentHolder))
+		{
+			agentHolder.ForEachObject(agent => agent.HighLight(highlighted));
+		}
+		else
+		{
+			Debug.LogWarning("No object for highlight on layer " + layer);
+		}
+	}
+
+	[ContextMenu("Highlight")]
+	public void Highlight()
+	{
+		HighlightAgents(WorldObjectSelectionManager.LayerMask.value, true);
+	}
+
+	[ContextMenu("UnHighlight")]
+	public void UnHighlight()
+	{
+		HighlightAgents(WorldObjectSelectionManager.LayerMask.value, false);
 	}
 }

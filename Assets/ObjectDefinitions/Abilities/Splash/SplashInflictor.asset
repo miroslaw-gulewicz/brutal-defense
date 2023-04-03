@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d237da036644764e83f4ae355a6db1a, type: 3}
   m_Name: SplashInflictor
   m_EditorClassIdentifier: 
+  customDescription: 1
   _effectType: 0
   _effectAgent: {fileID: 11400000, guid: afcad9199d9544f4e841532724bf152c, type: 2}
+  _customDescription: Inflicts 10 Blund damage to nerby enemies
   _key:
-    EffectUniqueId: 8
+    EffectUniqueId: 18
   timeContextData:
     interval: 0.1
     effectTime: 0.2

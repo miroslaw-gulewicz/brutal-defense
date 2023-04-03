@@ -14,7 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: Demo Level
   waves:
-  - {fileID: 11400000, guid: 543346e6c5f600e4884d0d2b439355b7, type: 2}
+  - {fileID: 11400000, guid: 012424ca5a40536499084bd98ac1a94b, type: 2}
   levelCover: {fileID: 3471344404005203423, guid: 2f411f84716214c4395ed7f11df44563, type: 3}
   _startCoins: 100
-  disabledTowers: {fileID: 0}
+  _wayPoints:
+  - {x: -12.51, y: 0.13, z: 5.08}
+  - {x: -4.89, y: 0.13, z: 4.34}
+  - {x: -3.26, y: 0.13, z: 1.15}
+  - {x: -1.36, y: 0.13, z: 0.73}
+  - {x: -0.43, y: 0.13, z: -1.92}
+  - {x: 4.287, y: 0.13, z: -2.86}
+  - {x: 5.274, y: 0.13, z: -0.788}
+  - {x: 7.6, y: 0.13, z: -1.04}
+  - {x: 12.66, y: 0.13, z: -0.01}
+  _turretPlacements:
+  - {x: 2.95, y: 0, z: -0.48}
+  - {x: 1.64, y: 0, z: 0.95}
+  - {x: -6.42, y: 0, z: 1.88}
+  - {x: 0.85, y: 0, z: -4.79}
+  - {x: -3.85, y: 0, z: -2.42}
+  - {x: 7.31, y: 0, z: -3.93}
+  _playerMaxLives: 1

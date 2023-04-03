@@ -5,19 +5,15 @@ using UnityEngine;
 
 public class ToolTip : MonoBehaviour
 {
-	public static ToolTip instance;
+	public static ToolTip instance => _instance;
+	private static ToolTip _instance;
 
 	public TMPro.TextMeshProUGUI _tooltipText;
 
 	private void Awake()
 	{
-		instance = this;
+		_instance = this;
 		Hide();
-	}
-
-
-	void Update()
-	{
 	}
 
 	public void SetText(string tooltipText)

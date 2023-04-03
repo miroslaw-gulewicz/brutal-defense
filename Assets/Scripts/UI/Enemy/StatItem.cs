@@ -3,29 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StatItem : MonoBehaviour, DescribleBehaviour.IDescrible
+public class StatItem : MonoBehaviour
 {
-	[SerializeField] private Image _img;
+	[SerializeField] private TMPro.TextMeshProUGUI _statName;
 
 	[SerializeField] private TMPro.TextMeshProUGUI _statsText;
 
-	private string _tooltip;
-
-	public static void Init(StatItem statItem, Sprite sprite, string tooltip, Color color)
+	public static void Init(StatItem statItem, string statName, Color color)
 	{
-		statItem._img.sprite = sprite;
-		statItem._img.color = color;
+		statItem._statName.color = color;
+		statItem._statName.text = statName;
 		statItem._statsText.color = color;
-		statItem._tooltip = tooltip;
-	}
-
-	public string getActionDescription()
-	{
-		return _tooltip;
 	}
 
 	public void SetValue(float value)
 	{
 		_statsText.text = value.ToString();
+	}
+
+	public void SetValue(string value)
+	{
+		_statsText.text = value;
 	}
 }

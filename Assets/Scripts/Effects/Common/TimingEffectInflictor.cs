@@ -8,10 +8,9 @@ public class TimingEffectInflictor : TimeEffectInflictor
 {
 	[SerializeField] BaseEffectInflictor inflictor;
 
-
 	public override string Description()
 	{
-		return ""; //inflictorDescriptor.EffectDescription(this);
+		return inflictor.Description();
 	}
 
 	public override void StopEffect(IEffectContextHolder mono)

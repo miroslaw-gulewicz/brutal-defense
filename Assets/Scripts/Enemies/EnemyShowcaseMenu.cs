@@ -30,7 +30,7 @@ public class EnemyShowcaseMenu : MonoBehaviour
 	private void OnEnemyBrutallyDoubleClicked(GameObject obj)
 	{
 		if (obj.TryGetComponent(out Enemy enemy))
-			enemy.DoDestroy(IDestructable.DestroyedSource.KILLED);
+			enemy.DoDestroy(IDestructable.StatusSource.KILLED);
 	}
 
 	private void OnEnemySpawned(Enemy obj)
@@ -44,13 +44,13 @@ public class EnemyShowcaseMenu : MonoBehaviour
 		movable.Initialize();
 	}
 
-	private void OnEnemyDestroyed(IDestructable.DestroyedSource source, Enemy enemy)
+	private void OnEnemyDestroyed(IDestructable.StatusSource source, Enemy enemy)
 	{
 		StartShowcase();
-		if (source == IDestructable.DestroyedSource.KILLED)
+		if (source == IDestructable.StatusSource.KILLED)
 		{
 			PlayerProgressMonitor.Instance.RegisterKill();
-			effectsManager.BonesEffect(enemy.transform.position);
+			effectsManager.BonesEffect(enemy.transform.position, 5);
 			effectsManager.SpawnCoin(enemy.transform.position);
 		}
 	}

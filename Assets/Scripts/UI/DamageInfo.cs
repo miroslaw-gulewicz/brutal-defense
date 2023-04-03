@@ -7,27 +7,41 @@ using UnityEngine;
 public class DamageInfo : MonoBehaviour
 {
 	[SerializeField] TMPro.TextMeshPro damageValue;
+	[SerializeField] TMPro.TextMeshPro damageSignPlus;
+	[SerializeField] TMPro.TextMeshPro damageSignMinus;
 
-	public static readonly string PLUS = "+";
-	public static readonly string MINUS = "-";
+	private static string[] _damageStringCache;
+	private void Awake()
+	{
+		if (_damageStringCache != null) return;
 
-	internal void UpdateDamage(Color color, short amount)
+		_damageStringCache = new string[100];
+
+		for (int i = 0; i < 100; i++)
+		{
+			_damageStringCache[i] = i.ToString();
+		}
+	}
+
+	internal void UpdateDamage(Color color, int amount)
 	{
 		damageValue.color = color;
-		if (IsHealing(amount))
-			damageValue.text = PLUS + (-amount).ToString();
-		else
-			damageValue.text = MINUS + amount.ToString();
+		var negative = amount < 0;
+		var absDmg = Math.Abs(amount);
+
+		if (absDmg < _damageStringCache.Length)
+			damageValue.text = _damageStringCache[absDmg];
+
+		damageSignMinus.gameObject.SetActive(negative);
+		damageSignPlus.gameObject.SetActive(!negative);
+		damageSignPlus.color = color;
+		damageSignMinus.color = color;
 	}
 
 	public void UpdateText(Color color, string text)
 	{
 		damageValue.color = color;
-		damageValue.text = text;
-	}
 
-	private static bool IsHealing(short amount)
-	{
-		return amount < 0;
+		damageValue.text = text;
 	}
 }

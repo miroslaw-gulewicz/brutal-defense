@@ -28,6 +28,8 @@ public class TowerBuildingMenuUI : MonoBehaviour, ITab
 
 	[SerializeField] Canvas buttonsCanvas;
 
+	[SerializeField] StatsInfoPanel _statsInfoPanel;
+
 	BuildTowerButton[] buildTowerButtons;
 
 	private SelectObjectsManager<BuildTowerButton> buttonSelection = new SelectObjectsManager<BuildTowerButton>(true);
@@ -108,7 +110,7 @@ public class TowerBuildingMenuUI : MonoBehaviour, ITab
 		//placementControl.Reset();
 		economyManager.Buy(turretObjectDef.Cost);
 		placementControl.WorldObjectSelectionManager.Select(turretSpawner.SpawnTurret(turretObjectDef,
-			placement.transform.position));
+	placement.transform.position).gameObject);
 	}
 
 	private void OnTowerSelect(BuildTowerButton obj)
@@ -116,11 +118,6 @@ public class TowerBuildingMenuUI : MonoBehaviour, ITab
 		bool canBuy = economyManager.HasSufficientCoins(obj.TowerObjectDef.Cost);
 		applyBuilding.enabled = canBuy;
 		buttonSelection.SelectObject(obj);
-		// CancelBuildingSelection();
-		/*        foreach (var item in buildTowerButtons)
-		        {
-		            item.SetEnabled(item.TowerObjectDef == obj.TowerObjectDef);
-		        }*/
 
 		if (canBuy)
 		{

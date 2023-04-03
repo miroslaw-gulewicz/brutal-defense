@@ -36,7 +36,7 @@ public class Enemy : Agent
 		_effectManager = new EffectManager(_statsManager, this);
 		_effectManager.DamageTakenCallback += OnDamageTaken;
 		_effectManager.OnEffectAppliedCallback += OnEffectApplied;
-		_effectManager._hpBelow0Callback += (ctx) => DoDestroy(DestroyedSource.KILLED);
+		_effectManager._hpBelow0Callback += (ctx) => DoDestroy(StatusSource.KILLED);
 		_effectManager.DefaultEffects = EnemyObject.DefaultEffects;
 
 		_statsManager.BasicStatsHolder.CurrentHpUpdated += OnUpdateHp;
@@ -46,12 +46,19 @@ public class Enemy : Agent
 			_effectManager.ApplyEffect(enemyObject.SelfInflictors);
 	}
 
+	internal void Initialize(Enemy parentEnemy)
+	{
+		this.DamageVisualizer = parentEnemy.DamageVisualizer;
+		this.DestroyCallBack = parentEnemy.DestroyCallBack;
+		Initialize();
+	}
+
 	private void OnUpdateHp()
 	{
 		_hpBar.Value = BasicStats.CurrentHp / BasicStats.StartHP;
 	}
 
-	public void DoDestroy(DestroyedSource source)
+	public void DoDestroy(StatusSource source)
 	{
 		if (DestroyCallBack != null)
 			DestroyCallBack.Invoke(source, this);
@@ -76,5 +83,5 @@ public class Enemy : Agent
 		set => _damageVisualizer = value;
 	}
 
-	public Action<DestroyedSource, Enemy> DestroyCallBack { get; internal set; }
+	public Action<StatusSource, Enemy> DestroyCallBack { get; internal set; }
 }

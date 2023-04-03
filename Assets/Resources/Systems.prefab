@@ -76,11 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: -5794238090770245476}
   clips:
-  - {fileID: 8300000, guid: 78ff6ba6109e09e4a8a0ec9f41327598, type: 3}
   - {fileID: 8300000, guid: 37dab6eeacbf36c408d2c80fa418e342, type: 3}
-  - {fileID: 8300000, guid: 28699e50e23f8dc42b6874ec933d481c, type: 3}
-  - {fileID: 8300000, guid: a58e220a45b89714381884fabf377e36, type: 3}
-  - {fileID: 8300000, guid: 8cc4d8cf1211c744cb83ebbb3c6c3598, type: 3}
 --- !u!82 &-5794238090770245476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -88,7 +84,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4636841898040722470}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}

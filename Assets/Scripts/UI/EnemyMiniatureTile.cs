@@ -29,7 +29,7 @@ public class EnemyMiniatureTile : MonoBehaviour, IDescrible
 		tile._enemyObject = enemy;
 	}
 
-	public string getActionDescription()
+	public string GetActionDescription()
 	{
 		return _enemyObject.EnemyName;
 	}

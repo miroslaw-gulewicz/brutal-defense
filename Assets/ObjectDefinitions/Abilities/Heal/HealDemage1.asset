@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e88f15a72dc76b94ea124c3b0428232c, type: 3}
   m_Name: HealDemage1
   m_EditorClassIdentifier: 
+  customDescription: 0
   _effectType: 0
   _effectAgent: {fileID: 0}
+  _customDescription: 
   _key:
-    EffectUniqueId: 4
+    EffectUniqueId: 16
   damageType: 7
   damage: -1

@@ -23,7 +23,9 @@ MonoBehaviour:
   sprite: {fileID: 6201115216396246476, guid: d68399eec9f0aa24f8a9465f92207f8f, type: 3}
   towerName: Arrow Turret
   resistance:
-    resistanceStats: []
+    resistanceStats:
+    - damageType: 0
+      damageReduction: 0
   basicStats:
     stats:
     - stat: 0
